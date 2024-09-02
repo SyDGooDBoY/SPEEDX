@@ -67,4 +67,10 @@ public class EnergySystem : MonoBehaviour
     {
         return currentEnergy;
     }
+
+    // Just used to test
+    public void SetEnergy(float energy)
+    {
+        currentEnergy = Mathf.Min(energy, maxEnergy);
+    }
 }

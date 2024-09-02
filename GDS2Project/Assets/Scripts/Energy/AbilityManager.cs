@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
-    private EnergySystem energySystem;
+    [HideInInspector]
+    public EnergySystem energySystem;
 
     //Energy thresholds
-    private const float LOW_THRESHOLD = 100f;
-    private const float MEDIUM_THRESHOLD = 200f;
-    private const float HIGH_THRESHOLD = 400f;
+    public const float LOW_THRESHOLD = 100f;
+    public const float MEDIUM_THRESHOLD = 200f;
+    public const float HIGH_THRESHOLD = 400f;
 
     //Speed and Jump Height based on energy stages
-    private Dictionary<string, float> speedByStage = new Dictionary<string, float>
+    public Dictionary<string, float> speedByStage = new Dictionary<string, float>
     {
         { "Low", 3f },
         { "Medium", 5f },
         { "High", 7f }
     };
 
-    private Dictionary<string, float> jumpHeightByStage = new Dictionary<string, float>
+    public Dictionary<string, float> jumpHeightByStage = new Dictionary<string, float>
     {
         { "Low", 5f },
         { "Medium", 7f },
@@ -32,7 +33,7 @@ public class AbilityManager : MonoBehaviour
     }
 
     // Determine the current energy stage
-    private string GetCurrentEnergyStage()
+    public string GetCurrentEnergyStage()
     {
         float currentEnergy = energySystem.GetCurrentEnergy();
 
