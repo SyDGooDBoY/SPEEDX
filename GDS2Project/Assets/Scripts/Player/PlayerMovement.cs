@@ -5,16 +5,18 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     [SerializeField] Transform playerCamera;
-    [SerializeField][Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
+    [SerializeField] [Range(0.0f, 0.5f)] float mouseSmoothTime = 0.03f;
     [SerializeField] bool cursorLock = true;
+
     [SerializeField] float mouseSensitivity = 3.5f;
+
     //[SerializeField] float Speed = 6.0f;  // 使用静态值代替动态获取的速度
-    [SerializeField][Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
+    [SerializeField] [Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
     [SerializeField] float gravity = -30f;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
 
-    private AbilityManager abilityManager; 
+    private AbilityManager abilityManager;
     float velocityY;
     bool isGrounded;
 
@@ -33,7 +35,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        abilityManager = GetComponent<AbilityManager>(); 
+        abilityManager = GetComponent<AbilityManager>();
 
         if (cursorLock)
         {
@@ -51,7 +53,8 @@ public class Movement : MonoBehaviour
     void UpdateMouse()
     {
         Vector2 targetMouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-        currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseDeltaVelocity, mouseSmoothTime);
+        currentMouseDelta = Vector2.SmoothDamp(currentMouseDelta, targetMouseDelta, ref currentMouseDeltaVelocity,
+            mouseSmoothTime);
 
         cameraCap -= currentMouseDelta.y * mouseSensitivity;
         cameraCap = Mathf.Clamp(cameraCap, -90.0f, 90.0f);
@@ -71,17 +74,18 @@ public class Movement : MonoBehaviour
         velocityY += gravity * 2f * Time.deltaTime;
 
         // get speed and jump height based on Energy State
-        float speed = abilityManager.GetCurrentSpeed();  
-        float jumpHeight = abilityManager.GetCurrentJumpHeight();  
+        float speed = abilityManager.GetCurrentSpeed();
+        float jumpHeight = abilityManager.GetCurrentJumpHeight();
 
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * speed + Vector3.up * velocityY;
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * speed +
+                           Vector3.up * velocityY;
         controller.Move(velocity * Time.deltaTime);
 
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
             velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            Debug.Log(speed);
-            Debug.Log(jumpHeight);
+            Debug.Log("PlayerSpeed" + speed);
+            Debug.Log("PlayerJumpHeight" + jumpHeight);
         }
 
         if (!isGrounded && controller.velocity.y < -1f)

@@ -14,6 +14,7 @@ public class EnergySystem : MonoBehaviour
     {
         // Initialize start energy to stage 1
         currentEnergy = AbilityManager.LOW_THRESHOLD;
+        Debug.Log("Current Energy: " + currentEnergy);
     }
 
     void Update()
@@ -21,6 +22,17 @@ public class EnergySystem : MonoBehaviour
         if (isRecovering)
         {
             RecoverEnergy();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            UseEnergy(20f);
+            Debug.Log("Current Energy: " + currentEnergy);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Debug.Log("Current Energy: " + currentEnergy);
         }
     }
 
