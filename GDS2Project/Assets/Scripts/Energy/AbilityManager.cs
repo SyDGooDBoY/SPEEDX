@@ -17,14 +17,14 @@ public class AbilityManager : MonoBehaviour
     {
         { "Low", 3f },
         { "Medium", 5f },
-        { "High", 7f }
+        { "High", 10f }
     };
 
     public Dictionary<string, float> jumpHeightByStage = new Dictionary<string, float>
     {
-        { "Low", 5f },
-        { "Medium", 7f },
-        { "High", 10f }
+        { "Low", 3f },
+        { "Medium", 5f },
+        { "High", 7f }
     };
 
     void Start()

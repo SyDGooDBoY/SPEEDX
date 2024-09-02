@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d904e74248e5454795226c38fc7869a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energySystem: {fileID: 0}
 --- !u!1 &977779947
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,6 +806,8 @@ GameObject:
   - component: {fileID: 1909154427}
   - component: {fileID: 1909154426}
   - component: {fileID: 1909154431}
+  - component: {fileID: 1909154433}
+  - component: {fileID: 1909154432}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -828,14 +831,12 @@ MonoBehaviour:
   mouseSmoothTime: 0.03
   cursorLock: 1
   mouseSensitivity: 3.5
-  Speed: 6
   moveSmoothTime: 0.3
   gravity: -30
   groundCheck: {fileID: 1798971170}
   ground:
     serializedVersion: 2
     m_Bits: 4294967295
-  jumpHeight: 6
 --- !u!136 &1909154427
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -952,6 +953,32 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1909154432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909154425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d904e74248e5454795226c38fc7869a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energySystem: {fileID: 0}
+--- !u!114 &1909154433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1909154425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8749cfa317272040810cfa5caf91e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyRecoveryRate: 5
 --- !u!1 &2095890665
 GameObject:
   m_ObjectHideFlags: 0

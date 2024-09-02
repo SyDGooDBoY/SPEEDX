@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnergySystem : MonoBehaviour
 {
-    public float maxEnergy = 300f; // Maximum energy 
     public float energyRecoveryRate = 5f; // Energy recovery rate per second
+    private float maxEnergy = AbilityManager.HIGH_THRESHOLD; // Maximum energy 
     private float currentEnergy; // Current energy for Get function
 
     private bool isRecovering = true; // Whether energy is currently recovering
@@ -13,7 +13,7 @@ public class EnergySystem : MonoBehaviour
     void Start()
     {
         // Initialize start energy to stage 1
-        currentEnergy = maxEnergy * 1/3;
+        currentEnergy = AbilityManager.LOW_THRESHOLD;
     }
 
     void Update()

@@ -31,8 +31,10 @@ public class EnergyBar : MonoBehaviour
 
         // Calculate the fill ratio of the left, middle and right segments
         float leftFill = Mathf.Clamp01(currentEnergy / AbilityManager.LOW_THRESHOLD); 
-        float middleFill = Mathf.Clamp01((currentEnergy - AbilityManager.LOW_THRESHOLD) / (AbilityManager.MEDIUM_THRESHOLD - AbilityManager.LOW_THRESHOLD)); 
-        float rightFill = Mathf.Clamp01((currentEnergy - AbilityManager.MEDIUM_THRESHOLD) / (AbilityManager.HIGH_THRESHOLD - AbilityManager.MEDIUM_THRESHOLD));
+        float middleFill = Mathf.Clamp01((currentEnergy - AbilityManager.LOW_THRESHOLD) 
+            / (AbilityManager.MEDIUM_THRESHOLD - AbilityManager.LOW_THRESHOLD)); 
+        float rightFill = Mathf.Clamp01((currentEnergy - AbilityManager.MEDIUM_THRESHOLD) 
+            / (AbilityManager.HIGH_THRESHOLD - AbilityManager.MEDIUM_THRESHOLD));
 
         // Update the fill amount
         leftSegment.fillAmount = leftFill;
