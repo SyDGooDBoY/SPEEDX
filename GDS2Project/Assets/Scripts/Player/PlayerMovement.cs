@@ -46,8 +46,11 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        UpdateMouse();
-        UpdateMove();
+        if (!PauseMenu.GameIsPaused)
+        {
+            UpdateMouse();
+            UpdateMove();
+        }
     }
 
     void UpdateMouse()

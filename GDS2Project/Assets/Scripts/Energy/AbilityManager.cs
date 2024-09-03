@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class AbilityManager : MonoBehaviour
 {
-    [HideInInspector]
-    public EnergySystem energySystem;
+    [HideInInspector] public EnergySystem energySystem;
 
     //Energy thresholds
     public const float LOW_THRESHOLD = 100f;
     public const float MEDIUM_THRESHOLD = 200f;
     public const float HIGH_THRESHOLD = 400f;
 
-    //Speed and Jump Height based on energy stages
+    //Speed and Jump Height based on energy staLOW_THRESHOLDges
     public Dictionary<string, float> speedByStage = new Dictionary<string, float>
     {
         { "Low", 3f },
