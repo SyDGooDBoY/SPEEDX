@@ -7,8 +7,8 @@ public class TimeScoreSystem : MonoBehaviour
 {
     public float maxTime = 300f; // 最大时间（例如5分钟）
     public float maxScore = 100f; // 初始最高分
-    private float currentTime;
-    private float currentScore;
+    public float currentTime;
+    public float currentScore;
     private bool isGameRunning = false;
 
     public float scoreMultiplier = 1f; // 时间扣分倍率，可在Unity中调整
@@ -18,10 +18,8 @@ public class TimeScoreSystem : MonoBehaviour
 
     void Start()
     {
-        
-            ResetTimer();
-            InvokeRepeating("LogTimeAndScore", 0f, 3f); // 每3秒调用一次LogTimeAndScore方法
-        
+        ResetTimer();
+        InvokeRepeating("LogTimeAndScore", 0f, 3f); // 每3秒调用一次LogTimeAndScore方法
     }
 
     void Update()
@@ -30,7 +28,7 @@ public class TimeScoreSystem : MonoBehaviour
         {
             UpdateTimer();
             UpdateScore();
-            UpdateUI();
+            // UpdateUI();
         }
     }
 
@@ -48,6 +46,7 @@ public class TimeScoreSystem : MonoBehaviour
         if (isGameRunning)
         {
             currentTime += Time.deltaTime;
+            // Debug.Log(currentTime);
             if (currentTime >= maxTime)
             {
                 currentTime = maxTime;
