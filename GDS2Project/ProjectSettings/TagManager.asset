@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Menu
+  - StaminaBar
+  - Timer
+  - UIManager
   layers:
   - Default
   - TransparentFX
