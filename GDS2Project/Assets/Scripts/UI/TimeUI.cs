@@ -10,8 +10,8 @@ public class TimeUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeText = transform.Find("Timer").GetComponent<TextMeshProUGUI>();
-        timeScoreSystem = transform.Find("TimeScoreSystem").GetComponent<TimeScoreSystem>();
+        // timeText = transform.Find("Timer").GetComponent<TextMeshProUGUI>();
+        // timeScoreSystem = transform.Find("TimeScoreSystem").GetComponent<TimeScoreSystem>();
         passTime = 0;
     }
 
