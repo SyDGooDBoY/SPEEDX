@@ -9,16 +9,21 @@ public class Movement : MonoBehaviour
     [SerializeField] bool cursorLock = true;
 
     [SerializeField] float mouseSensitivity = 3.5f;
-
-    //[SerializeField] float Speed = 6.0f;  // 使用静态值代替动态获取的速度
     [SerializeField] [Range(0.0f, 0.5f)] float moveSmoothTime = 0.3f;
     [SerializeField] float gravity = -30f;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask ground;
 
+    [SerializeField] float moveConsumption = 5f; // move consumption per half second
+    [SerializeField] float jumpConsumption = 10f;
+
+
     private AbilityManager abilityManager;
+    private EnergySystem energySystem;
+
     float velocityY;
     bool isGrounded;
+    private bool isMoving = false; // used to check player state
 
     float cameraCap;
     Vector2 currentMouseDelta;
@@ -29,13 +34,15 @@ public class Movement : MonoBehaviour
     Vector2 currentDirVelocity;
     Vector3 velocity;
 
-    // 依赖代码的字段暂时注释掉
-    // [SerializeField] PlayerStats playerStats;
+    // ensure accuracy in detecting whether the player is moving
+    private const float movementThreshold = 0.1f; 
+    private const float inputThreshold = 0.1f;
 
     void Start()
     {
         controller = GetComponent<CharacterController>();
         abilityManager = GetComponent<AbilityManager>();
+        energySystem = GetComponent<EnergySystem>();
 
         if (cursorLock)
         {
@@ -80,20 +87,69 @@ public class Movement : MonoBehaviour
         float speed = abilityManager.GetCurrentSpeed();
         float jumpHeight = abilityManager.GetCurrentJumpHeight();
 
+        // Check whether player is moving
+        isMoving = IsMoving();
+
+        // If the energy is 0, stop all operations
+        if (energySystem.GetCurrentEnergy() <= 0)
+        {
+            Debug.Log("No energy left!");
+            // Should have some SFV to Notice Player
+            return;
+        }
+
+        MoveConsumptionCheck();
+     
         Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * speed +
                            Vector3.up * velocityY;
         controller.Move(velocity * Time.deltaTime);
 
+        // Jump Logic
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
-            velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            Debug.Log("PlayerSpeed" + speed);
-            Debug.Log("PlayerJumpHeight" + jumpHeight);
+            if (energySystem.UseEnergy(jumpConsumption)) 
+            {
+                velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity); 
+                Debug.Log("PlayerSpeed" + speed);
+                Debug.Log("PlayerJumpHeight" + jumpHeight);
+            }
+            else
+            {
+                Debug.Log("Not enough energy for jump, setting energy to zero.");
+            }
         }
 
         if (!isGrounded && controller.velocity.y < -1f)
         {
             velocityY = -8f;
         }
+    }
+
+    void MoveConsumptionCheck ()
+    {
+        // if player moving 
+        if (isMoving)
+        {
+            energySystem.StopRecovery();
+            ConsumeEnergyOverTime(moveConsumption);
+        }
+        else
+        {
+            energySystem.TryStartRecovery(); // Try to start energy recovery
+        }
+    }
+
+    private void ConsumeEnergyOverTime(float consumptionRate)
+    {
+        float energyToConsume = consumptionRate * Time.deltaTime;
+        energySystem.UseEnergy(energyToConsume);
+    }
+
+    private bool IsMoving()
+    {
+        bool hasInput = currentDir.magnitude > inputThreshold;
+        bool hasVelocity = controller.velocity.magnitude > movementThreshold;
+
+        return hasInput && hasVelocity; // Both are required
     }
 }

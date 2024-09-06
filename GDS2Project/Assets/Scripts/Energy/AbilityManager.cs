@@ -23,7 +23,7 @@ public class AbilityManager : MonoBehaviour
     {
         { "Low", 3f },
         { "Medium", 5f },
-        { "High", 7f }
+        { "High", 10f }
     };
 
     void Start()
