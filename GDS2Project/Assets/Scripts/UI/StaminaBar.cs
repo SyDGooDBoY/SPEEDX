@@ -35,13 +35,13 @@ public class StaminaBar : MonoBehaviour
         float yellowWidth = 0;
         if (energyPercentage > 0.25f)
         {
-            yellowWidth = Mathf.Clamp01((energyPercentage - 0.25f) / 0.50f) * totalWidth * 0.50f;
+            yellowWidth = Mathf.Clamp01((energyPercentage - 0.25f) / 0.25f) * totalWidth * 0.25f;
         }
 
         float greenWidth = 0;
-        if (energyPercentage > 0.75f)
+        if (energyPercentage > 0.50f)
         {
-            greenWidth = Mathf.Clamp01((energyPercentage - 0.75f) / 0.25f) * totalWidth * 0.25f;
+            greenWidth = Mathf.Clamp01((energyPercentage - 0.50f) / 0.50f) * totalWidth * 0.50f;
         }
 
         redBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, redWidth);
