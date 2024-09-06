@@ -34,6 +34,11 @@ public class EnergySystem : MonoBehaviour
         {
             Debug.Log("Current Energy: " + currentEnergy);
         }
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            RecoverEnergy(20f);
+            Debug.Log("Current Energy: " + currentEnergy);
+        }
     }
 
     // Consume energy
