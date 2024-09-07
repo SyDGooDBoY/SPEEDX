@@ -70,6 +70,12 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
     Rigidbody rb;
 
+    [Header("Camera Effects")]
+    public PlayerCam cam;
+
+    public float grappleFOV = 120f;
+    private float camFov;
+
     [Header("玩家运动状态")]
     public MoveState state;
 
@@ -77,8 +83,9 @@ public class PlayerMovement : MonoBehaviour
     public bool climbing;
     public bool freeze;
     public bool unlimited;
-
     public bool restricted;
+
+    public bool activeGrapple;
 
     //玩家运动状态
     public enum MoveState
@@ -100,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
         if (freeze)
         {
             state = MoveState.freeze;
+            moveSpeed = 0;
             rb.velocity = Vector3.zero;
         }
 
@@ -156,6 +164,8 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         readyToJump = true;
         startYscale = transform.localScale.y;
+        camFov = cam.GetComponent<Camera>().fieldOfView;
+        cam.DoFov(camFov);
     }
 
     // Update is called once per frame
@@ -167,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
         SpeedControl();
         StateHandle();
         //增加摩擦力
-        if (isGrounded)
+        if (isGrounded && !activeGrapple)
         {
             rb.drag = groundDrag;
         }
@@ -213,11 +223,19 @@ public class PlayerMovement : MonoBehaviour
     //玩家移动
     private void PlayerMove()
     {
+        //如果正在使用钩爪，不要移动
+        if (activeGrapple)
+        {
+            return;
+        }
+
+        //如果冻结，不要移动
         if (restricted)
         {
             return;
         }
 
+        //如果正在爬墙，不要移动
         if (pc.exitingWall)
         {
             return;
@@ -255,6 +273,12 @@ public class PlayerMovement : MonoBehaviour
     //控制玩家在不同情况下的速度
     private void SpeedControl()
     {
+        //如果正在使用钩爪，不要限制速度
+        if (activeGrapple)
+        {
+            return;
+        }
+
         //斜坡上的移动速度
         if (OnSlope() && !exitingSlope)
         {
@@ -315,5 +339,62 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 GetSlopeMoveDirection()
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+    }
+
+    //计算钩锁跳跃速度
+    public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
+    {
+        float gravity = Physics.gravity.y;
+        float displacementY = endPoint.y - startPoint.y;
+        Vector3 displacementXZ = new Vector3(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
+
+        Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
+        Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity)
+                                               + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity));
+
+        return velocityXZ + velocityY;
+    }
+
+    private Vector3 velocityToSet;
+
+
+    //恢复移动
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (enableMovementOnNextTouch)
+        {
+            enableMovementOnNextTouch = false;
+            ResetRestrictions();
+            GetComponent<PlayerGrappling>().StopGrapple();
+        }
+    }
+
+    private bool enableMovementOnNextTouch;
+
+    //设置钩锁速度
+    private void SetVelocity()
+    {
+        enableMovementOnNextTouch = true;
+        rb.velocity = velocityToSet;
+        cam.DoFov(grappleFOV);
+    }
+
+    //重置钩锁
+    public void ResetRestrictions()
+    {
+        activeGrapple = false;
+        cam.DoFov(camFov);
+    }
+
+
+    //钩锁跳到指定位置
+    public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
+    {
+        activeGrapple = true;
+
+        velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
+        Invoke(nameof(SetVelocity), 0.1f);
+
+        Invoke(nameof(ResetRestrictions), 3.5f);
     }
 }

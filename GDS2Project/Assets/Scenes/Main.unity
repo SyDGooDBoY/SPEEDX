@@ -1255,12 +1255,15 @@ MonoBehaviour:
   maxSlopeAngle: 50
   orientation: {fileID: 447142816}
   pc: {fileID: 748381488}
+  cam: {fileID: 2116967204}
+  grappleFOV: 120
   state: 0
   wallRunning: 0
   climbing: 0
   freeze: 0
   unlimited: 0
   restricted: 0
+  activeGrapple: 0
 --- !u!114 &748381487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1376,8 +1379,8 @@ MonoBehaviour:
   lr: {fileID: 1834486462}
   maxGrappleDistance: 25
   grappleDelayTime: 0.25
-  overshootYAxis: 0
-  grapplingCd: 1
+  overshootYAxis: 2
+  grapplingCd: 0.5
   grappleKey: 324
 --- !u!1 &753733504
 GameObject:
@@ -2241,7 +2244,7 @@ Transform:
   m_GameObject: {fileID: 1131196475}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.18, y: -0.2, z: 0.406}
+  m_LocalPosition: {x: -0.2, y: -0.2, z: 0.452}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3252,7 +3255,7 @@ Transform:
   m_GameObject: {fileID: 1834486460}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27, y: -0.358, z: 1.19}
+  m_LocalPosition: {x: 0.41, y: -0.358, z: 0.02}
   m_LocalScale: {x: 0.2592, y: 0.075836, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3280,7 +3283,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 63c14a48035e4c141a611b33088ed6c5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
