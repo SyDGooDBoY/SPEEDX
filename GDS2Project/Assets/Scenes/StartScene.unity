@@ -266,7 +266,6 @@ GameObject:
   - component: {fileID: 221829217}
   - component: {fileID: 221829216}
   - component: {fileID: 221829215}
-  - component: {fileID: 221829214}
   - component: {fileID: 221829213}
   m_Layer: 0
   m_Name: Cube (1)
@@ -288,27 +287,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: {x: 30, y: 60, z: 30}
---- !u!65 &221829214
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 221829212}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &221829215
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -385,7 +363,6 @@ GameObject:
   - component: {fileID: 232280105}
   - component: {fileID: 232280104}
   - component: {fileID: 232280103}
-  - component: {fileID: 232280102}
   - component: {fileID: 232280101}
   m_Layer: 0
   m_Name: Cube (7)
@@ -407,27 +384,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: {x: 30, y: 60, z: 30}
---- !u!65 &232280102
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232280100}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &232280103
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -637,7 +593,6 @@ GameObject:
   - component: {fileID: 459074682}
   - component: {fileID: 459074681}
   - component: {fileID: 459074680}
-  - component: {fileID: 459074679}
   - component: {fileID: 459074678}
   m_Layer: 0
   m_Name: Cube (9)
@@ -659,27 +614,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: {x: 30, y: 60, z: 30}
---- !u!65 &459074679
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 459074677}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &459074680
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -890,7 +824,6 @@ GameObject:
   - component: {fileID: 672076051}
   - component: {fileID: 672076053}
   - component: {fileID: 672076052}
-  - component: {fileID: 672076054}
   - component: {fileID: 672076055}
   m_Layer: 5
   m_Name: Title
@@ -1015,23 +948,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 672076050}
   m_CullTransparentMesh: 1
---- !u!114 &672076054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 672076050}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0f66dfea15f1a546a0d1456296fabac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  titleRect: {fileID: 672076051}
-  duration: 2
-  startPos: {x: -113, y: 356, z: 32550}
-  endPos: {x: -113, y: 356, z: 0}
-  elapsedTime: 0
 --- !u!95 &672076055
 Animator:
   serializedVersion: 5
@@ -1169,7 +1085,6 @@ GameObject:
   - component: {fileID: 780068097}
   - component: {fileID: 780068096}
   - component: {fileID: 780068095}
-  - component: {fileID: 780068094}
   - component: {fileID: 780068093}
   m_Layer: 0
   m_Name: Cube (5)
@@ -1191,27 +1106,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: {x: 30, y: 60, z: 30}
---- !u!65 &780068094
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 780068092}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &780068095
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1288,7 +1182,6 @@ GameObject:
   - component: {fileID: 878015860}
   - component: {fileID: 878015859}
   - component: {fileID: 878015858}
-  - component: {fileID: 878015857}
   - component: {fileID: 878015856}
   m_Layer: 0
   m_Name: Cube (12)
@@ -1310,27 +1203,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: {x: 30, y: 60, z: 30}
---- !u!65 &878015857
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 878015855}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &878015858
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1512,7 +1384,6 @@ GameObject:
   - component: {fileID: 953502115}
   - component: {fileID: 953502114}
   - component: {fileID: 953502113}
-  - component: {fileID: 953502112}
   m_Layer: 0
   m_Name: Cube (14)
   m_TagString: Untagged
@@ -1520,27 +1391,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &953502112
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 953502111}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &953502113
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1843,7 +1693,6 @@ GameObject:
   - component: {fileID: 1172293534}
   - component: {fileID: 1172293533}
   - component: {fileID: 1172293532}
-  - component: {fileID: 1172293531}
   - component: {fileID: 1172293530}
   m_Layer: 0
   m_Name: Cube (2)
@@ -1865,27 +1714,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: {x: 30, y: 60, z: 30}
---- !u!65 &1172293531
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1172293529}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1172293532
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2085,7 +1913,6 @@ GameObject:
   - component: {fileID: 1326093285}
   - component: {fileID: 1326093284}
   - component: {fileID: 1326093283}
-  - component: {fileID: 1326093282}
   - component: {fileID: 1326093281}
   m_Layer: 0
   m_Name: Cube (3)
@@ -2107,27 +1934,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: {x: 30, y: 60, z: 30}
---- !u!65 &1326093282
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1326093280}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1326093283
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2204,7 +2010,6 @@ GameObject:
   - component: {fileID: 1337382998}
   - component: {fileID: 1337382997}
   - component: {fileID: 1337382996}
-  - component: {fileID: 1337382995}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -2212,27 +2017,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &1337382995
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337382994}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1337382996
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2443,7 +2227,6 @@ GameObject:
   - component: {fileID: 1422579279}
   - component: {fileID: 1422579278}
   - component: {fileID: 1422579277}
-  - component: {fileID: 1422579276}
   - component: {fileID: 1422579275}
   m_Layer: 0
   m_Name: Cube (8)
@@ -2465,27 +2248,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: {x: 30, y: 60, z: 30}
---- !u!65 &1422579276
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422579274}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1422579277
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2562,7 +2324,6 @@ GameObject:
   - component: {fileID: 1422643871}
   - component: {fileID: 1422643870}
   - component: {fileID: 1422643869}
-  - component: {fileID: 1422643868}
   - component: {fileID: 1422643867}
   m_Layer: 0
   m_Name: Cube (10)
@@ -2584,27 +2345,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: {x: 30, y: 60, z: 30}
---- !u!65 &1422643868
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422643866}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1422643869
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2824,7 +2564,6 @@ GameObject:
   - component: {fileID: 1857989804}
   - component: {fileID: 1857989803}
   - component: {fileID: 1857989802}
-  - component: {fileID: 1857989801}
   - component: {fileID: 1857989800}
   m_Layer: 0
   m_Name: Cube (4)
@@ -2846,27 +2585,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: {x: 30, y: 60, z: 30}
---- !u!65 &1857989801
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1857989799}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1857989802
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3037,7 +2755,6 @@ GameObject:
   - component: {fileID: 1923685579}
   - component: {fileID: 1923685578}
   - component: {fileID: 1923685577}
-  - component: {fileID: 1923685576}
   - component: {fileID: 1923685575}
   m_Layer: 0
   m_Name: Cube (6)
@@ -3059,27 +2776,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: {x: 30, y: 60, z: 30}
---- !u!65 &1923685576
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1923685574}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1923685577
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3156,7 +2852,6 @@ GameObject:
   - component: {fileID: 1945937951}
   - component: {fileID: 1945937950}
   - component: {fileID: 1945937949}
-  - component: {fileID: 1945937948}
   - component: {fileID: 1945937947}
   m_Layer: 0
   m_Name: Cube (13)
@@ -3178,27 +2873,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: {x: 30, y: 60, z: 30}
---- !u!65 &1945937948
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1945937946}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1945937949
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3330,7 +3004,6 @@ GameObject:
   - component: {fileID: 2045980687}
   - component: {fileID: 2045980686}
   - component: {fileID: 2045980685}
-  - component: {fileID: 2045980684}
   - component: {fileID: 2045980683}
   m_Layer: 0
   m_Name: Cube (11)
@@ -3352,27 +3025,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: {x: 30, y: 60, z: 30}
---- !u!65 &2045980684
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2045980682}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &2045980685
 MeshRenderer:
   m_ObjectHideFlags: 0

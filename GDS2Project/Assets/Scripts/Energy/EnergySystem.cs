@@ -8,7 +8,9 @@ public class EnergySystem : MonoBehaviour
     private float maxEnergy = AbilityManager.HIGH_THRESHOLD; // Maximum energy 
     private float currentEnergy; // Current energy for Get function
 
-    private bool isRecovering = true; // Whether energy is currently recovering
+    private bool isRecovering = false; // Whether energy is currently recovering
+    private float recoveryDelay = 1f; // Delay before starting to recover energy
+    private float recoveryTimer = 0f; // Timer to track when to start recovery
 
     void Start()
     {
@@ -24,6 +26,7 @@ public class EnergySystem : MonoBehaviour
             RecoverEnergy();
         }
 
+        // just for Test
         if (Input.GetKeyDown(KeyCode.E))
         {
             UseEnergy(20f);
@@ -44,17 +47,21 @@ public class EnergySystem : MonoBehaviour
     // Consume energy
     public bool UseEnergy(float amount)
     {
+        if (currentEnergy == 0)
+        {
+            return false;
+        }
+
         if (currentEnergy >= amount)
         {
             currentEnergy -= amount;
-            isRecovering = false;
-            Invoke("StartRecovery", 1f); // Stop recovery for 1 seconds before starting again
-            return true;
         }
-        else
+        else // 0 < currentEnergy < amount
         {
-            return false; // Not enough energy to perform action
+            SetEnergy(0f);
         }
+        StopRecovery(); // Stop energy recovery on energy usage
+        return true;
     }
 
     // Recover energy over time
@@ -73,10 +80,21 @@ public class EnergySystem : MonoBehaviour
         currentEnergy = Mathf.Min(currentEnergy + amount, maxEnergy);
     }
 
-    // Start recovering energy
-    private void StartRecovery()
+    // Stop energy recovery and start a delay timer
+    public void StopRecovery()
     {
-        isRecovering = true;
+        isRecovering = false;
+        recoveryTimer = 0f; // Reset the recovery timer
+    }
+
+    // Call this method when player stops moving
+    public void TryStartRecovery()
+    {
+        recoveryTimer += Time.deltaTime;
+        if (recoveryTimer >= recoveryDelay)
+        {
+            isRecovering = true; // Start recovery after the delay
+        }
     }
 
     // Get current energy level

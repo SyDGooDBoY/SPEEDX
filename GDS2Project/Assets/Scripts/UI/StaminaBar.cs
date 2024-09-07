@@ -16,6 +16,7 @@ public class StaminaBar : MonoBehaviour
     void Start()
     {
         totalWidth = redBar.parent.GetComponent<RectTransform>().rect.width;
+       UpdateEnergyBar();
     }
 
     void Update()
