@@ -10,6 +10,7 @@ public class PlayerClimb : MonoBehaviour
 
     public Rigidbody rb;
     public PlayerMovement pm;
+    public PlayerGrab pg;
     public LayerMask whatIsWall;
 
     [Header("爬墙属性")]
@@ -53,6 +54,7 @@ public class PlayerClimb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pg = GetComponent<PlayerGrab>();
     }
 
     // Update is called once per frame
@@ -67,8 +69,14 @@ public class PlayerClimb : MonoBehaviour
     //墙壁交互的状态
     private void StateMachine()
     {
+        //攀岩状态
+        if (pg.holding)
+        {
+            if (climbing) StopClimbing();
+        }
+
         //爬墙（只有小于最大角度，按下W键才可以爬）
-        if (wallFront && Input.GetKey(KeyCode.W) && wallLookAngle < maxWallLookAngle && !exitingWall)
+        else if (wallFront && Input.GetKey(KeyCode.W) && wallLookAngle < maxWallLookAngle && !exitingWall)
         {
             if (!climbing && climbTimer > 0) StartClimbing();
 
@@ -139,6 +147,8 @@ public class PlayerClimb : MonoBehaviour
 
     private void ClimbJump()
     {
+        if (pm.isGrounded) return;
+        if (pg.holding || pg.exitingLedge) return;
         exitingWall = true;
         exitWallTimer = exitWallTime;
         Vector3 forceToApply = transform.up * climbJumpUpForce + frontWallHit.normal * climbJumpBackForce;

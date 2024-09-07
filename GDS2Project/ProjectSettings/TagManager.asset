@@ -18,10 +18,10 @@ TagManager:
   - UI
   - Post Process
   - Ground
-  - Wall
-  - 
-  - 
-  - 
+  - SideWall
+  - HighWall
+  - Player
+  - Ledge
   - 
   - 
   - 

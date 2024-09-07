@@ -58,6 +58,7 @@ public class PlayerWall : MonoBehaviour
 
     public PlayerCam cam; //摄像机
     public float onWallFOV = 120f; //墙上视野
+    private PlayerGrab pg;
     private float camFov; //摄像机视野
     private PlayerMovement playerMovement; //玩家移动脚本
     private Rigidbody rb;
@@ -65,6 +66,7 @@ public class PlayerWall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pg = GetComponent<PlayerGrab>();
         rb = GetComponent<Rigidbody>();
         playerMovement = GetComponent<PlayerMovement>();
         camFov = cam.GetComponent<Camera>().fieldOfView;
@@ -232,6 +234,7 @@ public class PlayerWall : MonoBehaviour
 
     private void WallJump()
     {
+        if (pg.holding || pg.exitingLedge) return;
         exitingWall = true;
         exitWallTimer = exitWallTime;
         Vector3 wallNormal = isWallRight ? rightWallHit.normal : leftWallHit.normal;

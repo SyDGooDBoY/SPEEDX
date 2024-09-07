@@ -96,7 +96,7 @@ public class PlayerGrab : MonoBehaviour
     private void LedgeJump()
     {
         ExitLedgeHold();
-
+        Vector3 forceToAdd = cam.forward * ledgeJumpForwardForce + orientation.up * ledgeJumpUpwardForce;
         Invoke(nameof(DelayedJumpForce), 0.05f);
     }
 
@@ -135,7 +135,7 @@ public class PlayerGrab : MonoBehaviour
         if (distanceToLedge > 1f)
         {
             if (rb.velocity.magnitude < moveToLedgeSpeed)
-                rb.AddForce(directionToLedge.normalized * moveToLedgeSpeed * 1000f * Time.deltaTime);
+                rb.AddForce(directionToLedge.normalized * moveToLedgeSpeed * 500f * Time.deltaTime);
         }
 
         //×¥×¡±ßÔµ
