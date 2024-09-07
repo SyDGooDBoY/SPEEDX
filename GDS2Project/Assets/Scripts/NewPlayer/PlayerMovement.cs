@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float walkSpeed = 10f; //行走速度
     public float runSpeed = 20f; //奔跑速度
+    public float wallRunSpeed = 10f; //墙上移动速度
+    public float climbSpeed = 5f; //爬墙速度
 
     [Header("地面摩擦力")]
     public float groundDrag = 5f; //地面摩擦力
@@ -42,9 +44,9 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode crouchKey = KeyCode.LeftControl;
 
 
-    [Header("地面检测")]
+    [Header("地面检测(别动)")]
     //别动
-    bool isGrounded;
+    public bool isGrounded;
 
     public float playerHeight; //玩家高度
 
@@ -56,9 +58,11 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit slopeHit; //斜坡检测
     private bool exitingSlope; //退出斜坡
 
-    [Header("识别移动方向的对象")]
+    [Header("参考对象")]
     [Tooltip("玩家里面有个orientation对象，用来识别移动方向")]
     public Transform orientation; //玩家里面有个orientation对象，用来识别移动方向
+
+    public PlayerClimb pc;
 
     //杂七杂八的变量
     float horizontalMovement;
@@ -69,11 +73,22 @@ public class PlayerMovement : MonoBehaviour
     [Header("玩家运动状态")]
     public MoveState state;
 
+    public bool wallRunning;
+    public bool climbing;
+    public bool freeze;
+    public bool unlimited;
+
+    public bool restricted;
+
     //玩家运动状态
     public enum MoveState
     {
+        freeze,
+        unlimited,
         Walking,
         Running,
+        wallRunning,
+        climbing,
         crouching,
         Jumping
     }
@@ -81,8 +96,35 @@ public class PlayerMovement : MonoBehaviour
     //状态处理
     private void StateHandle()
     {
+        //冻结状态
+        if (freeze)
+        {
+            state = MoveState.freeze;
+            rb.velocity = Vector3.zero;
+        }
+
+        //无限速度状态
+        else if (unlimited)
+        {
+            state = MoveState.unlimited;
+            moveSpeed = 999f;
+            return;
+        }
+        //爬墙状态
+        else if (climbing)
+        {
+            state = MoveState.climbing;
+            moveSpeed = climbSpeed;
+        }
+
+        //墙壁跑步状态
+        else if (wallRunning)
+        {
+            state = MoveState.wallRunning;
+            moveSpeed = wallRunSpeed;
+        }
         //下蹲状态
-        if (Input.GetKey(crouchKey))
+        else if (Input.GetKey(crouchKey))
         {
             state = MoveState.crouching;
             moveSpeed = crouchMoveSpeed;
@@ -171,6 +213,16 @@ public class PlayerMovement : MonoBehaviour
     //玩家移动
     private void PlayerMove()
     {
+        if (restricted)
+        {
+            return;
+        }
+
+        if (pc.exitingWall)
+        {
+            return;
+        }
+
         //计算移动方向
         moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
         //斜坡
@@ -194,7 +246,10 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airDrag, ForceMode.Force);
         }
 
-        rb.useGravity = !OnSlope(); //在斜坡的时候关闭重力
+        if (!wallRunning)
+        {
+            rb.useGravity = !OnSlope(); //在斜坡的时候关闭重力
+        }
     }
 
     //控制玩家在不同情况下的速度
