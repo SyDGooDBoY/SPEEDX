@@ -1382,6 +1382,7 @@ MonoBehaviour:
   overshootYAxis: 2
   grapplingCd: 0.5
   grappleKey: 324
+  grappling: 0
 --- !u!1 &753733504
 GameObject:
   m_ObjectHideFlags: 0
@@ -3239,6 +3240,7 @@ GameObject:
   - component: {fileID: 1834486465}
   - component: {fileID: 1834486464}
   - component: {fileID: 1834486462}
+  - component: {fileID: 1834486466}
   m_Layer: 0
   m_Name: Grappling gun
   m_TagString: Untagged
@@ -3416,6 +3418,58 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1834486460}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1834486466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834486460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc85b054437760741b61400539841fb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grappling: {fileID: 748381490}
+  quality: 200
+  damper: 14
+  strength: 800
+  velocity: 15
+  waveCount: 3
+  waveHeight: 7
+  affectCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.0047187805
+      inSlope: 2.5971732
+      outSlope: 2.5971732
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.30167875
+      value: 0.7882307
+      inSlope: 0.6649746
+      outSlope: 0.6649746
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: -0.09669876
+      inSlope: -1.2672241
+      outSlope: -1.2672241
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1843248947
 GameObject:
   m_ObjectHideFlags: 0

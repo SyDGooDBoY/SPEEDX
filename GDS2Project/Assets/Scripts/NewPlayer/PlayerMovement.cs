@@ -91,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
     public enum MoveState
     {
         freeze,
+        grappling,
         unlimited,
         Walking,
         Running,
@@ -110,7 +111,11 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = 0;
             rb.velocity = Vector3.zero;
         }
-
+        else if (activeGrapple)
+        {
+            state = MoveState.grappling;
+            moveSpeed = runSpeed;
+        }
         //无限速度状态
         else if (unlimited)
         {
@@ -355,19 +360,19 @@ public class PlayerMovement : MonoBehaviour
         return velocityXZ + velocityY;
     }
 
+    //钩锁跳到指定位置
+    public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
+    {
+        activeGrapple = true;
+
+        velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
+        Invoke(nameof(SetVelocity), 0.1f);
+
+        Invoke(nameof(ResetRestrictions), 3.5f);
+    }
+
     private Vector3 velocityToSet;
 
-
-    //恢复移动
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (enableMovementOnNextTouch)
-        {
-            enableMovementOnNextTouch = false;
-            ResetRestrictions();
-            GetComponent<PlayerGrappling>().StopGrapple();
-        }
-    }
 
     private bool enableMovementOnNextTouch;
 
@@ -387,14 +392,14 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    //钩锁跳到指定位置
-    public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
+    //恢复移动
+    private void OnCollisionEnter(Collision collision)
     {
-        activeGrapple = true;
-
-        velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
-        Invoke(nameof(SetVelocity), 0.1f);
-
-        Invoke(nameof(ResetRestrictions), 3.5f);
+        if (enableMovementOnNextTouch)
+        {
+            enableMovementOnNextTouch = false;
+            ResetRestrictions();
+            GetComponent<PlayerGrappling>().StopGrapple();
+        }
     }
 }

@@ -29,7 +29,7 @@ public class PlayerGrappling : MonoBehaviour
     [Header("玩家输入")]
     public KeyCode grappleKey = KeyCode.Mouse1;
 
-    private bool grappling;
+    public bool grappling;
 
     private void Start()
     {
@@ -44,11 +44,11 @@ public class PlayerGrappling : MonoBehaviour
             grapplingCdTimer -= Time.deltaTime;
     }
 
-    private void LateUpdate()
-    {
-        if (grappling)
-            lr.SetPosition(0, gunTip.position);
-    }
+    // private void LateUpdate()
+    // {
+    //     if (grappling)
+    //         lr.SetPosition(0, gunTip.position);
+    // }
     //开始钩锁
     private void StartGrapple()
     {
@@ -72,8 +72,8 @@ public class PlayerGrappling : MonoBehaviour
             Invoke(nameof(StopGrapple), grappleDelayTime);
         }
 
-        lr.enabled = true;
-        lr.SetPosition(1, grapplePoint);
+        // lr.enabled = true;
+        // lr.SetPosition(1, grapplePoint);
     }
     //执行钩锁移动
     private void ExecuteGrapple()
@@ -100,16 +100,16 @@ public class PlayerGrappling : MonoBehaviour
 
         grapplingCdTimer = grapplingCd;
 
-        lr.enabled = false;
+        // lr.enabled = false;
     }
 
-    // public bool IsGrappling()
-    // {
-    //     return grappling;
-    // }
-    //
-    // public Vector3 GetGrapplePoint()
-    // {
-    //     return grapplePoint;
-    // }
+    public bool IsGrappling()
+    {
+        return grappling;
+    }
+    
+    public Vector3 GetGrapplePoint()
+    {
+        return grapplePoint;
+    }
 }
