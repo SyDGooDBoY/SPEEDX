@@ -69,6 +69,8 @@ public class PlayerMovementGrappling : MonoBehaviour
     public bool activeGrapple;
     public bool swinging;
 
+    private EnergySystem energySystem; // 新增的引用
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -77,6 +79,9 @@ public class PlayerMovementGrappling : MonoBehaviour
         readyToJump = true;
 
         startYScale = transform.localScale.y;
+
+        // 获取 EnergySystem 组件
+        energySystem = GetComponent<EnergySystem>();
     }
 
     private void Update()
@@ -191,6 +196,24 @@ public class PlayerMovementGrappling : MonoBehaviour
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
+        // 检查是否正在移动
+        bool isMoving = horizontalInput != 0 || verticalInput != 0;
+        if (isMoving)
+        {
+            // 消耗能量
+            if (!energySystem.UseEnergy(5f * Time.deltaTime))
+            {
+                // 如果能量不足，停止移动
+                return;
+            }
+            energySystem.StopRecovery(); // 停止能量恢复
+        }
+        else
+        {
+            // 开始恢复能量
+            energySystem.TryStartRecovery();
+        }
+
         // on slope
         if (OnSlope() && !exitingSlope)
         {
@@ -239,6 +262,12 @@ public class PlayerMovementGrappling : MonoBehaviour
 
     private void Jump()
     {
+        if (!energySystem.UseEnergy(10f))
+        {
+            // 如果能量不足，不能跳跃
+            return;
+        }
+
         exitingSlope = true;
 
         // reset y velocity
@@ -313,7 +342,7 @@ public class PlayerMovementGrappling : MonoBehaviour
         Vector3 displacementXZ = new Vector3(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
 
         Vector3 velocityY = Vector3.up * Mathf.Sqrt(-2 * gravity * trajectoryHeight);
-        Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity) 
+        Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity)
             + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity));
 
         return velocityXZ + velocityY;
