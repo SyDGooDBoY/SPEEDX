@@ -204,6 +204,11 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerMove();
         ApplyDownForce();
+        if (transform.parent != null && transform.parent.CompareTag("MovingPlatform"))
+        {
+            Vector3 platformVelocity = transform.parent.GetComponent<Environment>().GetVelocity();
+            rb.MovePosition(rb.position + platformVelocity * Time.fixedDeltaTime);
+        }
     }
 
     // Player input handling
@@ -338,9 +343,9 @@ public class PlayerMovement : MonoBehaviour
     // Check if on a slope
     private bool OnSlope()
     {
-        if(!isGrounded) return false;
+        if (!isGrounded) return false;
         // Cast a ray downwards to detect the ground
-        
+
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
             // Calculate the angle between the ground normal and the up vector
@@ -415,11 +420,24 @@ public class PlayerMovement : MonoBehaviour
     // Restore movement
     private void OnCollisionEnter(Collision collision)
     {
+        if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            transform.parent = collision.transform;
+        }
+
         if (enableMovementOnNextTouch)
         {
             enableMovementOnNextTouch = false;
             ResetRestrictions();
             GetComponent<PlayerGrappling>().StopGrapple();
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            transform.parent = null;
         }
     }
 }

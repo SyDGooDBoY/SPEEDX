@@ -11,6 +11,7 @@ TagManager:
   - UIManager
   - StartPoint
   - EndPoint
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
