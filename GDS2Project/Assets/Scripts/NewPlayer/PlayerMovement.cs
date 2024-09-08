@@ -338,7 +338,9 @@ public class PlayerMovement : MonoBehaviour
     // Check if on a slope
     private bool OnSlope()
     {
+        if(!isGrounded) return false;
         // Cast a ray downwards to detect the ground
+        
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
             // Calculate the angle between the ground normal and the up vector
