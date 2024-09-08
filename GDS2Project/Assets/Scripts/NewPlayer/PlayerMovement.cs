@@ -6,65 +6,65 @@ using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("ÒÆ¶¯ËÙ¶È")]
-    private float moveSpeed = 10f; //ËÙ¶È(ÔÝÊ±±£Áô£©
+    [Header("ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½")]
+    private float moveSpeed = 10f; //ï¿½Ù¶ï¿½(ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    public float walkSpeed = 10f; //ÐÐ×ßËÙ¶È
-    public float runSpeed = 20f; //±¼ÅÜËÙ¶È
-    public float wallRunSpeed = 10f; //Ç½ÉÏÒÆ¶¯ËÙ¶È
-    public float climbSpeed = 5f; //ÅÀÇ½ËÙ¶È
+    public float walkSpeed = 10f; //ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
+    public float runSpeed = 20f; //ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
+    public float wallRunSpeed = 10f; //Ç½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
+    public float climbSpeed = 5f; //ï¿½ï¿½Ç½ï¿½Ù¶ï¿½
 
-    [Header("µØÃæÄ¦²ÁÁ¦")]
-    public float groundDrag = 5f; //µØÃæÄ¦²ÁÁ¦
+    [Header("ï¿½ï¿½ï¿½ï¿½Ä¦ï¿½ï¿½ï¿½ï¿½")]
+    public float groundDrag = 5f; //ï¿½ï¿½ï¿½ï¿½Ä¦ï¿½ï¿½ï¿½ï¿½
 
-    [Header("ÌøÔ¾ÊôÐÔ")]
-    public float jumpForce = 12f; //ÌøÔ¾Á¦
+    [Header("ï¿½ï¿½Ô¾ï¿½ï¿½ï¿½ï¿½")]
+    public float jumpForce = 12f; //ï¿½ï¿½Ô¾ï¿½ï¿½
 
-    public float downForce = 12f; //ÏÂÂäÁ¦
+    public float downForce = 12f; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    public float jumpCooldown = 0.25f; //ÌøÔ¾cd
+    public float jumpCooldown = 0.25f; //ï¿½ï¿½Ô¾cd
 
-    public float airDrag = 0.3f; //¿ÕÆø×èÁ¦
+    public float airDrag = 0.3f; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     bool readyToJump;
 
-    [Header("ÏÂ¶×")]
-    [Tooltip("ÏÂ¶×ºóÒÆ¶¯ËÙ¶È")]
-    public float crouchMoveSpeed = 5f; //ÏÂ¶×ºóÒÆ¶¯ËÙ¶È
+    [Header("ï¿½Â¶ï¿½")]
+    [Tooltip("ï¿½Â¶×ºï¿½ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½")]
+    public float crouchMoveSpeed = 5f; //ï¿½Â¶×ºï¿½ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
 
-    public float crouchSpeed = 5f; //ÏÂ¶×ËÙ¶È
-    public float crouchYscale = 0.5f; //ÏÂ¶×¸ß¶È
-    private float startYscale; //³õÊ¼¸ß¶È
+    public float crouchSpeed = 5f; //ï¿½Â¶ï¿½ï¿½Ù¶ï¿½
+    public float crouchYscale = 0.5f; //ï¿½Â¶×¸ß¶ï¿½
+    private float startYscale; //ï¿½ï¿½Ê¼ï¿½ß¶ï¿½
 
 
-    [Header("ÊäÈë°´¼ü")]
+    [Header("ï¿½ï¿½ï¿½ë°´ï¿½ï¿½")]
     public KeyCode jumpKey = KeyCode.Space;
 
     public KeyCode runKey = KeyCode.LeftShift;
     public KeyCode crouchKey = KeyCode.LeftControl;
 
 
-    [Header("µØÃæ¼ì²â(±ð¶¯)")]
-    //±ð¶¯
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½)")]
+    //ï¿½ï¿½
     public bool isGrounded;
 
-    public float playerHeight; //Íæ¼Ò¸ß¶È
+    public float playerHeight; //ï¿½ï¿½Ò¸ß¶ï¿½
 
-    public LayerMask groundMask; //µØÃæ²ã
+    public LayerMask groundMask; //ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    [Header("Ð±ÆÂÒÆ¶¯")]
-    public float maxSlopeAngle = 40f; //×î´óÐ±ÆÂ½Ç¶È
+    [Header("Ð±ï¿½ï¿½ï¿½Æ¶ï¿½")]
+    public float maxSlopeAngle = 40f; //ï¿½ï¿½ï¿½Ð±ï¿½Â½Ç¶ï¿½
 
-    private RaycastHit slopeHit; //Ð±ÆÂ¼ì²â
-    private bool exitingSlope; //ÍË³öÐ±ÆÂ
+    private RaycastHit slopeHit; //Ð±ï¿½Â¼ï¿½ï¿½
+    private bool exitingSlope; //ï¿½Ë³ï¿½Ð±ï¿½ï¿½
 
-    [Header("²Î¿¼¶ÔÏó")]
-    [Tooltip("Íæ¼ÒÀïÃæÓÐ¸öorientation¶ÔÏó£¬ÓÃÀ´Ê¶±ðÒÆ¶¯·½Ïò")]
-    public Transform orientation; //Íæ¼ÒÀïÃæÓÐ¸öorientation¶ÔÏó£¬ÓÃÀ´Ê¶±ðÒÆ¶¯·½Ïò
+    [Header("ï¿½Î¿ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¸ï¿½orientationï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½")]
+    public Transform orientation; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¸ï¿½orientationï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¶ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
 
     public PlayerClimb pc;
 
-    //ÔÓÆßÔÓ°ËµÄ±äÁ¿
+    //ï¿½ï¿½ï¿½ï¿½ï¿½Ó°ËµÄ±ï¿½ï¿½ï¿½
     float horizontalMovement;
     float verticalMovement;
     Vector3 moveDirection;
@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
     public float grappleFOV = 120f;
     private float camFov;
 
-    [Header("Íæ¼ÒÔË¶¯×´Ì¬")]
+    [Header("ï¿½ï¿½ï¿½ï¿½Ë¶ï¿½×´Ì¬")]
     public MoveState state;
 
     public bool wallRunning;
@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool activeGrapple;
 
-    //Íæ¼ÒÔË¶¯×´Ì¬
+    //ï¿½ï¿½ï¿½ï¿½Ë¶ï¿½×´Ì¬
     public enum MoveState
     {
         freeze,
@@ -101,10 +101,10 @@ public class PlayerMovement : MonoBehaviour
         Jumping
     }
 
-    //×´Ì¬´¦Àí
+    //×´Ì¬ï¿½ï¿½ï¿½ï¿½
     private void StateHandle()
     {
-        //¶³½á×´Ì¬
+        //ï¿½ï¿½ï¿½ï¿½×´Ì¬
         if (freeze)
         {
             state = MoveState.freeze;
@@ -116,46 +116,46 @@ public class PlayerMovement : MonoBehaviour
             state = MoveState.grappling;
             moveSpeed = runSpeed;
         }
-        //ÎÞÏÞËÙ¶È×´Ì¬
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½×´Ì¬
         else if (unlimited)
         {
             state = MoveState.unlimited;
             moveSpeed = 999f;
             return;
         }
-        //ÅÀÇ½×´Ì¬
+        //ï¿½ï¿½Ç½×´Ì¬
         else if (climbing)
         {
             state = MoveState.climbing;
             moveSpeed = climbSpeed;
         }
 
-        //Ç½±ÚÅÜ²½×´Ì¬
+        //Ç½ï¿½ï¿½ï¿½Ü²ï¿½×´Ì¬
         else if (wallRunning)
         {
             state = MoveState.wallRunning;
             moveSpeed = wallRunSpeed;
         }
-        //ÏÂ¶××´Ì¬
+        //ï¿½Â¶ï¿½×´Ì¬
         else if (Input.GetKey(crouchKey))
         {
             state = MoveState.crouching;
             moveSpeed = crouchMoveSpeed;
         }
 
-        //³å´Ì×´Ì¬
+        //ï¿½ï¿½ï¿½×´Ì¬
         else if (isGrounded && Input.GetKey(runKey))
         {
             state = MoveState.Running;
             moveSpeed = runSpeed;
         }
-        //ÐÐ×ß×´Ì¬
+        //ï¿½ï¿½ï¿½ï¿½×´Ì¬
         else if (isGrounded)
         {
             state = MoveState.Walking;
             moveSpeed = walkSpeed;
         }
-        //ÌøÔ¾×´Ì¬
+        //ï¿½ï¿½Ô¾×´Ì¬
         else
         {
             state = MoveState.Jumping;
@@ -176,12 +176,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //¼ì²éµØÃæ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
         PlayerInput();
         SpeedControl();
         StateHandle();
-        //Ôö¼ÓÄ¦²ÁÁ¦
+        //ï¿½ï¿½ï¿½ï¿½Ä¦ï¿½ï¿½ï¿½ï¿½
         if (isGrounded && !activeGrapple)
         {
             rb.drag = groundDrag;
@@ -198,26 +198,26 @@ public class PlayerMovement : MonoBehaviour
         ApplyDownForce();
     }
 
-    //Íæ¼ÒÊäÈë
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private void PlayerInput()
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
-        //ÌøÔ¾
+        //ï¿½ï¿½Ô¾
         if (Input.GetKeyDown(jumpKey) && readyToJump && isGrounded)
         {
             readyToJump = false;
             Jump();
-            Invoke(nameof(ResetJump), jumpCooldown); //µ÷ÓÃÌøÔ¾cd
+            Invoke(nameof(ResetJump), jumpCooldown); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¾cd
         }
 
-        //ÏÂ¶×
+        //ï¿½Â¶ï¿½
         if (Input.GetKeyDown(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYscale, transform.localScale.z);
             rb.AddForce(Vector3.down * crouchSpeed, ForceMode.Impulse);
         }
-        //Õ¾Æð
+        //Õ¾ï¿½ï¿½
         else if (Input.GetKeyUp(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, startYscale, transform.localScale.z);
@@ -225,30 +225,30 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    //Íæ¼ÒÒÆ¶¯
+    //ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½
     private void PlayerMove()
     {
-        //Èç¹ûÕýÔÚÊ¹ÓÃ¹³×¦£¬²»ÒªÒÆ¶¯
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¹ï¿½×¦ï¿½ï¿½ï¿½ï¿½Òªï¿½Æ¶ï¿½
         if (activeGrapple)
         {
             return;
         }
 
-        //Èç¹û¶³½á£¬²»ÒªÒÆ¶¯
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á£¬ï¿½ï¿½Òªï¿½Æ¶ï¿½
         if (restricted)
         {
             return;
         }
 
-        //Èç¹ûÕýÔÚÅÀÇ½£¬²»ÒªÒÆ¶¯
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç½ï¿½ï¿½ï¿½ï¿½Òªï¿½Æ¶ï¿½
         if (pc.exitingWall)
         {
             return;
         }
 
-        //¼ÆËãÒÆ¶¯·½Ïò
+        //ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
         moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
-        //Ð±ÆÂ
+        //Ð±ï¿½ï¿½
         if (OnSlope() && !exitingSlope)
         {
             rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
@@ -257,13 +257,13 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
 
-        //µØÃæ
+        //ï¿½ï¿½ï¿½ï¿½
         else if (isGrounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         }
 
-        //¿ÕÖÐ
+        //ï¿½ï¿½ï¿½ï¿½
         else if (!isGrounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airDrag, ForceMode.Force);
@@ -271,30 +271,30 @@ public class PlayerMovement : MonoBehaviour
 
         if (!wallRunning)
         {
-            rb.useGravity = !OnSlope(); //ÔÚÐ±ÆÂµÄÊ±ºò¹Ø±ÕÖØÁ¦
+            rb.useGravity = !OnSlope(); //ï¿½ï¿½Ð±ï¿½Âµï¿½Ê±ï¿½ï¿½Ø±ï¿½ï¿½ï¿½ï¿½ï¿½
         }
     }
 
-    //¿ØÖÆÍæ¼ÒÔÚ²»Í¬Çé¿öÏÂµÄËÙ¶È
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú²ï¿½Í¬ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½Ù¶ï¿½
     private void SpeedControl()
     {
-        //Èç¹ûÕýÔÚÊ¹ÓÃ¹³×¦£¬²»ÒªÏÞÖÆËÙ¶È
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½Ã¹ï¿½×¦ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
         if (activeGrapple)
         {
             return;
         }
 
-        //Ð±ÆÂÉÏµÄÒÆ¶¯ËÙ¶È
+        //Ð±ï¿½ï¿½ï¿½Ïµï¿½ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
         if (OnSlope() && !exitingSlope)
         {
             if (rb.velocity.magnitude > moveSpeed)
                 rb.velocity = rb.velocity.normalized * moveSpeed;
         }
-        //µØÃæºÍ¿ÕÖÐµÄÒÆ¶¯ËÙ¶È
+        //ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½Ðµï¿½ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
         else
         {
-            Vector3 flatVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); //¿ÕÖÐËÙ¶È
-            //ÏÞÖÆÒÆ¶¯ËÙ¶È
+            Vector3 flatVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); //ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
             if (flatVelocity.magnitude > moveSpeed)
             {
                 Vector3 limitedVel = flatVelocity.normalized * moveSpeed;
@@ -303,15 +303,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //ÌøÔ¾
+    //ï¿½ï¿½Ô¾
     private void Jump()
     {
         exitingSlope = true;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); //Ö´ÐÐÒ»´ÎÒ»¸öÏòÉÏµÄÁ¦
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); //Ö´ï¿½ï¿½Ò»ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ï¿½ï¿½
     }
 
-    //Ôö¼ÓÏÂÂäÁ¦
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private void ApplyDownForce()
     {
         if (!isGrounded)
@@ -320,33 +320,33 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //ÖØÖÃÌøÔ¾
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¾
     private void ResetJump()
     {
         exitingSlope = false;
         readyToJump = true;
     }
 
-    //¼ì²âÍæ¼ÒÊÇ·ñÔÚÐ±ÆÂÉÏ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½
     private bool OnSlope()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
             float slopeAngle = Vector3.Angle(slopeHit.normal, Vector3.up);
-            Debug.Log("Ð±ÆÂ½Ç¶È£º" + slopeAngle);
+            //Debug.Log("Ð±ï¿½Â½Ç¶È£ï¿½" + slopeAngle);
             return slopeAngle < maxSlopeAngle && slopeAngle != 0;
         }
 
         return false;
     }
 
-    //»ñÈ¡Ð±ÆÂÒÆ¶¯·½Ïò
+    //ï¿½ï¿½È¡Ð±ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½ï¿½
     private Vector3 GetSlopeMoveDirection()
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
-    //¼ÆËã¹³ËøÌøÔ¾ËÙ¶È
+    //ï¿½ï¿½ï¿½ã¹³ï¿½ï¿½ï¿½ï¿½Ô¾ï¿½Ù¶ï¿½
     public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
     {
         float gravity = Physics.gravity.y;
@@ -360,7 +360,7 @@ public class PlayerMovement : MonoBehaviour
         return velocityXZ + velocityY;
     }
 
-    //¹³ËøÌøµ½Ö¸¶¨Î»ÖÃ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Î»ï¿½ï¿½
     public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
     {
         activeGrapple = true;
@@ -376,7 +376,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool enableMovementOnNextTouch;
 
-    //ÉèÖÃ¹³ËøËÙ¶È
+    //ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
     private void SetVelocity()
     {
         enableMovementOnNextTouch = true;
@@ -384,7 +384,7 @@ public class PlayerMovement : MonoBehaviour
         cam.DoFov(grappleFOV);
     }
 
-    //ÖØÖÃ¹³Ëø
+    //ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½
     public void ResetRestrictions()
     {
         activeGrapple = false;
@@ -392,7 +392,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    //»Ö¸´ÒÆ¶¯
+    //ï¿½Ö¸ï¿½ï¿½Æ¶ï¿½
     private void OnCollisionEnter(Collision collision)
     {
         if (enableMovementOnNextTouch)

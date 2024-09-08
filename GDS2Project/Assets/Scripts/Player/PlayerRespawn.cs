@@ -14,10 +14,6 @@ public class PlayerRespawn : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.y < fallThreshold)
-        {
-            Respawn();
-        }
 
         if (Input.GetKeyDown(KeyCode.R))
         {

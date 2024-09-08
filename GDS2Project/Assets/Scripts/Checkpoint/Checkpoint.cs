@@ -7,6 +7,7 @@ public class Checkpoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             CheckpointManager.UpdateCheckpoint(transform.position);
+            Debug.Log("Checkpoint reached.");
         }
     }
 }
