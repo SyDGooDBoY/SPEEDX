@@ -9,6 +9,8 @@ TagManager:
   - StaminaBar
   - Timer
   - UIManager
+  - StartPoint
+  - EndPoint
   layers:
   - Default
   - TransparentFX

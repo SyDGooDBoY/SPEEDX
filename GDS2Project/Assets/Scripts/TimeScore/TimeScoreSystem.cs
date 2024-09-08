@@ -16,6 +16,8 @@ public class TimeScoreSystem : MonoBehaviour
     public Text timeText; // 用于显示时间的UI
     public Text scoreText; // 用于显示分数的UI
 
+    //public Collider startPoint; // 计时开始碰撞体
+    //public Collider endPoint;  // 计时结束碰撞体
     void Start()
     {
         ResetTimer();
@@ -37,22 +39,19 @@ public class TimeScoreSystem : MonoBehaviour
     {
         currentTime = 0f;
         currentScore = maxScore;
-        isGameRunning = true;
+        //isGameRunning = true;
     }
 
     // 更新计时器
     private void UpdateTimer()
     {
-        if (isGameRunning)
-        {
             currentTime += Time.deltaTime;
             // Debug.Log(currentTime);
-            if (currentTime >= maxTime)
+            /*if (currentTime >= maxTime)
             {
                 currentTime = maxTime;
                 //EndGame();
-            }
-        }
+            }*/
     }
 
     // 更新分数（随着时间减少）
@@ -64,8 +63,6 @@ public class TimeScoreSystem : MonoBehaviour
     //结束游戏
     private void EndGame()
     {
-        isGameRunning = false;
-        CancelInvoke("LogTimeAndScore"); // 停止日志输出
         // 在这里添加游戏结束逻辑，如显示游戏结束屏幕等
     }
 
@@ -97,6 +94,38 @@ public class TimeScoreSystem : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = $"Score: {currentScore:F2}";
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("StartPoint")) // 检测是否碰到计时开始的碰撞体
+        {
+            StartTimer();
+        }
+        else if (other.CompareTag("EndPoint")) // 检测是否碰到计时结束的碰撞体
+        {
+            StopTimer();
+        }
+
+    }
+
+    private void StartTimer()
+    {
+        if (!isGameRunning)
+        {
+            isGameRunning = true;
+            Debug.Log("Timer started.");
+        }
+    }
+
+    // 停止计时
+    private void StopTimer()
+    {
+        if (isGameRunning)
+        {
+            isGameRunning = false;
+            Debug.Log("Timer stopped.");
         }
     }
 }
