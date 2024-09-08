@@ -6,65 +6,65 @@ using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("�ƶ��ٶ�")]
-    private float moveSpeed = 10f; //�ٶ�(��ʱ������
+    [Header("Movement Speed")]
+    private float moveSpeed = 10f; // Temporary speed variable
 
-    public float walkSpeed = 10f; //�����ٶ�
-    public float runSpeed = 20f; //�����ٶ�
-    public float wallRunSpeed = 10f; //ǽ���ƶ��ٶ�
-    public float climbSpeed = 5f; //��ǽ�ٶ�
+    public float walkSpeed = 10f; // Walking speed
+    public float runSpeed = 20f; // Running speed
+    public float wallRunSpeed = 10f; // Wall run speed
+    public float climbSpeed = 5f; // Climbing speed
 
-    [Header("����Ħ����")]
-    public float groundDrag = 5f; //����Ħ����
+    [Header("Friction Settings")]
+    public float groundDrag = 5f; // Ground friction
 
-    [Header("��Ծ����")]
-    public float jumpForce = 12f; //��Ծ��
+    [Header("Jump Settings")]
+    public float jumpForce = 12f; // Jump force
 
-    public float downForce = 12f; //������
+    public float downForce = 12f; // Downward force
 
-    public float jumpCooldown = 0.25f; //��Ծcd
+    public float jumpCooldown = 0.25f; // Jump cooldown
 
-    public float airDrag = 0.3f; //��������
+    public float airDrag = 0.3f; // Air resistance
 
     bool readyToJump;
 
-    [Header("�¶�")]
-    [Tooltip("�¶׺��ƶ��ٶ�")]
-    public float crouchMoveSpeed = 5f; //�¶׺��ƶ��ٶ�
+    [Header("Crouch")]
+    [Tooltip("Speed while crouching")]
+    public float crouchMoveSpeed = 5f; // Crouch movement speed
 
-    public float crouchSpeed = 5f; //�¶��ٶ�
-    public float crouchYscale = 0.5f; //�¶׸߶�
-    private float startYscale; //��ʼ�߶�
+    public float crouchSpeed = 5f; // Crouch speed
+    public float crouchYscale = 0.5f; // Crouch height scale
+    private float startYscale; // Initial height scale
 
 
-    [Header("���밴��")]
+    [Header("Control Keys")]
     public KeyCode jumpKey = KeyCode.Space;
 
     public KeyCode runKey = KeyCode.LeftShift;
     public KeyCode crouchKey = KeyCode.LeftControl;
 
 
-    [Header("������(��)")]
-    //��
+    [Header("Ground Check")]
+    // Grounded state
     public bool isGrounded;
 
-    public float playerHeight; //��Ҹ߶�
+    public float playerHeight; // Player height
 
-    public LayerMask groundMask; //�����
+    public LayerMask groundMask; // Ground mask
 
-    [Header("б���ƶ�")]
-    public float maxSlopeAngle = 40f; //���б�½Ƕ�
+    [Header("Slope Movement")]
+    public float maxSlopeAngle = 40f; // Maximum slope angle
 
-    private RaycastHit slopeHit; //б�¼��
-    private bool exitingSlope; //�˳�б��
+    private RaycastHit slopeHit; // Slope hit detection
+    private bool exitingSlope; // Exiting slope state
 
-    [Header("�ο�����")]
-    [Tooltip("��������и�orientation��������ʶ���ƶ�����")]
-    public Transform orientation; //��������и�orientation��������ʶ���ƶ�����
+    [Header("Orientation Reference")]
+    [Tooltip("Orientation transform used to determine movement direction")]
+    public Transform orientation; // Orientation transform used to determine movement direction
 
     public PlayerClimb pc;
 
-    //�����Ӱ˵ı���
+    // Movement vectors
     float horizontalMovement;
     float verticalMovement;
     Vector3 moveDirection;
@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
     public float grappleFOV = 120f;
     private float camFov;
 
-    [Header("����˶�״̬")]
+    [Header("Movement State")]
     public MoveState state;
 
     public bool wallRunning;
@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool activeGrapple;
 
-    //����˶�״̬
+    // Movement states
     public enum MoveState
     {
         freeze,
@@ -101,10 +101,10 @@ public class PlayerMovement : MonoBehaviour
         Jumping
     }
 
-    //״̬����
+    // State handling
     private void StateHandle()
     {
-        //����״̬
+        // Freeze state
         if (freeze)
         {
             state = MoveState.freeze;
@@ -116,46 +116,46 @@ public class PlayerMovement : MonoBehaviour
             state = MoveState.grappling;
             moveSpeed = runSpeed;
         }
-        //�����ٶ�״̬
+        // Unlimited speed state
         else if (unlimited)
         {
             state = MoveState.unlimited;
             moveSpeed = 999f;
             return;
         }
-        //��ǽ״̬
+        // Climbing state
         else if (climbing)
         {
             state = MoveState.climbing;
             moveSpeed = climbSpeed;
         }
 
-        //ǽ���ܲ�״̬
+        // Wall running state
         else if (wallRunning)
         {
             state = MoveState.wallRunning;
             moveSpeed = wallRunSpeed;
         }
-        //�¶�״̬
+        // Crouching state
         else if (Input.GetKey(crouchKey))
         {
             state = MoveState.crouching;
             moveSpeed = crouchMoveSpeed;
         }
 
-        //���״̬
+        // Running state
         else if (isGrounded && Input.GetKey(runKey))
         {
             state = MoveState.Running;
             moveSpeed = runSpeed;
         }
-        //����״̬
+        // Walking state
         else if (isGrounded)
         {
             state = MoveState.Walking;
             moveSpeed = walkSpeed;
         }
-        //��Ծ״̬
+        // Jumping state
         else
         {
             state = MoveState.Jumping;
@@ -176,12 +176,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //������
+        // Ground check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
         PlayerInput();
         SpeedControl();
         StateHandle();
-        //����Ħ����
+        // Ground friction handling
         if (isGrounded && !activeGrapple)
         {
             rb.drag = groundDrag;
@@ -198,26 +198,26 @@ public class PlayerMovement : MonoBehaviour
         ApplyDownForce();
     }
 
-    //�������
+    // Player input handling
     private void PlayerInput()
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
-        //��Ծ
+        // Jumping
         if (Input.GetKeyDown(jumpKey) && readyToJump && isGrounded)
         {
             readyToJump = false;
             Jump();
-            Invoke(nameof(ResetJump), jumpCooldown); //������Ծcd
+            Invoke(nameof(ResetJump), jumpCooldown); // Reset jump cooldown
         }
 
-        //�¶�
+        // Crouching
         if (Input.GetKeyDown(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYscale, transform.localScale.z);
             rb.AddForce(Vector3.down * crouchSpeed, ForceMode.Impulse);
         }
-        //վ��
+        // Stand up
         else if (Input.GetKeyUp(crouchKey))
         {
             transform.localScale = new Vector3(transform.localScale.x, startYscale, transform.localScale.z);
@@ -225,30 +225,30 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    //����ƶ�
+    // Player movement
     private void PlayerMove()
     {
-        //�������ʹ�ù�צ����Ҫ�ƶ�
+        // Skip movement if grappling
         if (activeGrapple)
         {
             return;
         }
 
-        //������ᣬ��Ҫ�ƶ�
+        // Skip movement if restricted
         if (restricted)
         {
             return;
         }
 
-        //���������ǽ����Ҫ�ƶ�
+        // Skip movement if exiting a wall
         if (pc.exitingWall)
         {
             return;
         }
 
-        //�����ƶ�����
+        // Calculate movement direction
         moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
-        //б��
+        // Slope handling
         if (OnSlope() && !exitingSlope)
         {
             rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
@@ -257,13 +257,13 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(Vector3.down * 80f, ForceMode.Force);
         }
 
-        //����
+        // Ground movement
         else if (isGrounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         }
 
-        //����
+        // Air movement
         else if (!isGrounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airDrag, ForceMode.Force);
@@ -271,30 +271,30 @@ public class PlayerMovement : MonoBehaviour
 
         if (!wallRunning)
         {
-            rb.useGravity = !OnSlope(); //��б�µ�ʱ��ر�����
+            rb.useGravity = !OnSlope(); // Disable gravity on slopes
         }
     }
 
-    //��������ڲ�ͬ����µ��ٶ�
+    // Control movement speed under different conditions
     private void SpeedControl()
     {
-        //�������ʹ�ù�צ����Ҫ�����ٶ�
+        // Skip speed control if grappling
         if (activeGrapple)
         {
             return;
         }
 
-        //б���ϵ��ƶ��ٶ�
+        // Slope movement speed control
         if (OnSlope() && !exitingSlope)
         {
             if (rb.velocity.magnitude > moveSpeed)
                 rb.velocity = rb.velocity.normalized * moveSpeed;
         }
-        //����Ϳ��е��ƶ��ٶ�
+        // Flat surface speed control
         else
         {
-            Vector3 flatVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); //�����ٶ�
-            //�����ƶ��ٶ�
+            Vector3 flatVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Flat velocity
+            // Control movement speed
             if (flatVelocity.magnitude > moveSpeed)
             {
                 Vector3 limitedVel = flatVelocity.normalized * moveSpeed;
@@ -303,15 +303,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //��Ծ
+    // Jumping
     private void Jump()
     {
         exitingSlope = true;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); //ִ��һ��һ�����ϵ���
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); // Perform a vertical impulse jump
     }
 
-    //����������
+    // Apply downward force
     private void ApplyDownForce()
     {
         if (!isGrounded)
@@ -320,33 +320,33 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //������Ծ
+    // Reset jumping state
     private void ResetJump()
     {
         exitingSlope = false;
         readyToJump = true;
     }
 
-    //�������Ƿ���б����
+    // Check if on a slope
     private bool OnSlope()
     {
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
             float slopeAngle = Vector3.Angle(slopeHit.normal, Vector3.up);
-            //Debug.Log("б�½Ƕȣ�" + slopeAngle);
+            Debug.Log("Slope angle: " + slopeAngle);
             return slopeAngle < maxSlopeAngle && slopeAngle != 0;
         }
 
         return false;
     }
 
-    //��ȡб���ƶ�����
+    // Get slope movement direction
     private Vector3 GetSlopeMoveDirection()
     {
         return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
-    //���㹳����Ծ�ٶ�
+    // Calculate jump velocity for a given trajectory
     public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
     {
         float gravity = Physics.gravity.y;
@@ -360,7 +360,7 @@ public class PlayerMovement : MonoBehaviour
         return velocityXZ + velocityY;
     }
 
-    //��������ָ��λ��
+    // Jump to a specified position
     public void JumpToPosition(Vector3 targetPosition, float trajectoryHeight)
     {
         activeGrapple = true;
@@ -376,7 +376,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool enableMovementOnNextTouch;
 
-    //���ù����ٶ�
+    // Set movement velocity
     private void SetVelocity()
     {
         enableMovementOnNextTouch = true;
@@ -384,7 +384,7 @@ public class PlayerMovement : MonoBehaviour
         cam.DoFov(grappleFOV);
     }
 
-    //���ù���
+    // Reset movement restrictions
     public void ResetRestrictions()
     {
         activeGrapple = false;
@@ -392,7 +392,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    //�ָ��ƶ�
+    // Restore movement
     private void OnCollisionEnter(Collision collision)
     {
         if (enableMovementOnNextTouch)
