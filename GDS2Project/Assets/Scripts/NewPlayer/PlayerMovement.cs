@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float grapYvalue; // Grappling Y
 
+
     [Header("Friction Settings")]
     public float groundDrag = 5f; // Ground friction
 
