@@ -1632,9 +1632,11 @@ MonoBehaviour:
   runSpeed: 20
   wallRunSpeed: 10
   climbSpeed: 5
+  grapXZvalue: 2
+  grapYvalue: 0
   groundDrag: 5
   jumpForce: 12
-  downForce: 12
+  downForce: 5
   jumpCooldown: 0.25
   airDrag: 0.4
   crouchMoveSpeed: 2
