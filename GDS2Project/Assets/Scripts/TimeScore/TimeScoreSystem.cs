@@ -9,7 +9,7 @@ public class TimeScoreSystem : MonoBehaviour
     public float maxScore = 100f; // 初始最高分
     public float currentTime;
     public float currentScore;
-    private bool isGameRunning = false;
+    // private bool isGameRunning = false;
 
     public float scoreMultiplier = 1f; // 时间扣分倍率，可在Unity中调整
 
@@ -26,12 +26,12 @@ public class TimeScoreSystem : MonoBehaviour
 
     void Update()
     {
-        if (isGameRunning)
-        {
-            UpdateTimer();
-            UpdateScore();
-            // UpdateUI();
-        }
+        // if (isGameRunning)
+        // {
+        UpdateTimer();
+        UpdateScore();
+        // UpdateUI();
+        // }
     }
 
     // 初始化计时器
@@ -45,13 +45,13 @@ public class TimeScoreSystem : MonoBehaviour
     // 更新计时器
     private void UpdateTimer()
     {
-            currentTime += Time.deltaTime;
-            // Debug.Log(currentTime);
-            /*if (currentTime >= maxTime)
-            {
-                currentTime = maxTime;
-                //EndGame();
-            }*/
+        currentTime += Time.deltaTime;
+        // Debug.Log(currentTime);
+        /*if (currentTime >= maxTime)
+        {
+            currentTime = maxTime;
+            //EndGame();
+        }*/
     }
 
     // 更新分数（随着时间减少）
@@ -69,13 +69,13 @@ public class TimeScoreSystem : MonoBehaviour
     // 暂停游戏
     public void PauseGame()
     {
-        isGameRunning = false;
+        // isGameRunning = false;
     }
 
     // 恢复游戏
     public void ResumeGame()
     {
-        isGameRunning = true;
+        // isGameRunning = true;
     }
 
     private void LogTimeAndScore()
@@ -107,25 +107,24 @@ public class TimeScoreSystem : MonoBehaviour
         {
             StopTimer();
         }
-
     }
 
     private void StartTimer()
     {
-        if (!isGameRunning)
-        {
-            isGameRunning = true;
-            Debug.Log("Timer started.");
-        }
+        // if (!isGameRunning)
+        // {
+        // isGameRunning = true;
+        Debug.Log("Timer started.");
+        // }
     }
 
     // 停止计时
     private void StopTimer()
     {
-        if (isGameRunning)
-        {
-            isGameRunning = false;
-            Debug.Log("Timer stopped.");
-        }
+        // if (isGameRunning)
+        // {
+        // isGameRunning = false;
+        Debug.Log("Timer stopped.");
+        // }
     }
 }

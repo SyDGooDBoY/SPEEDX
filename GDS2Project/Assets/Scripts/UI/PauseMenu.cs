@@ -9,16 +9,19 @@ public class PauseMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
 
+    public GameObject crosshair;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameIsPaused)
             {
+                crosshair.SetActive(true);
                 ResumeGame();
             }
             else
             {
+                crosshair.SetActive(false);
                 PauseGame();
             }
         }
