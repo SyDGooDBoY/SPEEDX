@@ -674,6 +674,7 @@ GameObject:
   - component: {fileID: 195003050}
   - component: {fileID: 195003049}
   - component: {fileID: 195003048}
+  - component: {fileID: 195003051}
   m_Layer: 7
   m_Name: Ground (36)
   m_TagString: Ground
@@ -787,8 +788,29 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &195003050
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195003042}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.9999999, y: 1.9124182, z: 1}
+  m_Center: {x: 9.217876e-14, y: 0.45620647, z: -0.0000009472331}
+--- !u!65 &195003051
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2328,9 +2350,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1.0040474
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0.002023697, z: 0}
+  m_Center: {x: 0, y: 0.06250572, z: 0}
 --- !u!1 &753733504
 GameObject:
   m_ObjectHideFlags: 0

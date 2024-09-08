@@ -19,7 +19,7 @@ public class MovingPlatform : MonoBehaviour
         // Move the platform towards the target
         transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
-        // If the platform reaches the target, switch the target
+        // If the platform reaches the target, switch
         if (Vector3.Distance(transform.position, target) < 0.1f)
         {
             target = (target == pointA.position) ? pointB.position : pointA.position;
@@ -30,7 +30,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Parent the player to the platform when they collide
+            // Parent the player 
             collision.gameObject.transform.SetParent(transform);
         }
     }
@@ -39,7 +39,7 @@ public class MovingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Unparent the player when they exit the collision
+            // Unparent the player 
             collision.gameObject.transform.SetParent(null);
         }
     }
