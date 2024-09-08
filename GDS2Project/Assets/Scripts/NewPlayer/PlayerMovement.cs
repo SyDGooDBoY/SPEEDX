@@ -14,13 +14,18 @@ public class PlayerMovement : MonoBehaviour
     public float wallRunSpeed = 10f; // Wall run speed
     public float climbSpeed = 5f; // Climbing speed
 
+    [Header("Grappling sens")]
+    public float grapXZvalue = 2f; // Grappling XZ
+
+    public float grapYvalue; // Grappling Y
+
     [Header("Friction Settings")]
     public float groundDrag = 5f; // Ground friction
 
     [Header("Jump Settings")]
     public float jumpForce = 12f; // Jump force
 
-    public float downForce = 12f; // Downward force
+    public float downForce = 5f; // Downward force
 
     public float jumpCooldown = 0.25f; // Jump cooldown
 
@@ -357,7 +362,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocityXZ = displacementXZ / (Mathf.Sqrt(-2 * trajectoryHeight / gravity)
                                                + Mathf.Sqrt(2 * (displacementY - trajectoryHeight) / gravity));
 
-        return velocityXZ + velocityY;
+        return grapXZvalue * velocityXZ + velocityY;
     }
 
     // Jump to a specified position
@@ -366,6 +371,8 @@ public class PlayerMovement : MonoBehaviour
         activeGrapple = true;
 
         velocityToSet = CalculateJumpVelocity(transform.position, targetPosition, trajectoryHeight);
+        cam.DoFov(grappleFOV);
+
         Invoke(nameof(SetVelocity), 0.1f);
 
         Invoke(nameof(ResetRestrictions), 3.5f);
@@ -381,7 +388,6 @@ public class PlayerMovement : MonoBehaviour
     {
         enableMovementOnNextTouch = true;
         rb.velocity = velocityToSet;
-        cam.DoFov(grappleFOV);
     }
 
     // Reset movement restrictions
