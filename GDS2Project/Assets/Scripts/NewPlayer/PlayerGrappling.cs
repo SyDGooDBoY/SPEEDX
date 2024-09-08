@@ -59,6 +59,9 @@ public class PlayerGrappling : MonoBehaviour
         pm.freeze = true;
 
         RaycastHit hit;
+
+        grapplingCdTimer = grapplingCd;
+        
         if (Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
         {
             grapplePoint = hit.point;
@@ -98,7 +101,7 @@ public class PlayerGrappling : MonoBehaviour
 
         grappling = false;
 
-        grapplingCdTimer = grapplingCd;
+        
 
         // lr.enabled = false;
     }

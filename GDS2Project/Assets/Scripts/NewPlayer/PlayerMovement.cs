@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Speed")]
     private float moveSpeed = 10f; // Temporary speed variable
 
+    public float gravity = -5f;
+
     public float walkSpeed = 10f; // Walking speed
     public float runSpeed = 20f; // Running speed
     public float wallRunSpeed = 10f; // Wall run speed
@@ -355,7 +357,7 @@ public class PlayerMovement : MonoBehaviour
     // Calculate jump velocity for a given trajectory
     public Vector3 CalculateJumpVelocity(Vector3 startPoint, Vector3 endPoint, float trajectoryHeight)
     {
-        float gravity = Physics.gravity.y;
+        // float gravity = Physics.gravity.y;
         float displacementY = endPoint.y - startPoint.y;
         Vector3 displacementXZ = new Vector3(endPoint.x - startPoint.x, 0f, endPoint.z - startPoint.z);
 
