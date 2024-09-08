@@ -338,15 +338,24 @@ public class PlayerMovement : MonoBehaviour
     // Check if on a slope
     private bool OnSlope()
     {
+        // Cast a ray downwards to detect the ground
         if (Physics.Raycast(transform.position, Vector3.down, out slopeHit, playerHeight * 0.5f + 0.3f))
         {
+            // Calculate the angle between the ground normal and the up vector
             float slopeAngle = Vector3.Angle(slopeHit.normal, Vector3.up);
-            Debug.Log("Slope angle: " + slopeAngle);
-            return slopeAngle < maxSlopeAngle && slopeAngle != 0;
+
+            // Only treat it as a slope if the angle is greater than 0 (not flat ground) and less than the max slope angle
+            if (slopeAngle > 0 && slopeAngle < maxSlopeAngle)
+            {
+                Debug.Log("Slope detected" + slopeAngle);
+                return true; // It's a slope
+            }
         }
 
+        // Return false if no slope is detected or it's flat ground
         return false;
     }
+
 
     // Get slope movement direction
     private Vector3 GetSlopeMoveDirection()
