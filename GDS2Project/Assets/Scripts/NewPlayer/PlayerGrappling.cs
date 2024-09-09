@@ -42,7 +42,7 @@ public class PlayerGrappling : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(grappleKey) && energySystem.UseEnergy(grappleConsumption)) StartGrapple();
+        if (Input.GetKeyDown(grappleKey)) StartGrapple();
 
         if (grapplingCdTimer > 0)
             grapplingCdTimer -= Time.deltaTime;
@@ -68,6 +68,8 @@ public class PlayerGrappling : MonoBehaviour
         
         if (Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
         {
+            if (!energySystem.UseEnergy(grappleConsumption)) return; // energy = 0
+
             grapplePoint = hit.point;
 
             Invoke(nameof(ExecuteGrapple), grappleDelayTime);
