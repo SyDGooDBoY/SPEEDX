@@ -64,6 +64,8 @@ public class EnergySystem : MonoBehaviour
         return true;
     }
 
+    
+
     // Recover energy over time
     private void RecoverEnergy()
     {
@@ -107,5 +109,12 @@ public class EnergySystem : MonoBehaviour
     public void SetEnergy(float energy)
     {
         currentEnergy = Mathf.Min(energy, maxEnergy);
+    }
+
+    // Consume Energy based on delta time
+    public void ConsumeEnergyOverTime(float consumptionRate)
+    {
+        float energyToConsume = consumptionRate * Time.deltaTime;
+        UseEnergy(energyToConsume);
     }
 }

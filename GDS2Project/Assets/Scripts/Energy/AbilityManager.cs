@@ -7,24 +7,9 @@ public class AbilityManager : MonoBehaviour
     [HideInInspector] public EnergySystem energySystem;
 
     //Energy thresholds
-    public const float LOW_THRESHOLD = 100f;
-    public const float MEDIUM_THRESHOLD = 200f;
+    public const float LOW_THRESHOLD = 200f;
+    public const float MEDIUM_THRESHOLD = 300f;
     public const float HIGH_THRESHOLD = 400f;
-
-    //Speed and Jump Height based on energy staLOW_THRESHOLDges
-    public Dictionary<string, float> speedByStage = new Dictionary<string, float>
-    {
-        { "Low", 3f },
-        { "Medium", 5f },
-        { "High", 10f }
-    };
-
-    public Dictionary<string, float> jumpHeightByStage = new Dictionary<string, float>
-    {
-        { "Low", 3f },
-        { "Medium", 5f },
-        { "High", 10f }
-    };
 
     void Start()
     {
@@ -54,17 +39,20 @@ public class AbilityManager : MonoBehaviour
         }
     }
 
-    // Get current speed based on energy stage
-    public float GetCurrentSpeed()
+    // Get a multiplier based on the current energy stage
+    public float GetAbilityMultiplier()
     {
         string stage = GetCurrentEnergyStage();
-        return speedByStage[stage];
-    }
 
-    // Get current jump height based on energy stage
-    public float GetCurrentJumpHeight()
-    {
-        string stage = GetCurrentEnergyStage();
-        return jumpHeightByStage[stage];
+        // different stage multiplier
+        switch (stage)
+        {
+            case "High":
+                return 1f; 
+            case "Medium":
+                return 1.2f; 
+            default:
+                return 1.5f; // Low
+        }
     }
 }

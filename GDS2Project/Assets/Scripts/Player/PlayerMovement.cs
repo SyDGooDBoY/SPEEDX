@@ -83,9 +83,9 @@ public class Movement : MonoBehaviour
         currentDir = Vector2.SmoothDamp(currentDir, targetDir, ref currentDirVelocity, moveSmoothTime);
         velocityY += gravity * 2f * Time.deltaTime;
 
-        // get speed and jump height based on Energy State
-        float speed = abilityManager.GetCurrentSpeed();
-        float jumpHeight = abilityManager.GetCurrentJumpHeight();
+        //// get speed and jump height based on Energy State
+        //float speed = abilityManager.GetCurrentSpeed();
+        //float jumpHeight = abilityManager.GetCurrentJumpHeight();
 
         // Check whether player is moving
         isMoving = IsMoving();
@@ -100,7 +100,7 @@ public class Movement : MonoBehaviour
 
         MoveConsumptionCheck();
      
-        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * speed +
+        Vector3 velocity = (transform.forward * currentDir.y + transform.right * currentDir.x) * 1 +
                            Vector3.up * velocityY;
         controller.Move(velocity * Time.deltaTime);
 
@@ -109,9 +109,9 @@ public class Movement : MonoBehaviour
         {
             if (energySystem.UseEnergy(jumpConsumption)) 
             {
-                velocityY = Mathf.Sqrt(jumpHeight * -2f * gravity); 
-                Debug.Log("PlayerSpeed" + speed);
-                Debug.Log("PlayerJumpHeight" + jumpHeight);
+                velocityY = Mathf.Sqrt(1 * -2f * gravity); 
+                Debug.Log("PlayerSpeed" + 1);
+                Debug.Log("PlayerJumpHeight" + 1);
             }
             else
             {
