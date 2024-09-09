@@ -1606,7 +1606,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573941557}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d904e74248e5454795226c38fc7869a, type: 3}
   m_Name: 
@@ -1619,7 +1619,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573941557}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8749cfa317272040810cfa5caf91e7d, type: 3}
   m_Name: 
@@ -2075,6 +2075,8 @@ GameObject:
   - component: {fileID: 748381491}
   - component: {fileID: 748381492}
   - component: {fileID: 748381493}
+  - component: {fileID: 748381495}
+  - component: {fileID: 748381494}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2174,6 +2176,9 @@ MonoBehaviour:
   unlimited: 0
   restricted: 0
   activeGrapple: 0
+  moveConsumptionRate: 5
+  jumpConsumption: 5
+  grappleConsumptionRate: 20
 --- !u!114 &748381487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2293,6 +2298,7 @@ MonoBehaviour:
   grapplingCd: 0.5
   grappleKey: 324
   grappling: 0
+  grappleConsumption: 20
 --- !u!114 &748381491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2348,6 +2354,32 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.06250572, z: 0}
+--- !u!114 &748381494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748381483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8749cfa317272040810cfa5caf91e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyRecoveryRate: 20
+--- !u!114 &748381495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748381483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d904e74248e5454795226c38fc7869a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energySystem: {fileID: 0}
 --- !u!1 &753733504
 GameObject:
   m_ObjectHideFlags: 0
@@ -6708,7 +6740,7 @@ MonoBehaviour:
   redBar: {fileID: 1843248948}
   yellowBar: {fileID: 563419379}
   greenBar: {fileID: 948055882}
-  energySystem: {fileID: 573941561}
+  energySystem: {fileID: 748381494}
 --- !u!114 &1891711741
 MonoBehaviour:
   m_ObjectHideFlags: 0

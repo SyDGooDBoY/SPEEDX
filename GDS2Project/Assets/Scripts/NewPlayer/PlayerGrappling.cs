@@ -31,14 +31,18 @@ public class PlayerGrappling : MonoBehaviour
 
     public bool grappling;
 
+    public float grappleConsumption = 20f;
+    private EnergySystem energySystem;
+
     private void Start()
     {
         pm = GetComponent<PlayerMovement>();
+        energySystem = GetComponent<EnergySystem>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(grappleKey)) StartGrapple();
+        if (Input.GetKeyDown(grappleKey) && energySystem.UseEnergy(grappleConsumption)) StartGrapple();
 
         if (grapplingCdTimer > 0)
             grapplingCdTimer -= Time.deltaTime;

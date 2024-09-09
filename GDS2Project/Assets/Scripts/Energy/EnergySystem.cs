@@ -27,21 +27,22 @@ public class EnergySystem : MonoBehaviour
         }
 
         // just for Test
-        if (Input.GetKeyDown(KeyCode.E))
+        //if (Input.GetKeyDown(KeyCode.E))
+        //{
+        //    UseEnergy(20f);
+        //    Debug.Log("Current Energy: " + currentEnergy);
+        //}
+
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            UseEnergy(20f);
             Debug.Log("Current Energy: " + currentEnergy);
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Debug.Log("Current Energy: " + currentEnergy);
-        }
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            RecoverEnergy(20f);
-            Debug.Log("Current Energy: " + currentEnergy);
-        }
+        //if(Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    RecoverEnergy(20f);
+        //    Debug.Log("Current Energy: " + currentEnergy);
+        //}
     }
 
     // Consume energy

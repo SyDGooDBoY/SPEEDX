@@ -95,6 +95,13 @@ public class PlayerMovement : MonoBehaviour
 
     public bool activeGrapple;
 
+    [Header("Energy Consumption")]
+    public float moveConsumptionRate = 5f; // based on delta time
+    public float jumpConsumption = 5f;
+
+    private EnergySystem energySystem; 
+    private AbilityManager abilityManager; 
+
     // Movement states
     public enum MoveState
     {
@@ -135,33 +142,33 @@ public class PlayerMovement : MonoBehaviour
         else if (climbing)
         {
             state = MoveState.climbing;
-            moveSpeed = climbSpeed;
+            moveSpeed = climbSpeed * abilityManager.GetAbilityMultiplier();
         }
 
         // Wall running state
         else if (wallRunning)
         {
             state = MoveState.wallRunning;
-            moveSpeed = wallRunSpeed;
+            moveSpeed = wallRunSpeed * abilityManager.GetAbilityMultiplier();
         }
         // Crouching state
         else if (Input.GetKey(crouchKey))
         {
             state = MoveState.crouching;
-            moveSpeed = crouchMoveSpeed;
+            moveSpeed = crouchMoveSpeed * abilityManager.GetAbilityMultiplier();
         }
 
         // Running state
         else if (isGrounded && Input.GetKey(runKey))
         {
             state = MoveState.Running;
-            moveSpeed = runSpeed;
+            moveSpeed = runSpeed * abilityManager.GetAbilityMultiplier();
         }
         // Walking state
         else if (isGrounded)
         {
             state = MoveState.Walking;
-            moveSpeed = walkSpeed;
+            moveSpeed = walkSpeed * abilityManager.GetAbilityMultiplier();
         }
         // Jumping state
         else
@@ -179,6 +186,9 @@ public class PlayerMovement : MonoBehaviour
         startYscale = transform.localScale.y;
         camFov = cam.GetComponent<Camera>().fieldOfView;
         cam.DoFov(camFov);
+
+        energySystem = GetComponent<EnergySystem>(); 
+        abilityManager = GetComponent<AbilityManager>();
     }
 
     // Update is called once per frame
@@ -216,12 +226,20 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontalMovement = Input.GetAxisRaw("Horizontal");
         verticalMovement = Input.GetAxisRaw("Vertical");
+
         // Jumping
         if (Input.GetKeyDown(jumpKey) && readyToJump && isGrounded)
         {
-            readyToJump = false;
-            Jump();
-            Invoke(nameof(ResetJump), jumpCooldown); // Reset jump cooldown
+            if (energySystem.UseEnergy(jumpConsumption)) // Check and consume the energy required to jump
+            {
+                readyToJump = false;
+                Jump();
+                Invoke(nameof(ResetJump), jumpCooldown);
+            }
+            else
+            {
+                Debug.Log("Not enough energy to jump!");
+            }
         }
 
         // Crouching
@@ -286,6 +304,12 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.useGravity = !OnSlope(); // Disable gravity on slopes
         }
+
+        // Consume energy over time while moving
+        if (moveDirection.magnitude > 0)
+        {
+            energySystem.ConsumeEnergyOverTime(moveConsumptionRate);
+        }
     }
 
     // Control movement speed under different conditions
@@ -321,7 +345,7 @@ public class PlayerMovement : MonoBehaviour
     {
         exitingSlope = true;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); // Perform a vertical impulse jump
+        rb.AddForce(transform.up * jumpForce * abilityManager.GetAbilityMultiplier(), ForceMode.Impulse); // Perform a vertical impulse jump
     }
 
     // Apply downward force
