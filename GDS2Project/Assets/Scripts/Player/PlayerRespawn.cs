@@ -6,6 +6,8 @@ public class PlayerRespawn : MonoBehaviour
     private Rigidbody rb;
     private CharacterController controller;
 
+    [SerializeField] string bottomObjectTag = "Bottom"; 
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -14,8 +16,12 @@ public class PlayerRespawn : MonoBehaviour
 
     void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.R))
+        {
+            Respawn();
+        }
+
+        if (transform.position.y < fallThreshold)
         {
             Respawn();
         }
@@ -46,6 +52,16 @@ public class PlayerRespawn : MonoBehaviour
         else
         {
             Debug.LogWarning("Respawn position is not set. Ensure a checkpoint has been reached.");
+        }
+    }
+
+ 
+    private void OnTriggerEnter(Collider other)
+    {
+        
+        if (other.CompareTag(bottomObjectTag))
+        {
+            Respawn();
         }
     }
 }

@@ -12,6 +12,7 @@ TagManager:
   - StartPoint
   - EndPoint
   - MovingPlatform
+  - Bottom
   layers:
   - Default
   - TransparentFX
