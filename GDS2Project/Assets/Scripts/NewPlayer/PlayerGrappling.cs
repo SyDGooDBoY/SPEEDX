@@ -31,7 +31,7 @@ public class PlayerGrappling : MonoBehaviour
 
     public bool grappling;
 
-    public float grappleConsumption = 20f;
+    public float grappleConsumption = 50f;
     private EnergySystem energySystem;
 
     private void Start()

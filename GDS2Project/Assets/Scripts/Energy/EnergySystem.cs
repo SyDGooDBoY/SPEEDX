@@ -83,6 +83,12 @@ public class EnergySystem : MonoBehaviour
         currentEnergy = Mathf.Min(currentEnergy + amount, maxEnergy);
     }
 
+    // Specific recovery through special actions
+    public void RecoverEnergyThroughSpecialAction(float recoveryRate)
+    {
+        currentEnergy = Mathf.Min(currentEnergy + recoveryRate * Time.deltaTime, maxEnergy);
+    }
+
     // Stop energy recovery and start a delay timer
     public void StopRecovery()
     {

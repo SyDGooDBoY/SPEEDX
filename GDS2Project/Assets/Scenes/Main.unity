@@ -2173,12 +2173,12 @@ MonoBehaviour:
   wallRunning: 0
   climbing: 0
   freeze: 0
-  unlimited: 0
+  unlimited: 1
   restricted: 0
   activeGrapple: 0
   moveConsumptionRate: 5
-  jumpConsumption: 5
-  grappleConsumptionRate: 20
+  jumpConsumption: 10
+  wallSlideRecoveryRate: 20
 --- !u!114 &748381487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2298,7 +2298,7 @@ MonoBehaviour:
   grapplingCd: 0.5
   grappleKey: 324
   grappling: 0
-  grappleConsumption: 20
+  grappleConsumption: 50
 --- !u!114 &748381491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2366,7 +2366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8749cfa317272040810cfa5caf91e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyRecoveryRate: 20
+  energyRecoveryRate: 10
 --- !u!114 &748381495
 MonoBehaviour:
   m_ObjectHideFlags: 0

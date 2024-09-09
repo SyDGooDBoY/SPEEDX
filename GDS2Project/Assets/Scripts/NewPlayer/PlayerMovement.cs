@@ -98,6 +98,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Energy Consumption")]
     public float moveConsumptionRate = 5f; // based on delta time
     public float jumpConsumption = 5f;
+    public float wallSlideRecoveryRate = 20f; // recovery rate through wall sliding
 
     private EnergySystem energySystem; 
     private AbilityManager abilityManager; 
@@ -150,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MoveState.wallRunning;
             moveSpeed = wallRunSpeed * abilityManager.GetAbilityMultiplier();
+            energySystem.RecoverEnergyThroughSpecialAction(wallSlideRecoveryRate);
         }
         // Crouching state
         else if (Input.GetKey(crouchKey))
@@ -163,12 +165,14 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MoveState.Running;
             moveSpeed = runSpeed * abilityManager.GetAbilityMultiplier();
+            energySystem.ConsumeEnergyOverTime(moveConsumptionRate * 1.8f); 
         }
         // Walking state
         else if (isGrounded)
         {
             state = MoveState.Walking;
             moveSpeed = walkSpeed * abilityManager.GetAbilityMultiplier();
+            if (isMoving()) energySystem.ConsumeEnergyOverTime(moveConsumptionRate);
         }
         // Jumping state
         else
@@ -207,6 +211,16 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.drag = 0;
+        }
+
+        // restore energy when the player stops moving
+        if (!isMoving())
+        {
+            energySystem.TryStartRecovery();
+        }
+        else
+        {
+            energySystem.StopRecovery();
         }
     }
 
@@ -463,5 +477,11 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.parent = null;
         }
+    }
+
+    // detect whether player is moving
+    private bool isMoving()
+    {
+        return rb.velocity.magnitude > 0.1f; // speed threshold
     }
 }
