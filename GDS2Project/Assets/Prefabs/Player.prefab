@@ -284,7 +284,7 @@ MonoBehaviour:
   orientation: {fileID: 7151712449624173914}
   pc: {fileID: 4031317112601952522}
   cam: {fileID: 0}
-  grappleFOV: 120
+  grappleFOV: 110
   state: 0
   wallRunning: 0
   climbing: 0
@@ -294,7 +294,7 @@ MonoBehaviour:
   activeGrapple: 0
   moveConsumptionRate: 5
   jumpConsumption: 10
-  wallSlideRecoveryRate: 20
+  wallSlideRecoveryRate: 50
 --- !u!114 &1408226002555975307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -495,4 +495,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8749cfa317272040810cfa5caf91e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyRecoveryRate: 10
+  energyRecoveryRate: 50

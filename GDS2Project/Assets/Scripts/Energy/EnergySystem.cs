@@ -15,7 +15,7 @@ public class EnergySystem : MonoBehaviour
     void Start()
     {
         // Initialize start energy to stage 1
-        currentEnergy = AbilityManager.LOW_THRESHOLD;
+        currentEnergy = AbilityManager.HIGH_THRESHOLD;
         Debug.Log("Current Energy: " + currentEnergy);
     }
 
