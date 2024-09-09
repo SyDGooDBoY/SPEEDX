@@ -42,6 +42,7 @@ public class PlayerGrappling : MonoBehaviour
 
     private void Update()
     {
+        if (!pm.inputEnabled) return;
         if (Input.GetKeyDown(grappleKey)) StartGrapple();
 
         if (grapplingCdTimer > 0)
@@ -65,7 +66,7 @@ public class PlayerGrappling : MonoBehaviour
         RaycastHit hit;
 
         grapplingCdTimer = grapplingCd;
-        
+
         if (Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
         {
             if (!energySystem.UseEnergy(grappleConsumption)) return; // energy = 0
@@ -84,6 +85,7 @@ public class PlayerGrappling : MonoBehaviour
         // lr.enabled = true;
         // lr.SetPosition(1, grapplePoint);
     }
+
     //Ö´ÐÐ¹³ËøÒÆ¶¯
     private void ExecuteGrapple()
     {
@@ -100,6 +102,7 @@ public class PlayerGrappling : MonoBehaviour
 
         Invoke(nameof(StopGrapple), 1.5f);
     }
+
     //Í£Ö¹¹³Ëø
     public void StopGrapple()
     {
@@ -107,7 +110,6 @@ public class PlayerGrappling : MonoBehaviour
 
         grappling = false;
 
-        
 
         // lr.enabled = false;
     }
@@ -116,7 +118,7 @@ public class PlayerGrappling : MonoBehaviour
     {
         return grappling;
     }
-    
+
     public Vector3 GetGrapplePoint()
     {
         return grapplePoint;

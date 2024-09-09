@@ -3,7 +3,9 @@ using UnityEngine;
 
 public class TimeUI : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI timeText;
+    [SerializeField]
+    TextMeshProUGUI timeText;
+
     public TimeScoreSystem timeScoreSystem;
     private float passTime;
 

@@ -97,11 +97,15 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Energy Consumption")]
     public float moveConsumptionRate = 5f; // based on delta time
+
     public float jumpConsumption = 5f;
     public float wallSlideRecoveryRate = 20f; // recovery rate through wall sliding
 
-    private EnergySystem energySystem; 
-    private AbilityManager abilityManager; 
+    private EnergySystem energySystem;
+    private AbilityManager abilityManager;
+
+    [Header("Player Input control")]
+    public bool inputEnabled = true;
 
     // Movement states
     public enum MoveState
@@ -165,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MoveState.Running;
             moveSpeed = runSpeed * abilityManager.GetAbilityMultiplier();
-            energySystem.ConsumeEnergyOverTime(moveConsumptionRate * 1.8f); 
+            energySystem.ConsumeEnergyOverTime(moveConsumptionRate * 1.8f);
         }
         // Walking state
         else if (isGrounded)
@@ -191,13 +195,14 @@ public class PlayerMovement : MonoBehaviour
         camFov = cam.GetComponent<Camera>().fieldOfView;
         cam.DoFov(camFov);
 
-        energySystem = GetComponent<EnergySystem>(); 
+        energySystem = GetComponent<EnergySystem>();
         abilityManager = GetComponent<AbilityManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!inputEnabled) return;
         // Ground check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
         PlayerInput();
@@ -359,7 +364,8 @@ public class PlayerMovement : MonoBehaviour
     {
         exitingSlope = true;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        rb.AddForce(transform.up * jumpForce * abilityManager.GetAbilityMultiplier(), ForceMode.Impulse); // Perform a vertical impulse jump
+        rb.AddForce(transform.up * jumpForce * abilityManager.GetAbilityMultiplier(),
+            ForceMode.Impulse); // Perform a vertical impulse jump
     }
 
     // Apply downward force
@@ -463,6 +469,11 @@ public class PlayerMovement : MonoBehaviour
             transform.parent = collision.transform;
         }
 
+        if (collision.gameObject.CompareTag("EndPoint"))
+        {
+            transform.parent = collision.transform;
+        }
+
         if (enableMovementOnNextTouch)
         {
             enableMovementOnNextTouch = false;
@@ -474,6 +485,11 @@ public class PlayerMovement : MonoBehaviour
     void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("MovingPlatform"))
+        {
+            transform.parent = null;
+        }
+
+        if (collision.gameObject.CompareTag("EndPoint"))
         {
             transform.parent = null;
         }

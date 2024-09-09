@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class TimeScoreSystem : MonoBehaviour
 {
     public float maxTime = 300f; // 最大时间（例如5分钟）
-    public float maxScore = 100f; // 初始最高分
+    public float maxScore = 500f; // 初始最高分
     public float currentTime;
     public float currentScore;
-    // private bool isGameRunning = false;
+    public bool isGameRunning = false;
 
     public float scoreMultiplier = 1f; // 时间扣分倍率，可在Unity中调整
 
@@ -20,18 +20,19 @@ public class TimeScoreSystem : MonoBehaviour
     //public Collider endPoint;  // 计时结束碰撞体
     void Start()
     {
+        isGameRunning = true;
         ResetTimer();
         InvokeRepeating("LogTimeAndScore", 0f, 3f); // 每3秒调用一次LogTimeAndScore方法
     }
 
     void Update()
     {
-        // if (isGameRunning)
-        // {
-        UpdateTimer();
-        UpdateScore();
-        // UpdateUI();
-        // }
+        if (isGameRunning)
+        {
+            UpdateTimer();
+            UpdateScore();
+            // UpdateUI();
+        }
     }
 
     // 初始化计时器

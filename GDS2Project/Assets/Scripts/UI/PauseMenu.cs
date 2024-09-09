@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
 
     public GameObject crosshair;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -67,5 +68,15 @@ public class PauseMenu : MonoBehaviour
     {
         // SceneManager.LoadScene(0);
         Debug.LogWarning("Home function is not implemented yet.");
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        Debug.Log("Exit game in editor"); //Quit the game function for editor
+#else
+        Application.Quit(); //Quit the game function for build
+#endif
     }
 }
