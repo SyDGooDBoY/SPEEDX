@@ -10,6 +10,19 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
 
     public GameObject crosshair;
+    public Slider rotationSpeedSlider;
+    public PlayerCam playerCam;
+
+    private void Start()
+    {
+        rotationSpeedSlider.value = playerCam.rotationSpeed;
+        rotationSpeedSlider.onValueChanged.AddListener(HandleSliderChange);
+    }
+
+    void HandleSliderChange(float value)
+    {
+        playerCam.rotationSpeed = value;
+    }
 
     void Update()
     {
@@ -41,6 +54,7 @@ public class PauseMenu : MonoBehaviour
     public void ResumeGame()
     {
         GameIsPaused = false;
+        crosshair.SetActive(true);
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         Debug.Log("Resume Game");

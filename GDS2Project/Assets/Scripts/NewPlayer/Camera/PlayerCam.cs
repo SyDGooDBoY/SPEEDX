@@ -1,22 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 using DG.Tweening;
 
 public class PlayerCam : MonoBehaviour
 {
-    public Transform orientationPlayer; //跟踪对象面对的方向
-    public Transform camHolder; //摄像机的父对象
+    public Transform orientationPlayer; // 跟踪对象面对的方向
+    public Transform camHolder; // 摄像机的父对象
 
-    [Header("XY灵敏度")]
-    public float sensX;
+    [Header("旋转速度")]
+    public float rotationSpeed = 1.0f; // 控制摄像机旋转的速度
 
-    public float sensY;
-
-    [Header("旋转角度")]
     float rotationY;
-
     float rotationX;
 
     // Start is called before the first frame update
@@ -29,8 +24,8 @@ public class PlayerCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * sensX * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * sensY * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
 
         rotationY += mouseX;
         rotationX -= mouseY;
