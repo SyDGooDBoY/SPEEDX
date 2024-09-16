@@ -46,10 +46,21 @@ public class PlayerGrappling : MonoBehaviour
     private void Update()
     {
         if (!pm.inputEnabled) return;
-        if (Input.GetKeyDown(grappleKey)) StartGrapple();
+        if (Input.GetKeyDown(grappleKey) && IsValidGrapplePoint()) StartGrapple();
 
         if (grapplingCdTimer > 0)
             grapplingCdTimer -= Time.deltaTime;
+    }
+
+    private bool IsValidGrapplePoint()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     // private void LateUpdate()
