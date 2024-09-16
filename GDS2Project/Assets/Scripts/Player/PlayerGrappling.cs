@@ -33,6 +33,7 @@ public class PlayerGrappling : MonoBehaviour
 
     //public float grappleConsumption = 50f;
     private EnergySystem energySystem;
+
     [Header("Energy Recover")]
     public float energyRecoverAmount = 30f;
 
@@ -59,6 +60,8 @@ public class PlayerGrappling : MonoBehaviour
     //¿ªÊ¼¹³Ëø
     private void StartGrapple()
     {
+        GetComponent<PlayerSwinging>().StopSwing();
+
         if (grapplingCdTimer > 0) return;
 
         grappling = true;
