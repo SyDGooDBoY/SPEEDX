@@ -2456,17 +2456,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744663161}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &748381490 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7613251681519642558, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-  m_PrefabInstance: {fileID: 8399425915912535474}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 898248592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8470b9460fa8a54aa366aa8da6f0039, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &748381494 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6264600111647544808, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
@@ -3644,6 +3633,31 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8269969158327480302, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
   m_PrefabInstance: {fileID: 8399425915912535474}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &898248593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898248592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218617e413394ce45b9017f5bd9dc95c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 2116967209}
+  gunTip: {fileID: 1131196476}
+  whatIsGrappleable:
+    serializedVersion: 2
+    m_Bits: 4096
+  lr: {fileID: 1834486462}
+  maxGrappleDistance: 25
+  grappleDelayTime: 0.25
+  overshootYAxis: 2
+  grapplingCd: 0
+  grappleKey: 324
+  grappling: 0
+  energyRecoverAmount: 30
 --- !u!1 &917246711
 GameObject:
   m_ObjectHideFlags: 0
@@ -7950,7 +7964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc85b054437760741b61400539841fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grappling: {fileID: 748381490}
+  grappling: {fileID: 898248593}
   quality: 200
   damper: 14
   strength: 800
@@ -10765,10 +10779,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7613251681519642558, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+    - {fileID: 5973971685938748961, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8269969158327480302, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      insertIndex: 5
+      addedObject: {fileID: 898248593}
   m_SourcePrefab: {fileID: 100100000, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

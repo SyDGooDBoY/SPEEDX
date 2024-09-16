@@ -54,7 +54,7 @@ public class PlayerClimb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        pg = GetComponent<PlayerGrab>();
+        // pg = GetComponent<PlayerGrab>();
     }
 
     // Update is called once per frame
@@ -70,13 +70,13 @@ public class PlayerClimb : MonoBehaviour
     private void StateMachine()
     {
         //攀岩状态
-        if (pg.holding)
-        {
-            if (climbing) StopClimbing();
-        }
+        // // if (pg.holding)
+        // {
+        //     if (climbing) StopClimbing();
+        // }
 
         //爬墙（只有小于最大角度，按下W键才可以爬）
-        else if (wallFront && Input.GetKey(KeyCode.W) && wallLookAngle < maxWallLookAngle && !exitingWall)
+       if (wallFront && Input.GetKey(KeyCode.W) && wallLookAngle < maxWallLookAngle && !exitingWall)
         {
             if (!climbing && climbTimer > 0) StartClimbing();
 
@@ -148,7 +148,7 @@ public class PlayerClimb : MonoBehaviour
     private void ClimbJump()
     {
         if (pm.isGrounded) return;
-        if (pg.holding || pg.exitingLedge) return;
+        // if (pg.holding || pg.exitingLedge) return;
         exitingWall = true;
         exitWallTimer = exitWallTime;
         Vector3 forceToApply = transform.up * climbJumpUpForce + frontWallHit.normal * climbJumpBackForce;
