@@ -373,8 +373,6 @@ MonoBehaviour:
   wallRunSpeed: 10
   climbSpeed: 5
   dashSpeed: 100
-  dashSpeedChangeFactor: 50
-  maxYSpeed: 15
   grapXZvalue: 2
   groundDrag: 5
   jumpForce: 12
@@ -435,7 +433,7 @@ MonoBehaviour:
   wallClimbSpeed: 5
   WallJumpUpForce: 10
   WallJumpSideForce: 70
-  wallRunMaxTime: 2
+  wallRunMaxTime: 999
   jumpKey: 32
   upwardsRunKey: 304
   downwardRunKey: 306
@@ -456,14 +454,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 7151712449624173914}
   playerCam: {fileID: 0}
-  dashForce: 20
+  dashForce: 50
+  inAirDashMultiplier: 0
   dashUpwardForce: 0
   maxDashYSpeed: 15
   dashDuration: 0.25
   cam: {fileID: 0}
+  defaultFov: 0
   dashFov: 95
   useCameraForward: 1
-  allowAllDirections: 1
+  allowAllDirections: 0
   disableGravity: 1
   resetVel: 1
   dashCd: 0

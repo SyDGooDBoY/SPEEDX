@@ -12,8 +12,9 @@ public class PlayerDash : MonoBehaviour
     private PlayerMovement pm;
 
     [Header("Dashing")]
-    public float dashForce;
+    public float dashForce = 50f;
 
+    public float inAirDashMultiplier = 0.3f;
     public float dashUpwardForce;
     public float maxDashYSpeed;
     public float dashDuration;
@@ -21,6 +22,7 @@ public class PlayerDash : MonoBehaviour
     [Header("CameraEffects")]
     public PlayerCam cam;
 
+    public float defaultFov;
     public float dashFov;
 
     [Header("Settings")]
@@ -42,6 +44,8 @@ public class PlayerDash : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
+        defaultFov = cam.GetComponent<Camera>().fieldOfView;
+        cam.DoFov(defaultFov);
     }
 
     private void Update()
@@ -58,22 +62,28 @@ public class PlayerDash : MonoBehaviour
 
     private void Dash()
     {
-        if (dashCdTimer > 0) return;
+        if (dashCdTimer > 0 || !pm.isGrounded) return;
         else dashCdTimer = dashCd;
 
         pm.dashing = true;
-        pm.maxYSpeed = maxDashYSpeed;
 
         cam.DoFov(dashFov);
 
         Transform forwardT;
 
         if (useCameraForward)
-            forwardT = playerCam; /// where you're looking
+            forwardT = playerCam; // where you're looking
         else
-            forwardT = orientation; /// where you're facing (no up or down)
+            forwardT = orientation; // where you're facing (no up or down)
 
         Vector3 direction = GetDirection(forwardT);
+
+        // Check if the player is grounded
+        if (!pm.isGrounded)
+        {
+            // Reduce dash force if the player is in the air
+            dashForce *= inAirDashMultiplier;
+        }
 
         Vector3 forceToApply = direction * dashForce + orientation.up * dashUpwardForce;
 
@@ -99,9 +109,8 @@ public class PlayerDash : MonoBehaviour
     private void ResetDash()
     {
         pm.dashing = false;
-        pm.maxYSpeed = 0;
 
-        cam.DoFov(85f);
+        cam.DoFov(defaultFov);
 
         if (disableGravity)
             rb.useGravity = true;

@@ -15,9 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 20f; // Running speed
     public float wallRunSpeed = 10f; // Wall run speed
     public float climbSpeed = 5f; // Climbing speed
-    public float dashSpeed;
-    public float dashSpeedChangeFactor;
-    public float maxYSpeed;
+    public float dashSpeed; // Dash speed
 
     [Header("Grappling sens")]
     public float grapXZvalue = 2f; // Grappling XZ

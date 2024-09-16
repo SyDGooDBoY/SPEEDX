@@ -7,7 +7,9 @@ public class PlayerSwinging : MonoBehaviour
     [Header("References")]
     public LineRenderer lr;
 
-    public Transform gunTip, cam, player;
+    public Transform gunTip;
+    public Transform cam;
+    public Transform player;
     public LayerMask whatIsGrappleable;
     public PlayerMovement pm;
 
