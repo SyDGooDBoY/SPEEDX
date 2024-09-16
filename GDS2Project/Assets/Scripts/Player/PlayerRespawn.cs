@@ -6,7 +6,7 @@ public class PlayerRespawn : MonoBehaviour
     private Rigidbody rb;
     private CharacterController controller;
 
-    [SerializeField] string bottomObjectTag = "Bottom"; 
+    [SerializeField] string bottomObjectTag = "Bottom";
 
     void Start()
     {
@@ -48,6 +48,9 @@ public class PlayerRespawn : MonoBehaviour
             {
                 transform.position = CheckpointManager.respawnPosition;
             }
+
+            //reset Energy State
+            transform.GetComponent<EnergySystem>().SetEnergy(AbilityManager.LOW_THRESHOLD / 2);
         }
         else
         {

@@ -10701,26 +10701,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 2116967204}
-    - target: {fileID: 721983897902045563, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: grappleFOV
-      value: 110
-      objectReference: {fileID: 0}
-    - target: {fileID: 721983897902045563, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: wallSlideRecoveryRate
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 1408226002555975307, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 2116967204}
-    - target: {fileID: 1408226002555975307, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: onWallFOV
-      value: 110
-      objectReference: {fileID: 0}
-    - target: {fileID: 4440762637720546962, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5973971685938748961, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: cam
       value: 
@@ -10765,10 +10749,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6264600111647544808, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: energyRecoveryRate
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 7613251681519642558, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: lr
       value: 
@@ -10781,10 +10761,6 @@ PrefabInstance:
       propertyPath: gunTip
       value: 
       objectReference: {fileID: 1131196476}
-    - target: {fileID: 7613251681519642558, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: grappleConsumption
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 8269969158327480302, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: m_Name
       value: Player

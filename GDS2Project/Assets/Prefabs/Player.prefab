@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   energyRecoveryRate: 100
+  energyDecreaseRate: 80
 --- !u!114 &5572827106138947617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,7 +245,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!114 &721983897902045563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,9 +293,8 @@ MonoBehaviour:
   unlimited: 0
   restricted: 0
   activeGrapple: 0
-  moveConsumptionRate: 5
-  jumpConsumption: 10
-  wallSlideRecoveryRate: 50
+  wallSlideRecoveryRate: 20
+  inputEnabled: 1
 --- !u!114 &1408226002555975307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,7 +328,7 @@ MonoBehaviour:
   downwardRunKey: 306
   orientation: {fileID: 7151712449624173914}
   cam: {fileID: 0}
-  onWallFOV: 100
+  onWallFOV: 110
 --- !u!114 &4031317112601952522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,7 +414,7 @@ MonoBehaviour:
   grapplingCd: 0.5
   grappleKey: 324
   grappling: 0
-  grappleConsumption: 50
+  energyRecoverAmount: 30
 --- !u!114 &2515325239898904400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,6 +431,7 @@ MonoBehaviour:
   maxScore: 100
   currentTime: 0
   currentScore: 0
+  isGameRunning: 0
   scoreMultiplier: 1
   timeText: {fileID: 0}
   scoreText: {fileID: 0}
@@ -447,6 +448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fallThreshold: -10
+  bottomObjectTag: Bottom
 --- !u!136 &2207196687716489250
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -495,4 +497,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8749cfa317272040810cfa5caf91e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyRecoveryRate: 50
+  energyRecoveryRate: 20
+  energyDecreaseRate: 80
