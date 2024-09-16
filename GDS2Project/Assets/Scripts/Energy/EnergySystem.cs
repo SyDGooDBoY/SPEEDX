@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnergySystem : MonoBehaviour
 {
-    public float energyRecoveryRate = 40f; // Energy recovery rate per second
-    public float energyDecreaseRate = 50f; // Energy decrease rate when stopped
+    public float energyRecoveryRate = 20f; // Energy recovery rate per second
+    public float energyDecreaseRate = 80f; // Energy decrease rate when stopped
     private float maxEnergy = AbilityManager.HIGH_THRESHOLD; // Maximum energy 
     private float currentEnergy; // Current energy for Get function
 
@@ -70,7 +70,7 @@ public class EnergySystem : MonoBehaviour
     }
 
     // Gradually decrease energy when stopped
-    private void DecreaseEnergyOverTime()
+    public void DecreaseEnergyOverTime()
     {
         if (currentEnergy > 0)
         {
@@ -89,6 +89,12 @@ public class EnergySystem : MonoBehaviour
     public void RecoverEnergyThroughSpecialAction(float recoveryRate)
     {
         currentEnergy = Mathf.Min(currentEnergy + recoveryRate * Time.deltaTime, maxEnergy);
+    }
+
+    // Specific recovery through special actions (e.g., run, grappling)
+    public void StartRecovery()
+    {
+        isRecovering = true;
     }
 
     // Stop energy recovery and start a delay timer

@@ -10707,7 +10707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 721983897902045563, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: wallSlideRecoveryRate
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1408226002555975307, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: cam
@@ -10767,7 +10767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6264600111647544808, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: energyRecoveryRate
-      value: 50
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7613251681519642558, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: lr

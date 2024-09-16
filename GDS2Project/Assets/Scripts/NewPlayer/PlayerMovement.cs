@@ -95,10 +95,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool activeGrapple;
 
-    [Header("Energy Consumption")]
-    public float moveConsumptionRate = 5f; // based on delta time
-
-    public float jumpConsumption = 5f;
+    [Header("Energy Recovery")]
     public float wallSlideRecoveryRate = 20f; // recovery rate through wall sliding
 
     private EnergySystem energySystem;
@@ -169,14 +166,12 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MoveState.Running;
             moveSpeed = runSpeed * abilityManager.GetAbilityMultiplier();
-            energySystem.ConsumeEnergyOverTime(moveConsumptionRate * 1.8f);
         }
         // Walking state
         else if (isGrounded)
         {
             state = MoveState.Walking;
             moveSpeed = walkSpeed * abilityManager.GetAbilityMultiplier();
-            if (isMoving()) energySystem.ConsumeEnergyOverTime(moveConsumptionRate);
         }
         // Jumping state
         else
@@ -208,6 +203,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerInput();
         SpeedControl();
         StateHandle();
+
         // Ground friction handling
         if (isGrounded && !activeGrapple)
         {
@@ -218,14 +214,14 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = 0;
         }
 
-        // restore energy when the player stops moving
+        // Energy is restored only while maintaining a special movement state
         if (!isMoving())
         {
-            energySystem.TryStartRecovery();
+            energySystem.StopRecovery(); // quickly decreasing
         }
         else
         {
-            energySystem.StopRecovery();
+            energySystem.StartRecovery(); // recover 
         }
     }
 
@@ -249,16 +245,19 @@ public class PlayerMovement : MonoBehaviour
         // Jumping
         if (Input.GetKeyDown(jumpKey) && readyToJump && isGrounded)
         {
-            if (energySystem.UseEnergy(jumpConsumption)) // Check and consume the energy required to jump
-            {
-                readyToJump = false;
-                Jump();
-                Invoke(nameof(ResetJump), jumpCooldown);
-            }
-            else
-            {
-                Debug.Log("Not enough energy to jump!");
-            }
+            //if (energySystem.UseEnergy(jumpConsumption)) // Check and consume the energy required to jump
+            //{
+            //    readyToJump = false;
+            //    Jump();
+            //    Invoke(nameof(ResetJump), jumpCooldown);
+            //}
+            //else
+            //{
+            //    Debug.Log("Not enough energy to jump!");
+            //}
+            readyToJump = false;
+            Jump();
+            Invoke(nameof(ResetJump), jumpCooldown);
         }
 
         // Crouching
@@ -324,11 +323,11 @@ public class PlayerMovement : MonoBehaviour
             rb.useGravity = !OnSlope(); // Disable gravity on slopes
         }
 
-        // Consume energy over time while moving
-        if (moveDirection.magnitude > 0)
-        {
-            energySystem.ConsumeEnergyOverTime(moveConsumptionRate);
-        }
+        //// Consume energy over time while moving
+        //if (moveDirection.magnitude > 0)
+        //{
+        //    energySystem.ConsumeEnergyOverTime(moveConsumptionRate);
+        //}
     }
 
     // Control movement speed under different conditions
