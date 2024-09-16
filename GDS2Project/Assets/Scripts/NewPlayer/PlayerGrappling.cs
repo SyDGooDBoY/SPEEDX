@@ -33,6 +33,8 @@ public class PlayerGrappling : MonoBehaviour
 
     //public float grappleConsumption = 50f;
     private EnergySystem energySystem;
+    [Header("Energy Recover")]
+    public float energyRecoverAmount = 30f;
 
     private void Start()
     {
@@ -69,7 +71,7 @@ public class PlayerGrappling : MonoBehaviour
 
         if (Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
         {
-            //if (!energySystem.UseEnergy(grappleConsumption)) return; // energy = 0
+            energySystem.RecoverEnergy(energyRecoverAmount);
 
             grapplePoint = hit.point;
 
