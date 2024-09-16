@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnergySystem : MonoBehaviour
 {
-    public float energyRecoveryRate = 5f; // Energy recovery rate per second
+    public float energyRecoveryRate = 40f; // Energy recovery rate per second
+    public float energyDecreaseRate = 50f; // Energy decrease rate when stopped
     private float maxEnergy = AbilityManager.HIGH_THRESHOLD; // Maximum energy 
     private float currentEnergy; // Current energy for Get function
 
@@ -15,7 +16,7 @@ public class EnergySystem : MonoBehaviour
     void Start()
     {
         // Initialize start energy to stage 1
-        currentEnergy = AbilityManager.HIGH_THRESHOLD;
+        currentEnergy = AbilityManager.LOW_THRESHOLD;
         Debug.Log("Current Energy: " + currentEnergy);
     }
 
@@ -25,24 +26,15 @@ public class EnergySystem : MonoBehaviour
         {
             RecoverEnergy();
         }
-
-        // just for Test
-        //if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    UseEnergy(20f);
-        //    Debug.Log("Current Energy: " + currentEnergy);
-        //}
+        else
+        {
+            DecreaseEnergyOverTime(); // Gradually decrease energy when not recovering
+        }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Debug.Log("Current Energy: " + currentEnergy);
         }
-
-        //if(Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    RecoverEnergy(20f);
-        //    Debug.Log("Current Energy: " + currentEnergy);
-        //}
     }
 
     // Consume energy
@@ -74,6 +66,16 @@ public class EnergySystem : MonoBehaviour
         {
             currentEnergy += energyRecoveryRate * Time.deltaTime;
             currentEnergy = Mathf.Min(currentEnergy, maxEnergy); // Ensure energy less than the maximum
+        }
+    }
+
+    // Gradually decrease energy when stopped
+    private void DecreaseEnergyOverTime()
+    {
+        if (currentEnergy > 0)
+        {
+            currentEnergy -= energyDecreaseRate * Time.deltaTime;
+            currentEnergy = Mathf.Max(currentEnergy, 0); // Ensure energy does not go below zero
         }
     }
 
