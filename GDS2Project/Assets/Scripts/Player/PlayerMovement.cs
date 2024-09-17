@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce = 12f; // Jump force
 
     public float downForce = 5f; // Downward force
+    public float coyoteTime = 0.2f; // Coyote time duration in seconds
+    private float coyoteTimeCounter;
 
     public float jumpCooldown = 0.25f; // Jump cooldown
 
@@ -217,6 +219,7 @@ public class PlayerMovement : MonoBehaviour
         if (!inputEnabled) return;
         // Ground check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
+        coyoteTimeCounter = isGrounded ? coyoteTime : coyoteTimeCounter - Time.deltaTime;
         PlayerInput();
         SpeedControl();
         StateHandle();
@@ -260,7 +263,7 @@ public class PlayerMovement : MonoBehaviour
         verticalMovement = Input.GetAxisRaw("Vertical");
 
         // Jumping
-        if (Input.GetKeyDown(jumpKey) && readyToJump && isGrounded)
+        if (Input.GetKeyDown(jumpKey) && readyToJump && coyoteTimeCounter > 0)
         {
             //if (energySystem.UseEnergy(jumpConsumption)) // Check and consume the energy required to jump
             //{
