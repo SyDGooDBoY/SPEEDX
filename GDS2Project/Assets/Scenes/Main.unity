@@ -3633,11 +3633,10 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8269969158327480302, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
   m_PrefabInstance: {fileID: 8399425915912535474}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &898248593
+--- !u!114 &898248593 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 7362419710661395218, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+  m_PrefabInstance: {fileID: 8399425915912535474}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898248592}
   m_Enabled: 1
@@ -3645,19 +3644,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 218617e413394ce45b9017f5bd9dc95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 2116967209}
-  gunTip: {fileID: 1131196476}
-  whatIsGrappleable:
-    serializedVersion: 2
-    m_Bits: 4096
-  lr: {fileID: 1834486462}
-  maxGrappleDistance: 25
-  grappleDelayTime: 0.25
-  overshootYAxis: 2
-  grapplingCd: 0
-  grappleKey: 324
-  grappling: 0
-  energyRecoverAmount: 30
 --- !u!1 &917246711
 GameObject:
   m_ObjectHideFlags: 0
@@ -10719,10 +10705,26 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 2116967204}
-    - target: {fileID: 5973971685938748961, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+    - target: {fileID: 4624245326416202220, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 2116967209}
+    - target: {fileID: 4624245326416202220, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: gunTip
+      value: 
+      objectReference: {fileID: 1131196476}
+    - target: {fileID: 5344313690183820106, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: lr
+      value: 
+      objectReference: {fileID: 1834486462}
+    - target: {fileID: 5344313690183820106, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 2116967209}
+    - target: {fileID: 5344313690183820106, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: gunTip
+      value: 
+      objectReference: {fileID: 1131196476}
     - target: {fileID: 6008647085528278979, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.12
@@ -10763,15 +10765,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7613251681519642558, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+    - target: {fileID: 7362419710661395218, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: lr
       value: 
       objectReference: {fileID: 1834486462}
-    - target: {fileID: 7613251681519642558, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+    - target: {fileID: 7362419710661395218, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: cam
       value: 
       objectReference: {fileID: 2116967209}
-    - target: {fileID: 7613251681519642558, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+    - target: {fileID: 7362419710661395218, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: gunTip
       value: 
       objectReference: {fileID: 1131196476}
@@ -10779,15 +10781,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 7613251681519642558, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-    - {fileID: 5973971685938748961, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+    - target: {fileID: 8601829210647188575, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 2116967204}
+    - target: {fileID: 8601829210647188575, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: playerCam
+      value: 
+      objectReference: {fileID: 2116967209}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8269969158327480302, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      insertIndex: 5
-      addedObject: {fileID: 898248593}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
