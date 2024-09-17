@@ -10625,10 +10625,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 2116967204}
-    - target: {fileID: 721983897902045563, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: playerHeight
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1408226002555975307, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: cam
       value: 
@@ -10693,6 +10689,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7362419710661395218, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: lr
+      value: 
+      objectReference: {fileID: 1834486462}
+    - target: {fileID: 7362419710661395218, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 2116967209}
+    - target: {fileID: 7362419710661395218, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: gunTip
+      value: 
+      objectReference: {fileID: 1131196476}
     - target: {fileID: 8269969158327480302, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: m_Name
       value: Player

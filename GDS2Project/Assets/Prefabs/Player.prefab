@@ -387,7 +387,7 @@ MonoBehaviour:
   runKey: 304
   crouchKey: 306
   isGrounded: 0
-  playerHeight: 0
+  playerHeight: 2
   groundMask:
     serializedVersion: 2
     m_Bits: 129
