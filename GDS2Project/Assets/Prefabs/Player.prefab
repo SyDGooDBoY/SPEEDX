@@ -273,6 +273,7 @@ GameObject:
   - component: {fileID: 4031317112601952522}
   - component: {fileID: 4624245326416202220}
   - component: {fileID: 5344313690183820106}
+  - component: {fileID: 8021042501585271700}
   - component: {fileID: 2515325239898904400}
   - component: {fileID: 5651101823805506318}
   - component: {fileID: 2207196687716489250}
@@ -355,6 +356,7 @@ MonoBehaviour:
   groundDrag: 5
   jumpForce: 12
   downForce: 5
+  coyoteTime: 0.2
   jumpCooldown: 0.25
   airDrag: 0.4
   crouchMoveSpeed: 2
@@ -530,6 +532,21 @@ MonoBehaviour:
   grappleKey: 324
   grappling: 0
   energyRecoverAmount: 30
+--- !u!114 &8021042501585271700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8269969158327480302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dcc3fee0a354294e81a8de85e8011dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootingPoint: {fileID: 0}
+  ballPrefab: {fileID: 3294245906819875788, guid: b73c096816113674db2c8d3756342c64, type: 3}
+  ballSpeed: 20
 --- !u!114 &2515325239898904400
 MonoBehaviour:
   m_ObjectHideFlags: 0
