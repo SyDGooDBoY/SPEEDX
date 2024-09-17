@@ -3633,6 +3633,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8269969158327480302, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
   m_PrefabInstance: {fileID: 8399425915912535474}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &898248599 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5344313690183820106, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+  m_PrefabInstance: {fileID: 8399425915912535474}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898248592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218617e413394ce45b9017f5bd9dc95c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &917246711
 GameObject:
   m_ObjectHideFlags: 0
@@ -7939,7 +7950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc85b054437760741b61400539841fb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grappling: {fileID: 0}
+  grappling: {fileID: 898248599}
   quality: 200
   damper: 14
   strength: 800
@@ -10718,6 +10729,14 @@ PrefabInstance:
       propertyPath: gunTip
       value: 
       objectReference: {fileID: 1131196476}
+    - target: {fileID: 5344313690183820106, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: overshootYAxis
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344313690183820106, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: grappleDelayTime
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6008647085528278979, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.12
