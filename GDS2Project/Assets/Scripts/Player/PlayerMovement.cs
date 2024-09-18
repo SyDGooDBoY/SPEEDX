@@ -24,8 +24,10 @@ public class PlayerMovement : MonoBehaviour
     public float groundDrag = 5f; // Ground friction
 
     [Header("Jump Settings")]
-    public float jumpForce = 12f; // Jump force
+    public bool canDoubleJump = false; // Double jump state
 
+    public float jumpForce = 12f; // Jump force
+    public float doubleJumpForce = 10f; // Double jump force
     public float downForce = 5f; // Downward force
     public float coyoteTime = 0.2f; // Coyote time duration in seconds
     private float coyoteTimeCounter;
@@ -263,21 +265,30 @@ public class PlayerMovement : MonoBehaviour
         verticalMovement = Input.GetAxisRaw("Vertical");
 
         // Jumping
-        if (Input.GetKeyDown(jumpKey) && readyToJump && coyoteTimeCounter > 0)
+        if (Input.GetKeyDown(jumpKey))
         {
-            //if (energySystem.UseEnergy(jumpConsumption)) // Check and consume the energy required to jump
-            //{
-            //    readyToJump = false;
-            //    Jump();
-            //    Invoke(nameof(ResetJump), jumpCooldown);
-            //}
-            //else
-            //{
-            //    Debug.Log("Not enough energy to jump!");
-            //}
-            readyToJump = false;
-            Jump();
-            Invoke(nameof(ResetJump), jumpCooldown);
+            if (readyToJump && coyoteTimeCounter > 0) // First jump
+            {
+                //if (energySystem.UseEnergy(jumpConsumption)) // Check and consume the energy required to jump
+                //{
+                //    readyToJump = false;
+                //    Jump();
+                //    Invoke(nameof(ResetJump), jumpCooldown);
+                //}
+                //else
+                //{
+                //    Debug.Log("Not enough energy to jump!");
+                //}
+                readyToJump = false;
+                Jump();
+                canDoubleJump = true;
+                Invoke(nameof(ResetJump), jumpCooldown);
+            }
+            else if (canDoubleJump)
+            {
+                canDoubleJump = false;
+                DoubleJump();
+            }
         }
 
         // Crouching
@@ -293,6 +304,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+// Double jump
+    private void DoubleJump()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset vertical velocity
+        rb.AddForce(transform.up * doubleJumpForce * 0.8f,
+            ForceMode.Impulse); // Slightly less force than the initial jump
+    }
 
 // Player movement
     private void PlayerMove()
@@ -403,6 +421,7 @@ public class PlayerMovement : MonoBehaviour
     {
         exitingSlope = false;
         readyToJump = true;
+        canDoubleJump = false;
     }
 
 // Check if on a slope
