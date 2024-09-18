@@ -6,6 +6,9 @@ using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Air Control")]
+    public bool canControlInAir = false;
+
     [Header("Movement Speed")]
     public float moveSpeed = 10f; // Temporary speed variable
 
@@ -16,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float wallRunSpeed = 10f; // Wall run speed
     public float climbSpeed = 5f; // Climbing speed
     public float dashSpeed; // Dash speed
+    public float maxYSpeed;
 
     [Header("Grappling sens")]
     public float grapXZvalue = 2f; // Grappling XZ
@@ -230,6 +234,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && !activeGrapple)
         {
             rb.drag = groundDrag;
+            canControlInAir = false;
         }
         else
         {
@@ -337,25 +342,34 @@ public class PlayerMovement : MonoBehaviour
 
         // Calculate movement direction
         moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
-        // Slope handling
-        if (OnSlope() && !exitingSlope)
+        // Apply movement forces only if grounded
+        if (isGrounded)
         {
-            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+            // Slope handling
+            if (OnSlope() && !exitingSlope)
+            {
+                rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
 
-            if (rb.velocity.y > 0)
-                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+                if (rb.velocity.y > 0)
+                    rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+            }
+            else
+            {
+                // Ground movement
+                rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            }
         }
-
-        // Ground movement
-        else if (isGrounded)
-        {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-        }
-
-        // Air movement
         else if (!isGrounded)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airDrag, ForceMode.Force);
+            if (canControlInAir)
+            {
+                rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airDrag, ForceMode.Force);
+            }
+            else
+            {
+                // Apply reduced movement forces in the air (e.g., 10% of normal)
+                rb.AddForce(moveDirection.normalized * moveSpeed * 1f, ForceMode.Force);
+            }
         }
 
         if (!wallRunning)
@@ -396,6 +410,9 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
             }
         }
+
+        if (maxYSpeed != 0 && rb.velocity.y > maxYSpeed)
+            rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
     }
 
 // Jumping
@@ -405,6 +422,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce,
             ForceMode.Impulse); // Perform a vertical impulse jump
+        canControlInAir = false;
     }
 
 // Apply downward force

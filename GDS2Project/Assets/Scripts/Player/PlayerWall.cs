@@ -57,7 +57,9 @@ public class PlayerWall : MonoBehaviour
     public Transform orientation; //玩家里面有个orientation对象，用来识别移动方向
 
     public PlayerCam cam; //摄像机
+
     public float onWallFOV = 120f; //墙上视野
+
     // private PlayerGrab pg;
     private float camFov; //摄像机视野
     private PlayerMovement playerMovement; //玩家移动脚本
@@ -243,5 +245,6 @@ public class PlayerWall : MonoBehaviour
         //重置 y 轴速度并添加跳跃力
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(forceToApply, ForceMode.Impulse);
+        playerMovement.canControlInAir = true;
     }
 }

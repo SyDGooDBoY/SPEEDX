@@ -54,7 +54,7 @@ public class PlayerClimb : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // pg = GetComponent<PlayerGrab>();
+        pm = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -76,7 +76,7 @@ public class PlayerClimb : MonoBehaviour
         // }
 
         //爬墙（只有小于最大角度，按下W键才可以爬）
-       if (wallFront && Input.GetKey(KeyCode.W) && wallLookAngle < maxWallLookAngle && !exitingWall)
+        if (wallFront && Input.GetKey(KeyCode.W) && wallLookAngle < maxWallLookAngle && !exitingWall)
         {
             if (!climbing && climbTimer > 0) StartClimbing();
 
@@ -155,5 +155,6 @@ public class PlayerClimb : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(forceToApply, ForceMode.Impulse);
         climbJumpsLeft--;
+        pm.canControlInAir = true;
     }
 }
