@@ -7143,7 +7143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7519af4fc66cf944f9124dd228627eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 40
+  jumpForce: 60
 --- !u!1 &1738303087
 GameObject:
   m_ObjectHideFlags: 0
