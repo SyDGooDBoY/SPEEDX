@@ -6,6 +6,9 @@ using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Air Control")]
+    public bool canControlInAir = false;
+
     [Header("Movement Speed")]
     public float moveSpeed = 10f; // Temporary speed variable
 
@@ -16,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float wallRunSpeed = 10f; // Wall run speed
     public float climbSpeed = 5f; // Climbing speed
     public float dashSpeed; // Dash speed
+    public float maxYSpeed;
 
     [Header("Grappling sens")]
     public float grapXZvalue = 2f; // Grappling XZ
@@ -24,8 +28,10 @@ public class PlayerMovement : MonoBehaviour
     public float groundDrag = 5f; // Ground friction
 
     [Header("Jump Settings")]
-    public float jumpForce = 12f; // Jump force
+    public bool canDoubleJump = false; // Double jump state
 
+    public float jumpForce = 12f; // Jump force
+    public float doubleJumpForce = 10f; // Double jump force
     public float downForce = 5f; // Downward force
     public float coyoteTime = 0.2f; // Coyote time duration in seconds
     private float coyoteTimeCounter;
@@ -228,6 +234,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && !activeGrapple)
         {
             rb.drag = groundDrag;
+            canControlInAir = false;
         }
         else
         {
@@ -263,21 +270,30 @@ public class PlayerMovement : MonoBehaviour
         verticalMovement = Input.GetAxisRaw("Vertical");
 
         // Jumping
-        if (Input.GetKeyDown(jumpKey) && readyToJump && coyoteTimeCounter > 0)
+        if (Input.GetKeyDown(jumpKey))
         {
-            //if (energySystem.UseEnergy(jumpConsumption)) // Check and consume the energy required to jump
-            //{
-            //    readyToJump = false;
-            //    Jump();
-            //    Invoke(nameof(ResetJump), jumpCooldown);
-            //}
-            //else
-            //{
-            //    Debug.Log("Not enough energy to jump!");
-            //}
-            readyToJump = false;
-            Jump();
-            Invoke(nameof(ResetJump), jumpCooldown);
+            if (readyToJump && coyoteTimeCounter > 0) // First jump
+            {
+                //if (energySystem.UseEnergy(jumpConsumption)) // Check and consume the energy required to jump
+                //{
+                //    readyToJump = false;
+                //    Jump();
+                //    Invoke(nameof(ResetJump), jumpCooldown);
+                //}
+                //else
+                //{
+                //    Debug.Log("Not enough energy to jump!");
+                //}
+                readyToJump = false;
+                Jump();
+                canDoubleJump = true;
+                Invoke(nameof(ResetJump), jumpCooldown);
+            }
+            else if (canDoubleJump)
+            {
+                canDoubleJump = false;
+                DoubleJump();
+            }
         }
 
         // Crouching
@@ -293,6 +309,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+// Double jump
+    private void DoubleJump()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset vertical velocity
+        rb.AddForce(transform.up * doubleJumpForce * 0.8f,
+            ForceMode.Impulse); // Slightly less force than the initial jump
+    }
 
 // Player movement
     private void PlayerMove()
@@ -319,25 +342,34 @@ public class PlayerMovement : MonoBehaviour
 
         // Calculate movement direction
         moveDirection = orientation.forward * verticalMovement + orientation.right * horizontalMovement;
-        // Slope handling
-        if (OnSlope() && !exitingSlope)
+        // Apply movement forces only if grounded
+        if (isGrounded)
         {
-            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+            // Slope handling
+            if (OnSlope() && !exitingSlope)
+            {
+                rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
 
-            if (rb.velocity.y > 0)
-                rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+                if (rb.velocity.y > 0)
+                    rb.AddForce(Vector3.down * 80f, ForceMode.Force);
+            }
+            else
+            {
+                // Ground movement
+                rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            }
         }
-
-        // Ground movement
-        else if (isGrounded)
-        {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-        }
-
-        // Air movement
         else if (!isGrounded)
         {
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airDrag, ForceMode.Force);
+            if (canControlInAir)
+            {
+                rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airDrag, ForceMode.Force);
+            }
+            else
+            {
+                // Apply reduced movement forces in the air (e.g., 10% of normal)
+                rb.AddForce(moveDirection.normalized * moveSpeed * 1f, ForceMode.Force);
+            }
         }
 
         if (!wallRunning)
@@ -378,6 +410,9 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
             }
         }
+
+        if (maxYSpeed != 0 && rb.velocity.y > maxYSpeed)
+            rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
     }
 
 // Jumping
@@ -387,6 +422,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(transform.up * jumpForce,
             ForceMode.Impulse); // Perform a vertical impulse jump
+        canControlInAir = false;
     }
 
 // Apply downward force
@@ -403,6 +439,7 @@ public class PlayerMovement : MonoBehaviour
     {
         exitingSlope = false;
         readyToJump = true;
+        canDoubleJump = false;
     }
 
 // Check if on a slope

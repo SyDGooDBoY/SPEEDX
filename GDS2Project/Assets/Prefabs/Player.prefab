@@ -345,16 +345,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 707ab81ddb44f0146a48726bab438621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canControlInAir: 0
   moveSpeed: 10
   swingSpeed: 20
   walkSpeed: 10
   runSpeed: 15
   wallRunSpeed: 10
   climbSpeed: 5
-  dashSpeed: 100
+  dashSpeed: 20
+  maxYSpeed: 0
   grapXZvalue: 2
   groundDrag: 5
+  canDoubleJump: 0
   jumpForce: 12
+  doubleJumpForce: 10
   downForce: 5
   coyoteTime: 0.2
   jumpCooldown: 0.25
@@ -434,16 +438,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 7151712449624173914}
   playerCam: {fileID: 0}
-  dashForce: 50
-  inAirDashMultiplier: 0
+  dashForce: 20
   dashUpwardForce: 0
   maxDashYSpeed: 15
   dashDuration: 0.25
   cam: {fileID: 0}
-  defaultFov: 0
   dashFov: 95
   useCameraForward: 1
-  allowAllDirections: 0
+  allowAllDirections: 1
   disableGravity: 1
   resetVel: 1
   dashCd: 0
