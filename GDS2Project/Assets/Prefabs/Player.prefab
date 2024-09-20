@@ -549,6 +549,7 @@ MonoBehaviour:
   shootingPoint: {fileID: 0}
   ballPrefab: {fileID: 3294245906819875788, guid: b73c096816113674db2c8d3756342c64, type: 3}
   ballSpeed: 20
+  cooldown: 0
 --- !u!114 &2515325239898904400
 MonoBehaviour:
   m_ObjectHideFlags: 0
