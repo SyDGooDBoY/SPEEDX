@@ -13,7 +13,8 @@ public class Endpoint : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         SceneManager.LoadScene(1);
-       var nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
+        //I AM NOT SURE IS THE CODE BELOW IS RIGHT OR NOT
+        var nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
         SaveManager.Instance.UnlockLevel(nextLevel.ToString());
     }
 
