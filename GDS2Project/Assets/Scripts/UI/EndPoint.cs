@@ -12,6 +12,8 @@ public class Endpoint : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SceneManager.LoadScene(1);
         //I AM NOT SURE IS THE CODE BELOW IS RIGHT OR NOT
         var nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
