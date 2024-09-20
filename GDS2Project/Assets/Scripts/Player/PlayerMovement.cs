@@ -265,6 +265,8 @@ public class PlayerMovement : MonoBehaviour
         {
             energySystem.StartRecovery(); // recover 
         }
+
+        // Debug.Log("PlayerSpeed: " + rb.velocity.magnitude);
     }
 
     private void FixedUpdate()

@@ -6,12 +6,14 @@ public class PlayerSliding : MonoBehaviour
 {
     [Header("References")]
     public Transform orientation;
+
     public Transform playerObj;
     private Rigidbody rb;
     private PlayerMovement pm;
 
     [Header("Sliding")]
     public float maxSlideTime;
+
     public float slideForce;
     private float slideTimer;
 
@@ -20,6 +22,7 @@ public class PlayerSliding : MonoBehaviour
 
     [Header("Input")]
     public KeyCode slideKey = KeyCode.C;
+
     private float horizontalInput;
     private float verticalInput;
 
@@ -64,23 +67,22 @@ public class PlayerSliding : MonoBehaviour
     {
         Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        // sliding normal
-        if(!pm.OnSlope() || rb.velocity.y > -0.1f)
+        if (pm.OnSlope() && rb.velocity.y < 0) // Check if on a slope and moving downward
         {
-            rb.AddForce(inputDirection.normalized * slideForce, ForceMode.Force);
-
-            slideTimer -= Time.deltaTime;
-        }
-
-        // sliding down a slope
-        else
-        {
+            // Apply slide speed only if moving downhill
             rb.AddForce(pm.GetSlopeMoveDirection(inputDirection) * slideForce, ForceMode.Force);
         }
+        else
+        {
+            // Apply regular run speed if not sliding downhill
+            rb.AddForce(inputDirection.normalized * pm.runSpeed, ForceMode.Force);
+        }
 
+        slideTimer -= Time.deltaTime;
         if (slideTimer <= 0)
             StopSlide();
     }
+
 
     private void StopSlide()
     {

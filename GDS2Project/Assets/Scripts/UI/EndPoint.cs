@@ -20,7 +20,7 @@ public class Endpoint : MonoBehaviour
     public GameObject player;
     public TimeScoreSystem timeScoreSystem;
     private CanvasGroup fadeCanvasGroup;
-    private bool isFalling = false; // Track if the platform has started falling
+    // private bool isFalling = false; // Track if the platform has started falling
     public TextMeshProUGUI time;
 
     void Start()
@@ -39,7 +39,7 @@ public class Endpoint : MonoBehaviour
         timeScoreSystem.isGameRunning = false;
         // Time.timeScale = 0;
         fadePanel.GameObject().SetActive(true);
-        player.GetComponent<PlayerMovement>().inputEnabled = false; // ½ûÓÃÍæ¼Ò¿ØÖÆ
+        player.GetComponent<PlayerMovement>().inputEnabled = false; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¿ï¿½ï¿½ï¿½
         StartCoroutine(FallAndFade());
     }
 

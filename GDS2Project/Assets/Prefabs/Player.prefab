@@ -377,6 +377,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   maxSlopeAngle: 50
+  slopeSpeedFactor: 15
   orientation: {fileID: 7151712449624173914}
   pc: {fileID: 4031317112601952522}
   cam: {fileID: 0}
@@ -569,7 +570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientation: {fileID: 7151712449624173914}
   playerObj: {fileID: 7713091917390463015}
-  maxSlideTime: 2
+  maxSlideTime: 1
   slideForce: 200
   slideYScale: 0.5
   slideKey: 99

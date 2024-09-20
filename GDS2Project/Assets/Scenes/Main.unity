@@ -10758,10 +10758,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 2116967204}
-    - target: {fileID: 721983897902045563, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: slopeSpeedFactor
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 1408226002555975307, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: cam
       value: 
@@ -10774,10 +10770,6 @@ PrefabInstance:
       propertyPath: gunTip
       value: 
       objectReference: {fileID: 1131196476}
-    - target: {fileID: 4642578342696618354, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: maxSlideTime
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5344313690183820106, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: lr
       value: 
