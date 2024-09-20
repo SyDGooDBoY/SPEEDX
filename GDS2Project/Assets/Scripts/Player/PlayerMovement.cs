@@ -180,18 +180,18 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Crouching state
-        else if (Input.GetKey(crouchKey))
-        {
-            state = MoveState.crouching;
-            moveSpeed = crouchMoveSpeed * abilityManager.GetAbilityMultiplier();
-        }
+        // else if (Input.GetKey(crouchKey))
+        // {
+        //     state = MoveState.crouching;
+        //     moveSpeed = crouchMoveSpeed * abilityManager.GetAbilityMultiplier();
+        // }
 
-// Running state
-        else if (isGrounded && Input.GetKey(runKey))
-        {
-            state = MoveState.Running;
-            moveSpeed = runSpeed * abilityManager.GetAbilityMultiplier();
-        }
+// // Running state
+//         else if (isGrounded && Input.GetKey(runKey))
+//         {
+//             state = MoveState.Running;
+//             moveSpeed = runSpeed * abilityManager.GetAbilityMultiplier();
+//         }
 // Walking state
         else if (isGrounded)
         {

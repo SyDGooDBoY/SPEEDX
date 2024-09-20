@@ -10823,9 +10823,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 2116967208}
+    - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: shootingPoint
       value: 
       objectReference: {fileID: 1131196476}
+    - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: targetLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: landingMarkerPrefab
+      value: 
+      objectReference: {fileID: 3294245906819875788, guid: b73c096816113674db2c8d3756342c64, type: 3}
     - target: {fileID: 8269969158327480302, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: m_Name
       value: Player
