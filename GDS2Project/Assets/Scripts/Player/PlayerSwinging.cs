@@ -167,10 +167,11 @@ public class PlayerSwinging : MonoBehaviour
         if (Input.GetKey(KeyCode.D)) rb.AddForce(orientation.right * horizontalThrustForce * Time.deltaTime);
         if (Input.GetKey(KeyCode.A)) rb.AddForce(-orientation.right * horizontalThrustForce * Time.deltaTime);
         if (Input.GetKey(KeyCode.W)) rb.AddForce(orientation.forward * forwardThrustForce * Time.deltaTime);
+        if (Input.GetKey(KeyCode.S)) rb.AddForce(-orientation.forward * forwardThrustForce * Time.deltaTime);
 
         // Adjust cable length based on input.
-        if (Input.GetKey(KeyCode.Space)) AdjustCableLength(-extendCableSpeed); // Shorten
-        if (Input.GetKey(KeyCode.S)) AdjustCableLength(extendCableSpeed); // Extend
+        // if (Input.GetKey(KeyCode.Space)) AdjustCableLength(-extendCableSpeed); // Shorten
+        // if (Input.GetKey(KeyCode.S)) AdjustCableLength(extendCableSpeed); // Extend
     }
 
     private void AdjustCableLength(float speed)

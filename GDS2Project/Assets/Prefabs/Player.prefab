@@ -274,6 +274,7 @@ GameObject:
   - component: {fileID: 4624245326416202220}
   - component: {fileID: 5344313690183820106}
   - component: {fileID: 8021042501585271700}
+  - component: {fileID: 4642578342696618354}
   - component: {fileID: 2515325239898904400}
   - component: {fileID: 5651101823805506318}
   - component: {fileID: 2207196687716489250}
@@ -351,6 +352,7 @@ MonoBehaviour:
   walkSpeed: 10
   runSpeed: 15
   wallRunSpeed: 10
+  slideSpeed: 30
   climbSpeed: 5
   dashSpeed: 20
   maxYSpeed: 0
@@ -375,6 +377,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   maxSlopeAngle: 50
+  slopeSpeedFactor: 15
   orientation: {fileID: 7151712449624173914}
   pc: {fileID: 4031317112601952522}
   cam: {fileID: 0}
@@ -388,6 +391,7 @@ MonoBehaviour:
   activeGrapple: 0
   swinging: 0
   dashing: 0
+  sliding: 0
   wallSlideRecoveryRate: 20
   inputEnabled: 1
 --- !u!114 &1408226002555975307
@@ -549,6 +553,27 @@ MonoBehaviour:
   shootingPoint: {fileID: 0}
   ballPrefab: {fileID: 3294245906819875788, guid: b73c096816113674db2c8d3756342c64, type: 3}
   ballSpeed: 20
+  cooldown: 0
+  targetY: 0.5
+  targetX: 0.05
+--- !u!114 &4642578342696618354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8269969158327480302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4fdcd83e9a375240b79cf7c5ff45012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orientation: {fileID: 7151712449624173914}
+  playerObj: {fileID: 7713091917390463015}
+  maxSlideTime: 1
+  slideForce: 200
+  slideYScale: 0.5
+  slideKey: 99
 --- !u!114 &2515325239898904400
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class GameData
     public List<string> UnlockedLevels = new List<string>(); // unlocked level
     public List<string> UnlockedWeapons = new List<string>(); // unlocked weapon
 }
+
 public class SaveManager : MonoBehaviour
 {
     private static SaveManager instance;
@@ -29,6 +30,7 @@ public class SaveManager : MonoBehaviour
                     instance = go.AddComponent<SaveManager>();
                 }
             }
+
             return instance;
         }
     }
@@ -58,8 +60,8 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame()
     {
-        string json = JsonUtility.ToJson(gameData, true);  // save as JSON
-        File.WriteAllText(savePath, json);  // write
+        string json = JsonUtility.ToJson(gameData, true); // save as JSON
+        File.WriteAllText(savePath, json); // write
         Debug.Log("Game data saved to " + savePath);
     }
 
@@ -67,14 +69,16 @@ public class SaveManager : MonoBehaviour
     {
         if (File.Exists(savePath))
         {
-            string json = File.ReadAllText(savePath);  // read file
-            gameData = JsonUtility.FromJson<GameData>(json);  // Deserialize to gamedata
+            string json = File.ReadAllText(savePath); // read file
+            gameData = JsonUtility.FromJson<GameData>(json); // Deserialize to gamedata
             Debug.Log("Game data loaded from " + savePath);
         }
         else
         {
-            gameData = new GameData(); 
+            gameData = new GameData();
+            gameData.UnlockedLevels.Add("Level 1");
             Debug.LogWarning("No save file found, creating new game data.");
+            SaveGame();
         }
     }
 
@@ -85,15 +89,16 @@ public class SaveManager : MonoBehaviour
         {
             if (time < gameData.LevelBestTimes[levelID])
             {
-                gameData.LevelBestTimes[levelID] = time; 
+                gameData.LevelBestTimes[levelID] = time;
                 Debug.Log($"New best time for {levelID}: {time}");
             }
         }
         else
         {
-            gameData.LevelBestTimes[levelID] = time; 
+            gameData.LevelBestTimes[levelID] = time;
             Debug.Log($"Set best time for new level {levelID}: {time}");
         }
+
         SaveGame();
     }
 
@@ -102,7 +107,7 @@ public class SaveManager : MonoBehaviour
     {
         if (!gameData.UnlockedLevels.Contains(levelID))
         {
-            gameData.UnlockedLevels.Add(levelID);  
+            gameData.UnlockedLevels.Add(levelID);
             Debug.Log($"Unlocked level: {levelID}");
             SaveGame();
         }
@@ -113,7 +118,7 @@ public class SaveManager : MonoBehaviour
     {
         if (!gameData.UnlockedWeapons.Contains(weaponID))
         {
-            gameData.UnlockedWeapons.Add(weaponID);  // 添加新解锁的武器
+            gameData.UnlockedWeapons.Add(weaponID); 
             Debug.Log($"Unlocked weapon: {weaponID}");
             SaveGame();
         }
@@ -130,6 +135,7 @@ public class SaveManager : MonoBehaviour
     {
         return gameData.UnlockedLevels.Contains(levelID);
     }
+
     public bool IsWeaponUnlocked(string weaponID)
     {
         return gameData.UnlockedWeapons.Contains(weaponID);

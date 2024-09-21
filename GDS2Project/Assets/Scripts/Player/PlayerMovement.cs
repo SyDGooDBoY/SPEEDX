@@ -15,8 +15,9 @@ public class PlayerMovement : MonoBehaviour
     // public float gravity = -5f;
     public float swingSpeed;
     public float walkSpeed = 10f; // Walking speed
-    public float runSpeed = 20f; // Running speed
+    public float runSpeed = 25f; // Running speed
     public float wallRunSpeed = 10f; // Wall run speed
+    public float slideSpeed = 15f; // Sliding speed
     public float climbSpeed = 5f; // Climbing speed
     public float dashSpeed; // Dash speed
     public float maxYSpeed;
@@ -69,6 +70,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Slope Movement")]
     public float maxSlopeAngle = 40f; // Maximum slope angle
 
+    public float slopeSpeedFactor = 20f;
+
     private RaycastHit slopeHit; // Slope hit detection
     private bool exitingSlope; // Exiting slope state
 
@@ -101,6 +104,7 @@ public class PlayerMovement : MonoBehaviour
     public bool activeGrapple;
     public bool swinging;
     public bool dashing;
+    public bool sliding;
 
     [Header("Energy Recovery")]
     public float wallSlideRecoveryRate = 20f; // recovery rate through wall sliding
@@ -115,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
     public enum MoveState
     {
         dashing,
+        sliding,
         swinging,
         freeze,
         grappling,
@@ -178,20 +183,30 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = wallRunSpeed * abilityManager.GetAbilityMultiplier();
             energySystem.RecoverEnergyThroughSpecialAction(wallSlideRecoveryRate);
         }
+        else if (sliding)
+        {
+            state = MoveState.sliding;
+
+            if (OnSlope() && rb.velocity.y < 0.1f)
+                moveSpeed = slideSpeed;
+
+            else
+                moveSpeed = runSpeed;
+        }
 
         // Crouching state
-        else if (Input.GetKey(crouchKey))
-        {
-            state = MoveState.crouching;
-            moveSpeed = crouchMoveSpeed * abilityManager.GetAbilityMultiplier();
-        }
+        // else if (Input.GetKey(crouchKey))
+        // {
+        //     state = MoveState.crouching;
+        //     moveSpeed = crouchMoveSpeed * abilityManager.GetAbilityMultiplier();
+        // }
 
-// Running state
-        else if (isGrounded && Input.GetKey(runKey))
-        {
-            state = MoveState.Running;
-            moveSpeed = runSpeed * abilityManager.GetAbilityMultiplier();
-        }
+// // Running state
+//         else if (isGrounded && Input.GetKey(runKey))
+//         {
+//             state = MoveState.Running;
+//             moveSpeed = runSpeed * abilityManager.GetAbilityMultiplier();
+//         }
 // Walking state
         else if (isGrounded)
         {
@@ -250,6 +265,8 @@ public class PlayerMovement : MonoBehaviour
         {
             energySystem.StartRecovery(); // recover 
         }
+
+        // Debug.Log("PlayerSpeed: " + rb.velocity.magnitude);
     }
 
     private void FixedUpdate()
@@ -348,7 +365,7 @@ public class PlayerMovement : MonoBehaviour
             // Slope handling
             if (OnSlope() && !exitingSlope)
             {
-                rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
+                rb.AddForce(GetSlopeMoveDirection(moveDirection) * moveSpeed * slopeSpeedFactor, ForceMode.Force);
 
                 if (rb.velocity.y > 0)
                     rb.AddForce(Vector3.down * 80f, ForceMode.Force);
@@ -443,7 +460,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 // Check if on a slope
-    private bool OnSlope()
+    public bool OnSlope()
     {
         if (!isGrounded) return false;
         // Cast a ray downwards to detect the ground
@@ -467,9 +484,9 @@ public class PlayerMovement : MonoBehaviour
 
 
 // Get slope movement direction
-    private Vector3 GetSlopeMoveDirection()
+    public Vector3 GetSlopeMoveDirection(Vector3 direction)
     {
-        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
+        return Vector3.ProjectOnPlane(direction, slopeHit.normal).normalized;
     }
 
 // Calculate jump velocity for a given trajectory
