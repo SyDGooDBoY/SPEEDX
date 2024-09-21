@@ -151,7 +151,7 @@ MonoBehaviour:
   destroyDelay: 3
   groundLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 4294967295
 --- !u!96 &8411991854719745666
 TrailRenderer:
   serializedVersion: 3
