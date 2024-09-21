@@ -10,18 +10,25 @@ using Cursor = UnityEngine.Cursor;
 
 public class Endpoint : MonoBehaviour
 {
+    public TimeScoreSystem timeSys;
+
     private void OnCollisionEnter(Collision collision)
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        // get index and ID(scene name) of current level 
+        int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+        string currentLevelID = SceneManager.GetSceneByBuildIndex(currentLevelIndex).name;
+        // update best time
+        SaveManager.Instance.UpdateBestTime(currentLevelID, timeSys.currentTime);
+
         // get index and ID(scene name) of next level
-        int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        int nextLevelIndex = currentLevelIndex + 1;
         string nextLevelID = SceneManager.GetSceneByBuildIndex(nextLevelIndex).name;
 
         // Unlock next level and save
         SaveManager.Instance.UnlockLevel(nextLevelID);
-        SaveManager.Instance.SaveGame();
 
         SceneManager.LoadScene(1);
     }

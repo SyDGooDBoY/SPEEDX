@@ -2518,7 +2518,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6264600111647544808, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
   m_PrefabInstance: {fileID: 8399425915912535474}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 898248592}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8749cfa317272040810cfa5caf91e7d, type: 3}
@@ -3685,17 +3685,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 889315661}
   m_CullTransparentMesh: 1
---- !u!1 &898248592 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8269969158327480302, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-  m_PrefabInstance: {fileID: 8399425915912535474}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &898248599 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5344313690183820106, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
   m_PrefabInstance: {fileID: 8399425915912535474}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 898248592}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 218617e413394ce45b9017f5bd9dc95c, type: 3}
@@ -9816,15 +9811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c60c522d30af24aad0255f5f867a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform: {fileID: 1979293848}
-  fadePanel: {fileID: 1394840360}
-  messageText: {fileID: 99608101}
-  scoreText: {fileID: 1738303087}
-  fadeDuration: 2
-  button: {fileID: 1883614770}
-  player: {fileID: 898248592}
-  timeScoreSystem: {fileID: 352725573}
-  time: {fileID: 0}
+  timeSys: {fileID: 352725573}
 --- !u!54 &1979293854
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -71,12 +71,13 @@ public class SaveManager : MonoBehaviour
         {
             string json = File.ReadAllText(savePath); // read file
             gameData = JsonUtility.FromJson<GameData>(json); // Deserialize to gamedata
+            UnlockLevel("Level 1");
             Debug.Log("Game data loaded from " + savePath);
         }
         else
         {
             gameData = new GameData();
-            gameData.UnlockedLevels.Add("Level 1");
+            UnlockLevel("Level 1");
             Debug.LogWarning("No save file found, creating new game data.");
             SaveGame();
         }
@@ -154,5 +155,13 @@ public class SaveManager : MonoBehaviour
     {
         Debug.Log("Unlocked Levels: " + string.Join(", ", gameData.UnlockedLevels));
         Debug.Log("Unlocked Weapons: " + string.Join(", ", gameData.UnlockedWeapons));
+    }
+
+    // Clear data
+    public void ClearGameData()
+    {
+        gameData = new GameData(); 
+        SaveGame(); // save
+        Debug.Log("All game data cleared.");
     }
 }

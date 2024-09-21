@@ -18,11 +18,15 @@ public class TestManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            UnlockWeapon();
+            SaveManager.Instance.DisplayUnlockedItems();
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
             DisplayBestTimes();
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            SaveManager.Instance.ClearGameData();
         }
     }
 
@@ -30,15 +34,15 @@ public class TestManager : MonoBehaviour
     private void UpdateTime()
     {
         float newTime = Random.Range(50.0f, 200.0f);  
-        SaveManager.Instance.UpdateBestTime("Level1", newTime); 
-        Debug.Log($"Updated Level1 time to: {newTime}");
+        SaveManager.Instance.UpdateBestTime("Level 1", newTime); 
+        Debug.Log($"Updated Level 1 time to: {newTime}");
     }
 
 
     private void UnlockLevel()
     {
-        SaveManager.Instance.UnlockLevel("Level2"); 
-        Debug.Log("Unlocked Level2");
+        SaveManager.Instance.UnlockLevel("Level 2"); 
+        Debug.Log("Unlocked Level 2");
     }
 
 
