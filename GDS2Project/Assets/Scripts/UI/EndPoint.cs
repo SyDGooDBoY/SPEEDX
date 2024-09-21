@@ -14,10 +14,16 @@ public class Endpoint : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        // get index and ID(scene name) of next level
+        int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        string nextLevelID = SceneManager.GetSceneByBuildIndex(nextLevelIndex).name;
+
+        // Unlock next level and save
+        SaveManager.Instance.UnlockLevel(nextLevelID);
+        SaveManager.Instance.SaveGame();
+
         SceneManager.LoadScene(1);
-        //I AM NOT SURE IS THE CODE BELOW IS RIGHT OR NOT
-        var nextLevel = SceneManager.GetActiveScene().buildIndex + 1;
-        SaveManager.Instance.UnlockLevel(nextLevel.ToString());
     }
 
     // public GameObject platform; // Reference to the platform GameObject

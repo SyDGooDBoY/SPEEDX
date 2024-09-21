@@ -118,7 +118,7 @@ public class SaveManager : MonoBehaviour
     {
         if (!gameData.UnlockedWeapons.Contains(weaponID))
         {
-            gameData.UnlockedWeapons.Add(weaponID); // 添加新解锁的武器
+            gameData.UnlockedWeapons.Add(weaponID); 
             Debug.Log($"Unlocked weapon: {weaponID}");
             SaveGame();
         }
