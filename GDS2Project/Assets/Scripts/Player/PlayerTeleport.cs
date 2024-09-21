@@ -48,7 +48,14 @@ public class PlayerTeleport : MonoBehaviour
         yield return new WaitForSeconds(teleportDelay);
         if (player != null)
         {
-            player.transform.position = transform.position;
+            Vector3 targetPosition = transform.position;
+            if (Physics.Raycast(targetPosition, Vector3.down, out RaycastHit hit, 1f, groundLayer))
+            {
+                // If the target position is inside an object, move it up a bit
+                targetPosition.y += hit.distance;
+            }
+
+            player.transform.position = targetPosition;
         }
 
         Destroy(gameObject);
