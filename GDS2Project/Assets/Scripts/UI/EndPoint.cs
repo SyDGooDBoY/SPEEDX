@@ -25,11 +25,15 @@ public class Endpoint : MonoBehaviour
 
         // get index and ID(scene name) of next level
         int nextLevelIndex = currentLevelIndex + 1;
-        string nextLevelID = SceneManager.GetSceneByBuildIndex(nextLevelIndex).name;
 
-        // Unlock next level and save
-        SaveManager.Instance.UnlockLevel(nextLevelID);
+        // make sure the index is in the valid range
+        if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            // Unlock next level and save
+            SaveManager.Instance.UnlockLevel("Level " + currentLevelIndex);
+        }
 
+        // Load Level Selection scene
         SceneManager.LoadScene(1);
     }
 
