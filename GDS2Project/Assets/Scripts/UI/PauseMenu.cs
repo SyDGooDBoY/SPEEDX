@@ -80,8 +80,9 @@ public class PauseMenu : MonoBehaviour
 
     public void HomeGame()
     {
-        // SceneManager.LoadScene(0);
-        Debug.LogWarning("Home function is not implemented yet.");
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+        // Debug.LogWarning("Home function is not implemented yet.");
     }
 
     public void QuitGame()
