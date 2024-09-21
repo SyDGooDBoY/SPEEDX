@@ -4,11 +4,45 @@ using System.IO;
 using UnityEngine;
 
 [System.Serializable]
-public class GameData
+public class GameData : ISerializationCallbackReceiver
 {
-    public Dictionary<string, float> LevelBestTimes = new Dictionary<string, float>(); // Best time for each level
+    public List<string> LevelBestTimesList = new List<string>();  // Stores level_time
     public List<string> UnlockedLevels = new List<string>(); // unlocked level
     public List<string> UnlockedWeapons = new List<string>(); // unlocked weapon
+
+    // Non-serialized
+    [System.NonSerialized]
+    public Dictionary<string, float> LevelBestTimes = new Dictionary<string, float>();
+
+
+    // when Serialization, convert Dictionary to List
+    public void OnBeforeSerialize()
+    {
+        LevelBestTimesList.Clear();
+        // !!! Combine into a string of level_time format
+        foreach (var kvp in LevelBestTimes)
+        {
+            LevelBestTimesList.Add($"{kvp.Key}_{kvp.Value}"); 
+        }
+    }
+
+    // when Deserialization, convert List to Dictionary
+    public void OnAfterDeserialize()
+    {
+        LevelBestTimes.Clear();
+        foreach (var entry in LevelBestTimesList)
+        {
+            string[] parts = entry.Split('_'); // Use _ to separate level and time
+            if (parts.Length == 2)
+            {
+                string level = parts[0];
+                if (float.TryParse(parts[1], out float time))
+                {
+                    LevelBestTimes[level] = time;
+                }
+            }
+        }
+    }
 }
 
 public class SaveManager : MonoBehaviour
@@ -60,6 +94,9 @@ public class SaveManager : MonoBehaviour
 
     public void SaveGame()
     {
+        // Convert Dic to List
+        gameData.OnBeforeSerialize();
+
         string json = JsonUtility.ToJson(gameData, true); // save as JSON
         File.WriteAllText(savePath, json); // write
         Debug.Log("Game data saved to " + savePath);
@@ -71,6 +108,9 @@ public class SaveManager : MonoBehaviour
         {
             string json = File.ReadAllText(savePath); // read file
             gameData = JsonUtility.FromJson<GameData>(json); // Deserialize to gamedata
+
+            // Convert List to Dic
+            gameData.OnAfterDeserialize();
             UnlockLevel("Level 1");
             Debug.Log("Game data loaded from " + savePath);
         }
