@@ -13,6 +13,10 @@ public class EnergySystem : MonoBehaviour
     private float recoveryDelay = 1f; // Delay before starting to recover energy
     private float recoveryTimer = 0f; // Timer to track when to start recovery
 
+    [Header("Boosting")]
+    private bool isBoosting = false; 
+    public float boostEnergyConsumptionRate = 40f; 
+
     void Start()
     {
         // Initialize start energy to stage 1
@@ -22,18 +26,75 @@ public class EnergySystem : MonoBehaviour
 
     void Update()
     {
-        if (isRecovering)
+        if (isBoosting)
         {
-            RecoverEnergy();
-        }
-        else
+            ConsumeEnergyDuringBoost(); // boost consumption
+        }else
         {
-            DecreaseEnergyOverTime(); // Gradually decrease energy when not recovering
+            if (isRecovering)
+            {
+                RecoverEnergy();
+            }
+            else
+            {
+                DecreaseEnergyOverTime(); // Gradually decrease energy when not recovering
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        // Boost Logic
+        if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            Debug.Log("Current Energy: " + currentEnergy);
+            // If it's not boosted and the energy is full, enter boost
+            if (!isBoosting && currentEnergy >= maxEnergy)
+            {
+                EnterBoost();
+            }
+            // If already boosted, player can exit at any time
+            else if (isBoosting)
+            {
+                ExitBoost();
+            }
+        }
+
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //    Debug.Log("Current Energy: " + currentEnergy);
+        //}
+    }
+
+    // enter boost state
+    public void EnterBoost()
+    {
+        isBoosting = true;
+        Debug.Log("Boost activated.");
+    }
+
+    // exit boost state
+    public void ExitBoost()
+    {
+        isBoosting = false;
+        Debug.Log("Boost deactivated.");
+    }
+
+    public bool IsBoosting()
+    {
+        return isBoosting; 
+    }
+
+    // Consume energy during boost
+    private void ConsumeEnergyDuringBoost()
+    {
+        if (currentEnergy > 0)
+        {
+            currentEnergy -= boostEnergyConsumptionRate * Time.deltaTime;
+            currentEnergy = Mathf.Max(currentEnergy, 0);
+
+            // exit boost state when out of energy
+            if (currentEnergy <= 0)
+            {
+                Debug.Log("Energy depleted, exiting boost.");
+                ExitBoost(); 
+            }
         }
     }
 
@@ -58,7 +119,6 @@ public class EnergySystem : MonoBehaviour
     }
 
     
-
     // Recover energy over time
     private void RecoverEnergy()
     {

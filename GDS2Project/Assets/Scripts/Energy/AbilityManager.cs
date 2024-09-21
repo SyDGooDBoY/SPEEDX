@@ -42,17 +42,23 @@ public class AbilityManager : MonoBehaviour
     // Get a multiplier based on the current energy stage
     public float GetAbilityMultiplier()
     {
-        string stage = GetCurrentEnergyStage();
-
-        // different stage multiplier
-        switch (stage)
+        if (energySystem != null && energySystem.IsBoosting())
         {
-            case "High":
-                return 2f; 
-            case "Medium":
-                return 1.5f; 
-            default:
-                return 1f; // Low
+            string stage = GetCurrentEnergyStage();
+
+            // different stage multiplier
+            switch (stage)
+            {
+                case "High":
+                    return 2f;
+                case "Medium":
+                    return 1.5f;
+                default:
+                    return 1.2f; // Low
+            }
         }
+
+        return 1f;
+
     }
 }
