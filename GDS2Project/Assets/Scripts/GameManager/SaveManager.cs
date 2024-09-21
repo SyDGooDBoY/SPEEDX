@@ -119,7 +119,7 @@ public class SaveManager : MonoBehaviour
     {
         if (!gameData.UnlockedWeapons.Contains(weaponID))
         {
-            gameData.UnlockedWeapons.Add(weaponID); 
+            gameData.UnlockedWeapons.Add(weaponID);
             Debug.Log($"Unlocked weapon: {weaponID}");
             SaveGame();
         }
@@ -128,7 +128,7 @@ public class SaveManager : MonoBehaviour
     // get best time for UI
     public float GetBestTime(string levelID)
     {
-        return gameData.LevelBestTimes.ContainsKey(levelID) ? gameData.LevelBestTimes[levelID] : float.MaxValue;
+        return gameData.LevelBestTimes.ContainsKey(levelID) ? gameData.LevelBestTimes[levelID] : -1;
     }
 
     // check function
@@ -160,7 +160,7 @@ public class SaveManager : MonoBehaviour
     // Clear data
     public void ClearGameData()
     {
-        gameData = new GameData(); 
+        gameData = new GameData();
         SaveGame(); // save
         Debug.Log("All game data cleared.");
     }
