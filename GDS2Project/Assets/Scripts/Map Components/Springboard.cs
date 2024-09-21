@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Springboard : MonoBehaviour
 {
-    public float jumpForce = 10f;
+    public float jumpForce = 40f;
     private void OnTriggerEnter(Collider other)
     {
         // 检查是否是玩家碰到了跳板
