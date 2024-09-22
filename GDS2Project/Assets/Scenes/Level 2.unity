@@ -14097,6 +14097,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2116967204}
     - target: {fileID: 721983897902045563, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: jumpForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 721983897902045563, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: moveSpeed
       value: 12
       objectReference: {fileID: 0}
@@ -14107,6 +14111,14 @@ PrefabInstance:
     - target: {fileID: 721983897902045563, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: wallRunSpeed
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 721983897902045563, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: canDoubleJump
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 721983897902045563, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: doubleJumpForce
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1408226002555975307, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: cam
