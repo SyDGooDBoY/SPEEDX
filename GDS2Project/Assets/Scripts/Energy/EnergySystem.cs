@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class EnergySystem : MonoBehaviour
 {
     [Header("Energy VFX")]
-    public GameObject energyBar; 
+    public GameObject energyBar;
+
     private Image[] energyBarImages; // to store images of energy bar
     public GameObject fullscreenEffect; // boost fullscreen effect
 
@@ -20,11 +21,13 @@ public class EnergySystem : MonoBehaviour
     private float recoveryTimer = 0f; // Timer to track when to start recovery
 
     [Header("Boosting")]
-    private bool isBoosting = false; 
+    private bool isBoosting = false;
+
     public float boostEnergyConsumptionRate = 40f;
 
     [Header("Boosting Camera")]
     public PlayerCam cam;
+
     private float camFov;
 
     public float boostFOV = 120f;
@@ -45,6 +48,7 @@ public class EnergySystem : MonoBehaviour
         {
             energyBarImages = energyBar.GetComponentsInChildren<Image>();
         }
+
         UpdateEnergyBarTransparency();
 
         // get initial cam FOV
@@ -56,7 +60,8 @@ public class EnergySystem : MonoBehaviour
         if (isBoosting)
         {
             ConsumeEnergyDuringBoost(); // boost consumption
-        }else
+        }
+        else
         {
             if (isRecovering)
             {
@@ -98,7 +103,7 @@ public class EnergySystem : MonoBehaviour
             foreach (var image in energyBarImages)
             {
                 Color currentColor = image.color;
-                currentColor.a = alpha; 
+                currentColor.a = alpha;
                 image.color = currentColor; // update transparency
             }
         }
@@ -121,12 +126,12 @@ public class EnergySystem : MonoBehaviour
     // exit boost state
     public void ExitBoost()
     {
-
         isBoosting = false;
         if (fullscreenEffect != null)
         {
             fullscreenEffect.SetActive(false); // deactive
         }
+
         // change cam FOV back
         cam.DoFov(camFov);
         Debug.Log("Boost deactivated.");
@@ -134,7 +139,7 @@ public class EnergySystem : MonoBehaviour
 
     public bool IsBoosting()
     {
-        return isBoosting; 
+        return isBoosting;
     }
 
     // Consume energy during boost
@@ -149,7 +154,7 @@ public class EnergySystem : MonoBehaviour
             if (currentEnergy <= 0)
             {
                 Debug.Log("Energy depleted, exiting boost.");
-                ExitBoost(); 
+                ExitBoost();
             }
         }
     }
@@ -170,11 +175,12 @@ public class EnergySystem : MonoBehaviour
         {
             SetEnergy(0f);
         }
+
         StopRecovery(); // Stop energy recovery on energy usage
         return true;
     }
 
-    
+
     // Recover energy over time
     private void RecoverEnergy()
     {
