@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnergySystem : MonoBehaviour
 {
+    public GameObject fullscreenEffect; // boost fullscreen effect
+
     public float energyRecoveryRate = 20f; // Energy recovery rate per second
     public float energyDecreaseRate = 80f; // Energy decrease rate when stopped
     private float maxEnergy = AbilityManager.HIGH_THRESHOLD; // Maximum energy 
@@ -20,8 +22,13 @@ public class EnergySystem : MonoBehaviour
     void Start()
     {
         // Initialize start energy to stage 1
-        currentEnergy = AbilityManager.LOW_THRESHOLD / 2;
+        currentEnergy = AbilityManager.LOW_THRESHOLD;
         Debug.Log("Current Energy: " + currentEnergy);
+
+        if (fullscreenEffect != null)
+        {
+            fullscreenEffect.SetActive(false);
+        }
     }
 
     void Update()
@@ -66,6 +73,10 @@ public class EnergySystem : MonoBehaviour
     public void EnterBoost()
     {
         isBoosting = true;
+        if (fullscreenEffect != null)
+        {
+            fullscreenEffect.SetActive(true); // active
+        }
         Debug.Log("Boost activated.");
     }
 
@@ -73,6 +84,10 @@ public class EnergySystem : MonoBehaviour
     public void ExitBoost()
     {
         isBoosting = false;
+        if (fullscreenEffect != null)
+        {
+            fullscreenEffect.SetActive(false); // deactive
+        }
         Debug.Log("Boost deactivated.");
     }
 

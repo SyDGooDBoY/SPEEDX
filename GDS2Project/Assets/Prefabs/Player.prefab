@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   energyRecoveryRate: 100
   energyDecreaseRate: 80
+  boostEnergyConsumptionRate: 40
 --- !u!114 &5572827106138947617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -656,8 +657,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8749cfa317272040810cfa5caf91e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  energyRecoveryRate: 20
+  energyRecoveryRate: 40
   energyDecreaseRate: 80
+  boostEnergyConsumptionRate: 40
 --- !u!120 &8887104302006891497
 LineRenderer:
   serializedVersion: 2
