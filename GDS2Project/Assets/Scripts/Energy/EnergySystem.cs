@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnergySystem : MonoBehaviour
 {
+    [Header("Energy VFX")]
+    public GameObject energyBar; 
+    private Image[] energyBarImages; // to store images of energy bar
     public GameObject fullscreenEffect; // boost fullscreen effect
 
     public float energyRecoveryRate = 20f; // Energy recovery rate per second
@@ -29,6 +33,13 @@ public class EnergySystem : MonoBehaviour
         {
             fullscreenEffect.SetActive(false);
         }
+
+        // get all Image components in energy bar
+        if (energyBar != null)
+        {
+            energyBarImages = energyBar.GetComponentsInChildren<Image>();
+        }
+        UpdateEnergyBarTransparency();
     }
 
     void Update()
@@ -63,10 +74,25 @@ public class EnergySystem : MonoBehaviour
             }
         }
 
-        //if (Input.GetKeyDown(KeyCode.Q))
-        //{
-        //    Debug.Log("Current Energy: " + currentEnergy);
-        //}
+        UpdateEnergyBarTransparency();
+    }
+
+    // Updated energy bar transparency
+    private void UpdateEnergyBarTransparency()
+    {
+        if (energyBarImages != null)
+        {
+            // 0-400 energy --> 0.2f-1.0f transparency
+            float alpha = Mathf.Lerp(0.2f, 1.0f, currentEnergy / maxEnergy);
+
+            // Iterate over all Image components
+            foreach (var image in energyBarImages)
+            {
+                Color currentColor = image.color;
+                currentColor.a = alpha; 
+                image.color = currentColor; // update transparency
+            }
+        }
     }
 
     // enter boost state

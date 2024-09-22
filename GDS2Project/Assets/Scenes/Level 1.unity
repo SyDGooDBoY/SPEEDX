@@ -11059,6 +11059,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6264600111647544808, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: energyBar
+      value: 
+      objectReference: {fileID: 726866480}
+    - target: {fileID: 6264600111647544808, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: fullscreenEffect
       value: 
       objectReference: {fileID: 936895163}
