@@ -21,7 +21,13 @@ public class EnergySystem : MonoBehaviour
 
     [Header("Boosting")]
     private bool isBoosting = false; 
-    public float boostEnergyConsumptionRate = 40f; 
+    public float boostEnergyConsumptionRate = 40f;
+
+    [Header("Boosting Camera")]
+    public PlayerCam cam;
+    private float camFov;
+
+    public float boostFOV = 120f;
 
     void Start()
     {
@@ -40,6 +46,9 @@ public class EnergySystem : MonoBehaviour
             energyBarImages = energyBar.GetComponentsInChildren<Image>();
         }
         UpdateEnergyBarTransparency();
+
+        // get initial cam FOV
+        camFov = cam.GetComponent<Camera>().fieldOfView;
     }
 
     void Update()
@@ -103,17 +112,23 @@ public class EnergySystem : MonoBehaviour
         {
             fullscreenEffect.SetActive(true); // active
         }
+
+        // change FOV
+        cam.DoFov(boostFOV);
         Debug.Log("Boost activated.");
     }
 
     // exit boost state
     public void ExitBoost()
     {
+
         isBoosting = false;
         if (fullscreenEffect != null)
         {
             fullscreenEffect.SetActive(false); // deactive
         }
+        // change cam FOV back
+        cam.DoFov(camFov);
         Debug.Log("Boost deactivated.");
     }
 
