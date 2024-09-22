@@ -50,7 +50,9 @@ public class PlayerRespawn : MonoBehaviour
             }
 
             //reset Energy State
-            transform.GetComponent<EnergySystem>().SetEnergy(AbilityManager.LOW_THRESHOLD / 2);
+            EnergySystem playerEnergySystem = transform.GetComponent<EnergySystem>();
+            playerEnergySystem.SetEnergy(AbilityManager.LOW_THRESHOLD / 2);
+            playerEnergySystem.ExitBoost();
         }
         else
         {
