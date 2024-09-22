@@ -74,7 +74,7 @@ public class EnergySystem : MonoBehaviour
         }
 
         // Boost Logic
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             // If it's not boosted and the energy is full, enter boost
             if (!isBoosting && currentEnergy >= maxEnergy)
