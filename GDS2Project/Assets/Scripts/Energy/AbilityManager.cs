@@ -50,11 +50,11 @@ public class AbilityManager : MonoBehaviour
             switch (stage)
             {
                 case "High":
-                    return 2f;
-                case "Medium":
                     return 1.8f;
+                case "Medium":
+                    return 1.6f;
                 default:
-                    return 1.5f; // Low
+                    return 1.4f; // Low
             }
         }
 
