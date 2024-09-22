@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerTeleport : MonoBehaviour
 {
     public float teleportDelay = 0.5f; // Delay before teleporting to the ball
-    public float destroyDelay = 3.0f; // Delay to destroy the ball if not on ground
+    public float destroyDelay = 2.0f; // Delay to destroy the ball if not on ground
     private bool hasLanded = false; // Check if the ball has landed
     private GameObject player; // Reference to the player
     private Rigidbody rb;

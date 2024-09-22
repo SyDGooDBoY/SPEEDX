@@ -21,10 +21,10 @@ public class PlayerRespawn : MonoBehaviour
             Respawn();
         }
 
-        if (transform.position.y < fallThreshold)
-        {
-            Respawn();
-        }
+        // if (transform.position.y < fallThreshold)
+        // {
+        //     Respawn();
+        // }
     }
 
     void Respawn()

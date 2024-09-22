@@ -106,8 +106,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.0224805
+  m_Center: {x: -0.025361404, y: 0, z: 0}
 --- !u!54 &7578173093378071488
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -147,11 +147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6bf144b0e300340a6d2b1b8f963346, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportDelay: 1
+  teleportDelay: 0.1
   destroyDelay: 3
   groundLayer:
     serializedVersion: 2
-    m_Bits: 4993
+    m_Bits: 4294967295
 --- !u!96 &8411991854719745666
 TrailRenderer:
   serializedVersion: 3
