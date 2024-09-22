@@ -332,6 +332,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset vertical velocity
         rb.AddForce(transform.up * doubleJumpForce * 0.8f,
             ForceMode.Impulse); // Slightly less force than the initial jump
+        canDoubleJump = false;
     }
 
 // Player movement
@@ -456,7 +457,7 @@ public class PlayerMovement : MonoBehaviour
     {
         exitingSlope = false;
         readyToJump = true;
-        canDoubleJump = false;
+        // canDoubleJump = false;
     }
 
 // Check if on a slope
