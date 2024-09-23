@@ -3,8 +3,7 @@ using UnityEngine;
 public class PlayerShootTeleport : MonoBehaviour
 {
     // Public variables for configuration
-    public KeyCode startAim = KeyCode.Q; // Key to start shooting
-    public KeyCode shootTeleport = KeyCode.Mouse0; // Key to shoot and teleport
+    public KeyCode launchKey = KeyCode.Q; // Key to start shooting
     public KeyCode cancelShoot = KeyCode.Mouse1; // Key to cancel shooting
     public Transform shootingPoint; // The point from which the ball is shot
     public GameObject ballPrefab; // The ball (projectile) prefab to be instantiated
@@ -55,22 +54,21 @@ public class PlayerShootTeleport : MonoBehaviour
                 crossHair.SetActive(false); // Hide the crosshair
             }
 
-            // Left mouse button for shooting and teleportation
-            if (Input.GetKeyDown(shootTeleport))
+            // Release 'Q' to shoot the ball
+            if (Input.GetKeyUp(startAim) && shootPhase == 1)
             {
-                if (shootPhase == 1)
-                {
-                    Shoot(); // Perform shooting
-                    trajectoryLine.enabled = false; // Disable the trajectory line
-                    shootPhase = 2; // Switch to teleport phase
-                }
-                else if (shootPhase == 2)
-                {
-                    TeleportToBall(); // Perform teleportation
-                    lastShootTime = Time.time; // Update the time of the last teleport
-                    shootPhase = 0; // Reset to aim phase
-                    crossHair.SetActive(true); // Show the crosshair again
-                }
+                Shoot(); // Perform shooting
+                trajectoryLine.enabled = false; // Disable the trajectory line
+                shootPhase = 2; // Switch to teleport phase
+            }
+
+            // Press 'Q' again to teleport to the ball
+            if (Input.GetKeyDown(startAim) && shootPhase == 2)
+            {
+                TeleportToBall(); // Perform teleportation
+                lastShootTime = Time.time; // Update the time of the last teleport
+                shootPhase = 0; // Reset to aim phase
+                crossHair.SetActive(true); // Show the crosshair again
             }
         }
 
