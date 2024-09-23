@@ -2436,7 +2436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3959853070595157860, guid: a3bbe60ab2ef33f4fb848cd350ef9d8b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3959853070595157862, guid: a3bbe60ab2ef33f4fb848cd350ef9d8b, type: 3}
       propertyPath: m_ScaleFactor
@@ -3421,8 +3421,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 331.7, y: 325.8}
-  m_SizeDelta: {x: 25, y: 100}
+  m_AnchoredPosition: {x: 335.2, y: 325.8}
+  m_SizeDelta: {x: 23.22, y: 100}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &948055883
 MonoBehaviour:
@@ -8576,6 +8576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSys: {fileID: 352725573}
+  loadIndex: 1
 --- !u!54 &1979293854
 Rigidbody:
   m_ObjectHideFlags: 0

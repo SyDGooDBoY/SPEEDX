@@ -98,12 +98,12 @@ Material:
     - _GlossyReflections: 0
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _OpacityIntensity: 2.13
-    - _OpacityPower: 1.62
+    - _OpacityIntensity: 6.5
+    - _OpacityPower: 2
     - _Parallax: 0.005
     - _QueueOffset: 0
-    - _RadialMask_Blur: 0.9
-    - _RadialMask_Value: 0.45
+    - _RadialMask_Blur: 0.8
+    - _RadialMask_Value: 0.4
     - _Radius: 0.5
     - _RaialMask_Blur: 3.17
     - _ReceiveShadows: 1
