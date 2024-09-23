@@ -6,11 +6,15 @@ using UnityEngine.UI;
 public class EnergySystem : MonoBehaviour
 {
     [Header("Energy VFX")]
-    public GameObject energyBar; 
+    public GameObject energyBar;
+
     private Image[] energyBarImages; // to store images of energy bar
     public GameObject fullscreenEffect; // boost fullscreen effect
+    public Image boostButton;
 
+    [Header("Energy Recover&Decrease")]
     public float energyRecoveryRate = 20f; // Energy recovery rate per second
+
     public float energyDecreaseRate = 80f; // Energy decrease rate when stopped
     private float maxEnergy = AbilityManager.HIGH_THRESHOLD; // Maximum energy 
     private float currentEnergy; // Current energy for Get function
@@ -20,11 +24,13 @@ public class EnergySystem : MonoBehaviour
     private float recoveryTimer = 0f; // Timer to track when to start recovery
 
     [Header("Boosting")]
-    private bool isBoosting = false; 
+    private bool isBoosting = false;
+
     public float boostEnergyConsumptionRate = 40f;
 
     [Header("Boosting Camera")]
     public PlayerCam cam;
+
     private float camFov;
 
     public float boostFOV = 120f;
@@ -32,6 +38,8 @@ public class EnergySystem : MonoBehaviour
     void Start()
     {
         // Initialize start energy to stage 1
+        cam = GameObject.Find("Camera").GetComponent<PlayerCam>(); // Find the camera object in the scene
+
         currentEnergy = AbilityManager.LOW_THRESHOLD;
         Debug.Log("Current Energy: " + currentEnergy);
 
@@ -45,6 +53,7 @@ public class EnergySystem : MonoBehaviour
         {
             energyBarImages = energyBar.GetComponentsInChildren<Image>();
         }
+
         UpdateEnergyBarTransparency();
 
         // get initial cam FOV
@@ -56,7 +65,8 @@ public class EnergySystem : MonoBehaviour
         if (isBoosting)
         {
             ConsumeEnergyDuringBoost(); // boost consumption
-        }else
+        }
+        else
         {
             if (isRecovering)
             {
@@ -84,6 +94,7 @@ public class EnergySystem : MonoBehaviour
         }
 
         UpdateEnergyBarTransparency();
+        UpdateBoostButton();
     }
 
     // Updated energy bar transparency
@@ -98,9 +109,37 @@ public class EnergySystem : MonoBehaviour
             foreach (var image in energyBarImages)
             {
                 Color currentColor = image.color;
-                currentColor.a = alpha; 
+                currentColor.a = alpha;
                 image.color = currentColor; // update transparency
             }
+        }
+    }
+
+    // Updated boost button transparency
+    private void UpdateBoostButton()
+    {
+        if (boostButton != null)
+        {
+            Color imageColor = boostButton.color;
+
+            if (isBoosting)
+            {
+                // If in boosy state, transparency 60%
+                imageColor.a = 0.6f;
+            }
+            else if (currentEnergy >= maxEnergy)
+            {
+                // If the energy is full but not boosting, transparency 100%
+                imageColor.a = 1.0f;
+            }
+            else
+            {
+                // Normally invisible
+                imageColor.a = 0.0f;
+            }
+
+            // Apply the new transparency
+            boostButton.color = imageColor;
         }
     }
 
@@ -121,12 +160,12 @@ public class EnergySystem : MonoBehaviour
     // exit boost state
     public void ExitBoost()
     {
-
         isBoosting = false;
         if (fullscreenEffect != null)
         {
             fullscreenEffect.SetActive(false); // deactive
         }
+
         // change cam FOV back
         cam.DoFov(camFov);
         Debug.Log("Boost deactivated.");
@@ -134,7 +173,7 @@ public class EnergySystem : MonoBehaviour
 
     public bool IsBoosting()
     {
-        return isBoosting; 
+        return isBoosting;
     }
 
     // Consume energy during boost
@@ -149,7 +188,7 @@ public class EnergySystem : MonoBehaviour
             if (currentEnergy <= 0)
             {
                 Debug.Log("Energy depleted, exiting boost.");
-                ExitBoost(); 
+                ExitBoost();
             }
         }
     }
@@ -170,11 +209,12 @@ public class EnergySystem : MonoBehaviour
         {
             SetEnergy(0f);
         }
+
         StopRecovery(); // Stop energy recovery on energy usage
         return true;
     }
 
-    
+
     // Recover energy over time
     private void RecoverEnergy()
     {

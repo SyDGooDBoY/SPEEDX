@@ -227,6 +227,8 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         readyToJump = true;
         startYscale = transform.localScale.y;
+        cam = GameObject.Find("Camera").GetComponent<PlayerCam>();
+
         camFov = cam.GetComponent<Camera>().fieldOfView;
         cam.DoFov(camFov);
 
@@ -289,41 +291,35 @@ public class PlayerMovement : MonoBehaviour
         // Jumping
         if (Input.GetKeyDown(jumpKey))
         {
-            if (readyToJump && coyoteTimeCounter > 0) // First jump
+            if (isGrounded && readyToJump && coyoteTimeCounter > 0) // First jump, affected by coyote time
             {
-                //if (energySystem.UseEnergy(jumpConsumption)) // Check and consume the energy required to jump
-                //{
-                //    readyToJump = false;
-                //    Jump();
-                //    Invoke(nameof(ResetJump), jumpCooldown);
-                //}
-                //else
-                //{
-                //    Debug.Log("Not enough energy to jump!");
-                //}
                 readyToJump = false;
                 Jump();
-                canDoubleJump = true;
                 Invoke(nameof(ResetJump), jumpCooldown);
             }
-            else if (canDoubleJump)
+            else if (!isGrounded && !canDoubleJump) // Double jump, only allowed when not grounded
             {
-                canDoubleJump = false;
                 DoubleJump();
+                canDoubleJump = true; // Disable further double jumps until grounded again
             }
         }
 
+        if (activeGrapple || swinging || wallRunning || climbing)
+        {
+            canDoubleJump = false; // Allow one double jump after these actions
+            readyToJump = true; // Ready to jump again
+        }
         // Crouching
-        if (Input.GetKeyDown(crouchKey))
-        {
-            transform.localScale = new Vector3(transform.localScale.x, crouchYscale, transform.localScale.z);
-            rb.AddForce(Vector3.down * crouchSpeed, ForceMode.Impulse);
-        }
-        // Stand up
-        else if (Input.GetKeyUp(crouchKey))
-        {
-            transform.localScale = new Vector3(transform.localScale.x, startYscale, transform.localScale.z);
-        }
+        // if (Input.GetKeyDown(crouchKey))
+        // {
+        //     transform.localScale = new Vector3(transform.localScale.x, crouchYscale, transform.localScale.z);
+        //     rb.AddForce(Vector3.down * crouchSpeed, ForceMode.Impulse);
+        // }
+        // // Stand up
+        // else if (Input.GetKeyUp(crouchKey))
+        // {
+        //     transform.localScale = new Vector3(transform.localScale.x, startYscale, transform.localScale.z);
+        // }
     }
 
 // Double jump
@@ -332,7 +328,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset vertical velocity
         rb.AddForce(transform.up * doubleJumpForce * 0.8f,
             ForceMode.Impulse); // Slightly less force than the initial jump
-        canDoubleJump = false;
+        canDoubleJump = true;
     }
 
 // Player movement
@@ -441,6 +437,7 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(transform.up * jumpForce,
             ForceMode.Impulse); // Perform a vertical impulse jump
         canControlInAir = false;
+        canDoubleJump = false;
     }
 
 // Apply downward force

@@ -41,6 +41,8 @@ public class PlayerDash : MonoBehaviour
 
     private void Start()
     {
+        cam = GameObject.Find("Camera").GetComponent<PlayerCam>();
+
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,8 +65,18 @@ public class PlayerSwinging : MonoBehaviour
     // Key binding to initiate swinging.
     public KeyCode swingKey = KeyCode.Mouse0;
 
+    public PlayerShootTeleport playerShootTeleport;
+
+    private void Start()
+    {
+        playerShootTeleport = GetComponent<PlayerShootTeleport>();
+        cam = GameObject.Find("Camera").transform;
+        gunTip = GameObject.Find("shooting point").transform;
+    }
+
     private void Update()
     {
+        if (playerShootTeleport.GetCurrentShootPhase() != 0) return; // Prevent swinging during aiming or shooting
         // Handle input for starting and stopping the swing.
         if (Input.GetKeyDown(swingKey)) StartSwing();
         if (Input.GetKeyUp(swingKey)) StopSwing();

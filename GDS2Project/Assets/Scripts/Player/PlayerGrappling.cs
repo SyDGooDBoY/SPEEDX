@@ -37,15 +37,21 @@ public class PlayerGrappling : MonoBehaviour
     [Header("Energy Recover")]
     public float energyRecoverAmount = 30f;
 
+    public PlayerShootTeleport playerShootTeleport;
+
     private void Start()
     {
         pm = GetComponent<PlayerMovement>();
         energySystem = GetComponent<EnergySystem>();
+        playerShootTeleport = GetComponent<PlayerShootTeleport>();
+        cam = GameObject.Find("Camera").transform;
+        gunTip = GameObject.Find("shooting point").transform;
     }
 
     private void Update()
     {
-        if (!pm.inputEnabled) return;
+        if (!pm.inputEnabled || playerShootTeleport.GetCurrentShootPhase() != 0)
+            return; // Prevent grappling during aiming or shooting
         if (Input.GetKeyDown(grappleKey) && IsValidGrapplePoint()) StartGrapple();
 
         if (grapplingCdTimer > 0)
