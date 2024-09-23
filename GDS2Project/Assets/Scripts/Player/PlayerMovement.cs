@@ -227,6 +227,8 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
         readyToJump = true;
         startYscale = transform.localScale.y;
+        cam = GameObject.Find("Camera").GetComponent<PlayerCam>();
+
         camFov = cam.GetComponent<Camera>().fieldOfView;
         cam.DoFov(camFov);
 

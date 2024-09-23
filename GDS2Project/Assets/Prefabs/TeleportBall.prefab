@@ -13,10 +13,9 @@ GameObject:
   - component: {fileID: 4966235204752823366}
   - component: {fileID: 2951683060946190783}
   - component: {fileID: 7578173093378071488}
-  - component: {fileID: 1636109386392156673}
   - component: {fileID: 8411991854719745666}
   m_Layer: 13
-  m_Name: Sphere
+  m_Name: TeleportBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,23 +134,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1636109386392156673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3294245906819875788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b6bf144b0e300340a6d2b1b8f963346, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teleportDelay: 0.1
-  destroyDelay: 3
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!96 &8411991854719745666
 TrailRenderer:
   serializedVersion: 3

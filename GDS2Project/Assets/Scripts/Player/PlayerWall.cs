@@ -71,6 +71,8 @@ public class PlayerWall : MonoBehaviour
         // pg = GetComponent<PlayerGrab>();
         rb = GetComponent<Rigidbody>();
         playerMovement = GetComponent<PlayerMovement>();
+        cam = GameObject.Find("Camera").GetComponent<PlayerCam>();
+
         camFov = cam.GetComponent<Camera>().fieldOfView;
         cam.DoFov(camFov);
     }

@@ -14,6 +14,7 @@ public class EnergySystem : MonoBehaviour
 
     [Header("Energy Recover&Decrease")]
     public float energyRecoveryRate = 20f; // Energy recovery rate per second
+
     public float energyDecreaseRate = 80f; // Energy decrease rate when stopped
     private float maxEnergy = AbilityManager.HIGH_THRESHOLD; // Maximum energy 
     private float currentEnergy; // Current energy for Get function
@@ -37,6 +38,8 @@ public class EnergySystem : MonoBehaviour
     void Start()
     {
         // Initialize start energy to stage 1
+        cam = GameObject.Find("Camera").GetComponent<PlayerCam>(); // Find the camera object in the scene
+
         currentEnergy = AbilityManager.LOW_THRESHOLD;
         Debug.Log("Current Energy: " + currentEnergy);
 

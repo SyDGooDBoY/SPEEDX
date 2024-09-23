@@ -14210,18 +14210,6 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 2116967204}
-    - target: {fileID: 721983897902045563, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: moveSpeed
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 721983897902045563, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: groundDrag
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 721983897902045563, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: wallRunSpeed
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 1408226002555975307, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: cam
       value: 
@@ -14302,14 +14290,6 @@ PrefabInstance:
       propertyPath: fullscreenEffect
       value: 
       objectReference: {fileID: 1323954007}
-    - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: targetY
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: ballSpeed
-      value: 80
-      objectReference: {fileID: 0}
     - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: shootingPoint
       value: 
