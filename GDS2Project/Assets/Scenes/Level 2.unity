@@ -9335,6 +9335,22 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 696009808122812173, guid: d619a43320d9a5247a14c01c22f6f116, type: 3}
   m_PrefabInstance: {fileID: 1673344431}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1673344433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7716403945471139977, guid: d619a43320d9a5247a14c01c22f6f116, type: 3}
+  m_PrefabInstance: {fileID: 1673344431}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1673344434 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4370855955242972770, guid: d619a43320d9a5247a14c01c22f6f116, type: 3}
+  m_PrefabInstance: {fileID: 1673344431}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1686510492
 GameObject:
   m_ObjectHideFlags: 0
@@ -11039,9 +11055,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45375fa5c4d3dce41ba44d0c88e9f3a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenuUI: {fileID: 0}
+  pauseMenuUI: {fileID: 1673344434}
   crosshair: {fileID: 1025687820}
-  rotationSpeedSlider: {fileID: 0}
+  rotationSpeedSlider: {fileID: 1673344433}
   playerCam: {fileID: 2116967204}
 --- !u!4 &1891711743
 Transform:
