@@ -724,7 +724,7 @@ MonoBehaviour:
   ballPrefab: {fileID: 3294245906819875788, guid: b73c096816113674db2c8d3756342c64, type: 3}
   trajectoryLine: {fileID: 1766068845601319961}
   trajectorySegments: 20
-  ballSpeed: 80
+  ballSpeed: 30
   cooldown: 2
   destroyTime: 3
   ballX: 0.05

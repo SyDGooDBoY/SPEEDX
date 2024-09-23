@@ -112,8 +112,8 @@ public class PlayerWall : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-        upwardsRunning = Input.GetKey(upwardsRunKey);
-        downwardRunning = Input.GetKey(downwardRunKey);
+        // upwardsRunning = Input.GetKey(upwardsRunKey);
+        // downwardRunning = Input.GetKey(downwardRunKey);
         //墙上跑
         if ((isWallLeft || isWallRight) && verticalInput > 0 && AboveGround() && !exitingWall)
         {
@@ -194,29 +194,27 @@ public class PlayerWall : MonoBehaviour
     {
         rb.useGravity = useGravity;
 
-        // rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         Vector3 wallNormal = isWallRight ? rightWallHit.normal : leftWallHit.normal;
         Vector3 wallForward = Vector3.Cross(wallNormal, Vector3.up);
+
         if ((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
         {
             wallForward = -wallForward;
         }
 
-        //墙上向前跑
         rb.AddForce(wallForward * wallRunSpeed, ForceMode.Force);
 
-        //墙上向上或者向下跑
-        if (upwardsRunning)
+        // Adjust vertical velocity based on camera pitch
+        float cameraPitch = cam.transform.eulerAngles.x;
+        if (cameraPitch > 180) // Adjust for Unity's 360-degree system
         {
-            rb.velocity = new Vector3(rb.velocity.x, wallClimbSpeed, rb.velocity.z);
+            cameraPitch -= 360;
         }
 
-        if (downwardRunning)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, -wallClimbSpeed, rb.velocity.z);
-        }
+        // Move up if looking up, down if looking down
+        float verticalSpeed = cameraPitch < 0 ? wallClimbSpeed : -wallClimbSpeed;
+        rb.velocity = new Vector3(rb.velocity.x, verticalSpeed, rb.velocity.z);
 
-        //对墙的力
         if (!(isWallLeft && horizontalInput > 0) && !(isWallRight && horizontalInput < 0))
         {
             rb.AddForce(-wallNormal * 100, ForceMode.Force);

@@ -11070,10 +11070,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 760308720}
     - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
-      propertyPath: ballSpeed
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: shootingPoint
       value: 
       objectReference: {fileID: 1131196476}
