@@ -74,6 +74,12 @@ public class PlayerShootTeleport : MonoBehaviour
             }
         }
 
+        if (shootPhase == 2 && currentBall == null)
+        {
+            shootPhase = 0; // Reset the phase to 0
+            crossHair.SetActive(true); // Show the crosshair again
+        }
+
         // Right mouse button cancels the shot at any stage
         if (Input.GetKeyDown(cancelShoot))
         {
