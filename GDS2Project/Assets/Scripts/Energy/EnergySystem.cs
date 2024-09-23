@@ -10,7 +10,9 @@ public class EnergySystem : MonoBehaviour
 
     private Image[] energyBarImages; // to store images of energy bar
     public GameObject fullscreenEffect; // boost fullscreen effect
+    public Image boostButton;
 
+    [Header("Energy Recover&Decrease")]
     public float energyRecoveryRate = 20f; // Energy recovery rate per second
     public float energyDecreaseRate = 80f; // Energy decrease rate when stopped
     private float maxEnergy = AbilityManager.HIGH_THRESHOLD; // Maximum energy 
@@ -89,6 +91,7 @@ public class EnergySystem : MonoBehaviour
         }
 
         UpdateEnergyBarTransparency();
+        UpdateBoostButton();
     }
 
     // Updated energy bar transparency
@@ -106,6 +109,34 @@ public class EnergySystem : MonoBehaviour
                 currentColor.a = alpha;
                 image.color = currentColor; // update transparency
             }
+        }
+    }
+
+    // Updated boost button transparency
+    private void UpdateBoostButton()
+    {
+        if (boostButton != null)
+        {
+            Color imageColor = boostButton.color;
+
+            if (isBoosting)
+            {
+                // If in boosy state, transparency 60%
+                imageColor.a = 0.6f;
+            }
+            else if (currentEnergy >= maxEnergy)
+            {
+                // If the energy is full but not boosting, transparency 100%
+                imageColor.a = 1.0f;
+            }
+            else
+            {
+                // Normally invisible
+                imageColor.a = 0.0f;
+            }
+
+            // Apply the new transparency
+            boostButton.color = imageColor;
         }
     }
 
