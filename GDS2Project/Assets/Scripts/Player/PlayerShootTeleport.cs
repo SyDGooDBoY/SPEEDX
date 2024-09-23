@@ -47,7 +47,7 @@ public class PlayerShootTeleport : MonoBehaviour
             }
 
             // Press 'Q' to enter shooting mode, only if cooldown has passed
-            if (Input.GetKeyDown(startAim) && shootPhase == 0)
+            if (Input.GetKeyDown(launchKey) && shootPhase == 0)
             {
                 trajectoryLine.enabled = true; // Enable the trajectory line
                 shootPhase = 1; // Switch to shooting phase
@@ -55,7 +55,7 @@ public class PlayerShootTeleport : MonoBehaviour
             }
 
             // Release 'Q' to shoot the ball
-            if (Input.GetKeyUp(startAim) && shootPhase == 1)
+            if (Input.GetKeyUp(launchKey) && shootPhase == 1)
             {
                 Shoot(); // Perform shooting
                 trajectoryLine.enabled = false; // Disable the trajectory line
@@ -63,7 +63,7 @@ public class PlayerShootTeleport : MonoBehaviour
             }
 
             // Press 'Q' again to teleport to the ball
-            if (Input.GetKeyDown(startAim) && shootPhase == 2)
+            if (Input.GetKeyDown(launchKey) && shootPhase == 2)
             {
                 TeleportToBall(); // Perform teleportation
                 lastShootTime = Time.time; // Update the time of the last teleport
