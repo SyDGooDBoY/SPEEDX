@@ -8576,6 +8576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSys: {fileID: 352725573}
+  loadIndex: 1
 --- !u!54 &1979293854
 Rigidbody:
   m_ObjectHideFlags: 0

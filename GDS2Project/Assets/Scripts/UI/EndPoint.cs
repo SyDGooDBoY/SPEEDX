@@ -11,30 +11,37 @@ using Cursor = UnityEngine.Cursor;
 public class Endpoint : MonoBehaviour
 {
     public TimeScoreSystem timeSys;
+    public int loadIndex;
 
     private void OnCollisionEnter(Collision collision)
     {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-
-        // get index and ID(scene name) of current level 
-        int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
-        string currentLevelID = SceneManager.GetSceneByBuildIndex(currentLevelIndex).name;
-        // update best time
-        SaveManager.Instance.UpdateBestTime(currentLevelID, timeSys.currentTime);
-
-        // get index and ID(scene name) of next level
-        int nextLevelIndex = currentLevelIndex + 1;
-
-        // make sure the index is in the valid range
-        if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
+        //if current scene called level 1 run this code
+        if (SceneManager.GetActiveScene().name == "Level 1")
         {
-            // Unlock next level and save
-            SaveManager.Instance.UnlockLevel("Level " + currentLevelIndex);
-        }
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
 
-        // Load Level Selection scene
-        SceneManager.LoadScene(1);
+            // get index and ID(scene name) of current level 
+            int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+            string currentLevelID = SceneManager.GetSceneByBuildIndex(currentLevelIndex).name;
+            // update best time
+            SaveManager.Instance.UpdateBestTime(currentLevelID, timeSys.currentTime);
+
+            // get index and ID(scene name) of next level
+            int nextLevelIndex = currentLevelIndex + 1;
+
+            // make sure the index is in the valid range
+            if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
+            {
+                // Unlock next level and save
+                SaveManager.Instance.UnlockLevel("Level " + currentLevelIndex);
+            }
+
+            // Load Level Selection scene
+            SceneManager.LoadScene(loadIndex);
+        }
+        //if (SceneManager.GetActiveScene().name == "Level 2")
+        //...
     }
 
     // public GameObject platform; // Reference to the platform GameObject
