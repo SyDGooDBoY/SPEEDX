@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class GameData : ISerializationCallbackReceiver
 {
-    public List<string> LevelBestTimesList = new List<string>();  // Stores level_time
+    public List<string> LevelBestTimesList = new List<string>(); // Stores level_time
     public List<string> UnlockedLevels = new List<string>(); // unlocked level
     public List<string> UnlockedWeapons = new List<string>(); // unlocked weapon
 
@@ -22,7 +22,7 @@ public class GameData : ISerializationCallbackReceiver
         // !!! Combine into a string of level_time format
         foreach (var kvp in LevelBestTimes)
         {
-            LevelBestTimesList.Add($"{kvp.Key}_{kvp.Value}"); 
+            LevelBestTimesList.Add($"{kvp.Key}_{kvp.Value}");
         }
     }
 
@@ -166,9 +166,9 @@ public class SaveManager : MonoBehaviour
     }
 
     // get best time for UI
-    public float GetBestTime(string levelID)
+    public float? GetBestTime(string levelID)
     {
-        return gameData.LevelBestTimes.ContainsKey(levelID) ? gameData.LevelBestTimes[levelID] : -1;
+        return gameData.LevelBestTimes.ContainsKey(levelID) ? gameData.LevelBestTimes[levelID] : (float?)null;
     }
 
     // check function
