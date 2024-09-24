@@ -67,11 +67,17 @@ public class PlayerSwinging : MonoBehaviour
 
     public PlayerShootTeleport playerShootTeleport;
 
+    [Header("Sound")]
+    public AudioClip grappleSound;
+
+    private AudioSource audioSource;
+
     private void Start()
     {
         playerShootTeleport = GetComponent<PlayerShootTeleport>();
         cam = GameObject.Find("Camera").transform;
         gunTip = GameObject.Find("shooting point").transform;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -162,6 +168,10 @@ public class PlayerSwinging : MonoBehaviour
 
         lr.positionCount = 2;
         currentGrapplePosition = gunTip.position;
+        if (grappleSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(grappleSound);
+        }
     }
 
     public void StopSwing()

@@ -39,6 +39,11 @@ public class PlayerGrappling : MonoBehaviour
 
     public PlayerShootTeleport playerShootTeleport;
 
+    [Header("Sound")]
+    public AudioClip grappleSound;
+
+    private AudioSource audioSource;
+
     private void Start()
     {
         pm = GetComponent<PlayerMovement>();
@@ -46,6 +51,7 @@ public class PlayerGrappling : MonoBehaviour
         playerShootTeleport = GetComponent<PlayerShootTeleport>();
         cam = GameObject.Find("Camera").transform;
         gunTip = GameObject.Find("shooting point").transform;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -102,6 +108,11 @@ public class PlayerGrappling : MonoBehaviour
             grapplePoint = cam.position + cam.forward * maxGrappleDistance;
 
             Invoke(nameof(StopGrapple), grappleDelayTime);
+        }
+
+        if (grappleSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(grappleSound);
         }
 
         // lr.enabled = true;

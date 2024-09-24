@@ -2,16 +2,23 @@ using UnityEngine;
 
 public class PlayerRespawn : MonoBehaviour
 {
-    public float fallThreshold = -10f; 
+    public float fallThreshold = -10f;
     private Rigidbody rb;
     private CharacterController controller;
 
-    [SerializeField] string bottomObjectTag = "Bottom";
+    [SerializeField]
+    string bottomObjectTag = "Bottom";
+
+    [Header("Sound")]
+    public AudioClip grappleSound;
+
+    private AudioSource audioSource;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -31,6 +38,11 @@ public class PlayerRespawn : MonoBehaviour
     {
         if (CheckpointManager.respawnPosition != null)
         {
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(grappleSound);
+            }
+
             if (rb != null)
             {
                 rb.velocity = Vector3.zero;
@@ -40,9 +52,9 @@ public class PlayerRespawn : MonoBehaviour
             }
             else if (controller != null)
             {
-                controller.enabled = false; 
+                controller.enabled = false;
                 transform.position = CheckpointManager.respawnPosition;
-                controller.enabled = true; 
+                controller.enabled = true;
             }
             else
             {
@@ -60,10 +72,9 @@ public class PlayerRespawn : MonoBehaviour
         }
     }
 
- 
+
     private void OnTriggerEnter(Collider other)
     {
-        
         if (other.CompareTag(bottomObjectTag))
         {
             Respawn();
