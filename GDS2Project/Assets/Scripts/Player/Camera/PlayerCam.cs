@@ -35,17 +35,21 @@ public class PlayerCam : MonoBehaviour
         rotationX -= mouseY;
         rotationX = Mathf.Clamp(rotationX, -90, 90);
 
-        camHolder.localRotation = Quaternion.Euler(rotationX, rotationY, 0);
-        orientationPlayer.rotation = Quaternion.Euler(0, rotationY, 0);
+        // 使用插值平滑旋转
+        Quaternion targetRotationCam = Quaternion.Euler(rotationX, rotationY, 0);
+        Quaternion targetRotationOrientation = Quaternion.Euler(0, rotationY, 0);
+
+        camHolder.localRotation = Quaternion.Lerp(camHolder.localRotation, targetRotationCam, Time.deltaTime * 25); // 可调整插值速度
+        orientationPlayer.rotation = Quaternion.Slerp(orientationPlayer.rotation, targetRotationOrientation, Time.deltaTime * 25); // 使用Slerp以保持更自然的旋转
     }
 
     public void DoFov(float endValue)
     {
-        GetComponent<Camera>().DOFieldOfView(endValue, 0.25f);
+        GetComponent<Camera>().DOFieldOfView(endValue, 0.25f).SetEase(Ease.InOutQuad); // 添加缓动函数以平滑过渡
     }
 
     public void DoTilt(float zTilt)
     {
-        transform.DOLocalRotate(new Vector3(0, 0, zTilt), 0.25f);
+        transform.DOLocalRotate(new Vector3(0, 0, zTilt), 0.25f).SetEase(Ease.InOutQuad); // 同样使用缓动
     }
 }
