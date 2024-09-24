@@ -15498,6 +15498,10 @@ PrefabInstance:
       propertyPath: gunTip
       value: 
       objectReference: {fileID: 1131196476}
+    - target: {fileID: 4624245326416202220, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: grappleSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 02dacba279a059e49a1f22c47681baae, type: 3}
     - target: {fileID: 5344313690183820106, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: lr
       value: 
@@ -15510,6 +15514,14 @@ PrefabInstance:
       propertyPath: gunTip
       value: 
       objectReference: {fileID: 1131196476}
+    - target: {fileID: 5344313690183820106, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: grappleSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 02dacba279a059e49a1f22c47681baae, type: 3}
+    - target: {fileID: 5651101823805506318, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: grappleSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f59fe616179be740b48192ff37d8c89, type: 3}
     - target: {fileID: 6008647085528278979, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.28
@@ -15574,6 +15586,10 @@ PrefabInstance:
       propertyPath: cooldown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: grappleSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 22231d2069f35e149a32256fc11a73fc, type: 3}
     - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: shootingPoint
       value: 
