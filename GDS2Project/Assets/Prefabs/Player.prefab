@@ -445,6 +445,7 @@ GameObject:
   - component: {fileID: 6015944882874397101}
   - component: {fileID: 6264600111647544808}
   - component: {fileID: 8887104302006891497}
+  - component: {fileID: 2879144108362577688}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -523,9 +524,7 @@ MonoBehaviour:
   maxYSpeed: 0
   grapXZvalue: 2
   groundDrag: 5
-  canDoubleJump: 0
   jumpForce: 12
-  doubleJumpForce: 10
   downForce: 5
   coyoteTime: 0.2
   jumpCooldown: 0.25
@@ -679,6 +678,7 @@ MonoBehaviour:
   predictionPoint: {fileID: 6986772597373213379}
   swingKey: 323
   playerShootTeleport: {fileID: 0}
+  grappleSound: {fileID: 0}
 --- !u!114 &5344313690183820106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -705,6 +705,7 @@ MonoBehaviour:
   grappling: 0
   energyRecoverAmount: 30
   playerShootTeleport: {fileID: 0}
+  grappleSound: {fileID: 0}
 --- !u!114 &8021042501585271700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,8 +718,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dcc3fee0a354294e81a8de85e8011dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startAim: 113
-  shootTeleport: 323
+  launchKey: 113
   cancelShoot: 324
   shootingPoint: {fileID: 0}
   ballPrefab: {fileID: 3294245906819875788, guid: b73c096816113674db2c8d3756342c64, type: 3}
@@ -729,6 +729,7 @@ MonoBehaviour:
   destroyTime: 3
   ballX: 0.05
   ballY: 0.5
+  grappleSound: {fileID: 0}
 --- !u!114 &4642578342696618354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,6 +782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallThreshold: -10
   bottomObjectTag: Bottom
+  grappleSound: {fileID: 0}
 --- !u!136 &2207196687716489250
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -941,3 +943,99 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!82 &2879144108362577688
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8269969158327480302}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

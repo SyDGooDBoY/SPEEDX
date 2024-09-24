@@ -9347,6 +9347,10 @@ PrefabInstance:
       propertyPath: WallJumpSideForce
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 2879144108362577688, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: m_Volume
+      value: 0.647
+      objectReference: {fileID: 0}
     - target: {fileID: 4624245326416202220, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: cam
       value: 
