@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -24,7 +25,6 @@ public class LevelSelector : MonoBehaviour
     //}
 
 
-
     //NOT SURE IF THE CODE BELOW IS RIGHT OR NOT
 
 
@@ -43,11 +43,15 @@ public class LevelSelector : MonoBehaviour
         // Check if the level is unlocked using SaveManager
         if (SaveManager.Instance.IsLevelUnlocked("Level " + level))
         {
+            levelButton.GetComponent<EventTrigger>().enabled = true;
+
             levelButton.interactable = true;
         }
         else
         {
             levelButton.interactable = false;
+            // Disable EventTrigger component
+            levelButton.GetComponent<EventTrigger>().enabled = false;
             // Optionally set a different text or color to indicate it's locked
             levelText.color = Color.gray; // Change color to gray if locked
         }
