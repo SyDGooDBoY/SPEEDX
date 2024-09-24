@@ -39,8 +39,8 @@ public class PlayerCam : MonoBehaviour
         Quaternion targetRotationCam = Quaternion.Euler(rotationX, rotationY, 0);
         Quaternion targetRotationOrientation = Quaternion.Euler(0, rotationY, 0);
 
-        camHolder.localRotation = Quaternion.Lerp(camHolder.localRotation, targetRotationCam, Time.deltaTime * 25); // 可调整插值速度
-        orientationPlayer.rotation = Quaternion.Slerp(orientationPlayer.rotation, targetRotationOrientation, Time.deltaTime * 25); // 使用Slerp以保持更自然的旋转
+        camHolder.localRotation = Quaternion.Lerp(camHolder.localRotation, targetRotationCam, Time.deltaTime * 30); // 可调整插值速度
+        orientationPlayer.rotation = Quaternion.Slerp(orientationPlayer.rotation, targetRotationOrientation, Time.deltaTime * 30); // 使用Slerp以保持更自然的旋转
     }
 
     public void DoFov(float endValue)
