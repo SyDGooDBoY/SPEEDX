@@ -256,9 +256,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "WASD TO MOVE\n\nSpace to jump\n\nSwing: LEFT MOUSE \n\nGrapple: Right
-    mouse\n\nWhen the energy is full\n\nF: switch speed up mode\n\n\nEsc to pause
-    game"
+  m_text: "WASD TO MOVE\n\nC to slide\n\nSpace to jump\n\nSwing: LEFT MOUSE \n\nGrapple:
+    Right mouse\n\nWhen the energy is full\n\nF: switch speed up mode\n\n\nEsc to
+    pause game"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -1285,7 +1285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.9, y: -22.3}
+  m_AnchoredPosition: {x: 5.9, y: -19.5}
   m_SizeDelta: {x: 74.1, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &680290094
@@ -1308,9 +1308,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "WASD TO MOVE\n\nSpace to jump\n\nTeleport GUn:\n1.Hold Q to aim\n2.Release
-    Q to shoot\n3.Press Q to teleport\nRight click to cancel \n\nWhen the energy
-    is full\n\nF: switch speed up mode\n\nEsc to pause game"
+  m_text: "WASD TO MOVE\n\nC to slide\n\nSpace to jump\n\nTeleport GUn:\n1.Hold Q
+    to aim\n2.Release Q to shoot\n3.Press Q to teleport\nRight click to cancel \n\nWhen
+    the energy is full\n\nF: switch speed up mode\n\nEsc to pause game"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
