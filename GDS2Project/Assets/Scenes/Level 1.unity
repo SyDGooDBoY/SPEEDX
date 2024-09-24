@@ -5203,6 +5203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Highwall (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7197362412238357442, guid: 68e311d89fc148a4da461020313d378c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5003
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

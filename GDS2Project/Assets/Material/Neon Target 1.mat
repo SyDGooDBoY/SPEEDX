@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: StartUI
+  m_Name: Neon Target 1
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -41,11 +41,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 085da3ee70819f44fb3403c559875a0f, type: 3}
+        m_Texture: {fileID: 2800000, guid: e7a4d5c81ce0617478794f30b83dbccf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 085da3ee70819f44fb3403c559875a0f, type: 3}
+        m_Texture: {fileID: 2800000, guid: e7a4d5c81ce0617478794f30b83dbccf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -80,5 +80,5 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 0, b: 0, a: 1}
-    - _EmissionColor: {r: 1.666186, g: 0, b: 2.5664635, a: 1}
+    - _EmissionColor: {r: 0, g: 0.71849066, b: 1.3041189, a: 1}
   m_BuildTextureStacks: []
