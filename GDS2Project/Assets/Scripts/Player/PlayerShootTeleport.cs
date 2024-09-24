@@ -22,6 +22,11 @@ public class PlayerShootTeleport : MonoBehaviour
     private int shootPhase = 0; // Shooting phase: 0 = Aim, 1 = Shoot, 2 = Teleport
     private PlayerMovement pm;
 
+    [Header("Sound")]
+    public AudioClip grappleSound;
+
+    private AudioSource audioSource;
+
     void Start()
     {
         lastShootTime = -cooldown; // Initialize cooldown to allow immediate shooting at start
@@ -31,6 +36,7 @@ public class PlayerShootTeleport : MonoBehaviour
         cam = GameObject.Find("Camera").GetComponent<Camera>(); // Find the camera object in the scene
         pm = GetComponent<PlayerMovement>(); // Get the PlayerMovement component
         shootingPoint = GameObject.Find("shooting point").transform;
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -144,6 +150,11 @@ public class PlayerShootTeleport : MonoBehaviour
     // Shoot the projectile
     void Shoot()
     {
+        if (audioSource != null)
+        {
+            audioSource.PlayOneShot(grappleSound);
+        }
+
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 10.0f; // Set the distance from the camera
         Vector3 worldPoint = cam.ScreenToWorldPoint(mousePos); // Convert mouse position to world space
