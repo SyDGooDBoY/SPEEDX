@@ -85,6 +85,12 @@ public class PauseMenu : MonoBehaviour
         // Debug.LogWarning("Home function is not implemented yet.");
     }
 
+    public void LevelSelection()
+    {
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1f;
+    }
+
     public void QuitGame()
     {
 #if UNITY_EDITOR

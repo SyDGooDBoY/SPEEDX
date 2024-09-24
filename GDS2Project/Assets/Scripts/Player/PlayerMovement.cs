@@ -29,10 +29,10 @@ public class PlayerMovement : MonoBehaviour
     public float groundDrag = 5f; // Ground friction
 
     [Header("Jump Settings")]
-    public bool canDoubleJump = false; // Double jump state
-
+    // public bool canDoubleJump = false; // Double jump state
     public float jumpForce = 12f; // Jump force
-    public float doubleJumpForce = 10f; // Double jump force
+
+    // public float doubleJumpForce = 10f; // Double jump force
     public float downForce = 5f; // Downward force
     public float coyoteTime = 0.2f; // Coyote time duration in seconds
     private float coyoteTimeCounter;
@@ -242,6 +242,11 @@ public class PlayerMovement : MonoBehaviour
         if (!inputEnabled) return;
         // Ground check
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
+        if (isGrounded)
+        {
+            hasJumpedInAir = false; // Reset air jump when grounded
+        }
+
         coyoteTimeCounter = isGrounded ? coyoteTime : coyoteTimeCounter - Time.deltaTime;
         PlayerInput();
         SpeedControl();
@@ -282,6 +287,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private bool hasJumpedInAir = false;
+
 // Player input handling
     private void PlayerInput()
     {
@@ -297,18 +304,26 @@ public class PlayerMovement : MonoBehaviour
                 Jump();
                 Invoke(nameof(ResetJump), jumpCooldown);
             }
-            else if (!isGrounded && !canDoubleJump) // Double jump, only allowed when not grounded
+            // else if (!isGrounded && !canDoubleJump) // Double jump, only allowed when not grounded
+            // {
+            //     DoubleJump();
+            //     canDoubleJump = true; // Disable further double jumps until grounded again
+            // }
+            else if (!isGrounded && !hasJumpedInAir) // Allow one jump in air
             {
-                DoubleJump();
-                canDoubleJump = true; // Disable further double jumps until grounded again
+                hasJumpedInAir = true;
+                Jump();
+                Invoke(nameof(ResetJump), jumpCooldown);
+            }
+
+            if (activeGrapple || swinging || wallRunning || climbing)
+            {
+                // canDoubleJump = false; // Allow one double jump after these actions
+                hasJumpedInAir = false;
+                readyToJump = true; // Ready to jump again
             }
         }
 
-        if (activeGrapple || swinging || wallRunning || climbing)
-        {
-            canDoubleJump = false; // Allow one double jump after these actions
-            readyToJump = true; // Ready to jump again
-        }
         // Crouching
         // if (Input.GetKeyDown(crouchKey))
         // {
@@ -323,13 +338,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
 // Double jump
-    private void DoubleJump()
-    {
-        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset vertical velocity
-        rb.AddForce(transform.up * doubleJumpForce * 0.8f,
-            ForceMode.Impulse); // Slightly less force than the initial jump
-        canDoubleJump = true;
-    }
+    // private void DoubleJump()
+    // {
+    //     rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z); // Reset vertical velocity
+    //     rb.AddForce(transform.up * doubleJumpForce * 0.8f,
+    //         ForceMode.Impulse); // Slightly less force than the initial jump
+    //     canDoubleJump = true;
+    // }
 
 // Player movement
     private void PlayerMove()
@@ -437,7 +452,7 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(transform.up * jumpForce,
             ForceMode.Impulse); // Perform a vertical impulse jump
         canControlInAir = false;
-        canDoubleJump = false;
+        // canDoubleJump = false;
     }
 
 // Apply downward force
@@ -534,6 +549,11 @@ public class PlayerMovement : MonoBehaviour
         cam.DoFov(camFov);
     }
 
+    public void StopMovement()
+    {
+        rb.velocity = Vector3.zero; // Stop all movement
+        rb.isKinematic = true; // Disable physics interactions
+    }
 
 // Restore movement
     private void OnCollisionEnter(Collision collision)
@@ -546,6 +566,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("EndPoint"))
         {
             transform.parent = collision.transform;
+            StopMovement();
         }
 
         if (enableMovementOnNextTouch)

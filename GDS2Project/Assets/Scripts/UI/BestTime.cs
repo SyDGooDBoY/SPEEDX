@@ -19,22 +19,24 @@ public class BestTime : MonoBehaviour
 
         if (level1BestTime == null)
         {
-            bestTimeText1.text = "Level 1\n-- : --";
+            bestTimeText1.text = "Level 1\n--:--:--";
         }
         else
         {
             var timeSpan = TimeSpan.FromSeconds(level1BestTime.Value);
-            bestTimeText1.text = "Level 1\n" + timeSpan.ToString(@"mm\:ss");
+            bestTimeText1.text =
+                "Level 1\n" + $"{timeSpan.Minutes:00}:{timeSpan.Seconds:00}:{timeSpan.Milliseconds / 10:00}";
         }
 
         if (level2BestTime == null)
         {
-            bestTimeText2.text = "Level 2\n-- : --";
+            bestTimeText2.text = "Level 2\n--:--:--";
         }
         else
         {
             var timeSpan = TimeSpan.FromSeconds(level2BestTime.Value);
-            bestTimeText2.text = "Level 2\n" + timeSpan.ToString(@"mm\:ss");
+            bestTimeText2.text =
+                "Level 2\n" + $"{timeSpan.Minutes:00}:{timeSpan.Seconds:00}:{timeSpan.Milliseconds / 10:00}";
         }
     }
 }

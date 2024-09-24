@@ -14,16 +14,20 @@ public class PlayerCam : MonoBehaviour
     float rotationY;
     float rotationX;
 
+    private PlayerMovement pm;
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        pm = GameObject.Find("Player").GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
+        if (!pm.inputEnabled) return;
         float mouseX = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
 

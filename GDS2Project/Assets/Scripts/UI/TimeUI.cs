@@ -23,6 +23,6 @@ public class TimeUI : MonoBehaviour
         var minutes = Mathf.FloorToInt(passTime / 60F);
         var seconds = Mathf.FloorToInt(passTime - minutes * 60);
         var milliseconds = Mathf.FloorToInt((passTime * 100) % 100); // Two digits for milliseconds
-        timeText.text = $"<mspace=0.6em>{minutes:00}:{seconds:00}.{milliseconds:00}</mspace>";
+        timeText.text = $"<mspace=0.6em>{minutes:00}:{seconds:00}:{milliseconds:00}</mspace>";
     }
 }
