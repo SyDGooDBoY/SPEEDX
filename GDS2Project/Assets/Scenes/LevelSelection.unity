@@ -1309,8 +1309,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "WASD TO MOVE\n\nSpace to jump\n\nTeleport GUn:\n1.Hold Q to aim\n2.Release
-    Q to shoot\n3.Press Q to teleport \n\nWhen the energy is full\n\nF: switch speed
-    up mode\n\nEsc to pause game"
+    Q to shoot\n3.Press Q to teleport\nRight click to cancel \n\nWhen the energy
+    is full\n\nF: switch speed up mode\n\nEsc to pause game"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -2854,7 +2854,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1420641421
 RectTransform:
   m_ObjectHideFlags: 0

@@ -1530,9 +1530,9 @@ Transform:
   m_GameObject: {fileID: 572814362}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 368.3, y: 33.500004, z: -239.9}
-  m_LocalScale: {x: 10, y: 5, z: 10}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 368.3, y: 33.500004, z: -242.2}
+  m_LocalScale: {x: 12.412, y: 5, z: 12.571}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 356055160}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3039,6 +3039,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8064337822196519917, guid: 04c0d5e0491496346b132a9c1233487c, type: 3}
+      propertyPath: m_Volume
+      value: 0.499
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4342,13 +4346,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303073481}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0058278823, y: 0.2863171, z: 0.0059763854, w: 0.9580986}
-  m_LocalPosition: {x: 108.6, y: 73.4, z: -445.5}
+  m_LocalRotation: {x: -0.09657039, y: 0.2844631, z: 0.03307472, w: 0.95323706}
+  m_LocalPosition: {x: 113.2, y: 73.49999, z: -438.50003}
   m_LocalScale: {x: 7.7096534, y: 7.5174856, z: 1.0593399}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 356055160}
-  m_LocalEulerAnglesHint: {x: -0.836, y: 33.273, z: 0.465}
+  m_LocalEulerAnglesHint: {x: -11.708, y: 33.183, z: 0.475}
 --- !u!65 &1303073483
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6384,7 +6388,7 @@ Transform:
   m_GameObject: {fileID: 1789714410}
   serializedVersion: 2
   m_LocalRotation: {x: -0.0020815623, y: -0.28889298, z: 0.009799348, w: 0.95730895}
-  m_LocalPosition: {x: 23.8, y: 31.5, z: -539.2}
+  m_LocalPosition: {x: 23.9, y: 23.5, z: -539.1}
   m_LocalScale: {x: 17.377806, y: 2.4598217, z: 17.954412}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9432,6 +9436,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 760308720}
     - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: grappleSound
       value: 
       objectReference: {fileID: 8300000, guid: 22231d2069f35e149a32256fc11a73fc, type: 3}
@@ -9447,6 +9455,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 2116967204}
+    - target: {fileID: 8601829210647188575, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8601829210647188575, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: playerCam
       value: 
