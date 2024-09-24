@@ -15718,6 +15718,10 @@ PrefabInstance:
       propertyPath: WallJumpSideForce
       value: 60
       objectReference: {fileID: 0}
+    - target: {fileID: 4031317112601952522, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: climbJumpUpForce
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4624245326416202220, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: cam
       value: 
