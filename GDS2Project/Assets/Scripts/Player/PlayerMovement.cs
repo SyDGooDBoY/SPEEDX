@@ -241,7 +241,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!inputEnabled) return;
         // Ground check
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundMask);
+        float sphereRadius = 0.4f; // Adjust the radius as needed
+        float groundDistance = 0.6f; // Adjust the distance as needed
+        isGrounded = Physics.SphereCast(transform.position, sphereRadius, Vector3.down, out RaycastHit hit,
+            groundDistance, groundMask);
+
         if (isGrounded)
         {
             hasJumpedInAir = false; // Reset air jump when grounded
