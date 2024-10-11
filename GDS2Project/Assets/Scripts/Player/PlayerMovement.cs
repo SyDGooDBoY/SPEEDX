@@ -316,7 +316,7 @@ public class PlayerMovement : MonoBehaviour
             else if (!isGrounded && !hasJumpedInAir) // Allow one jump in air
             {
                 hasJumpedInAir = true;
-                Jump();
+                Jump(true);
                 Invoke(nameof(ResetJump), jumpCooldown);
             }
 
@@ -449,12 +449,21 @@ public class PlayerMovement : MonoBehaviour
     }
 
 // Jumping
-    private void Jump()
+    private void Jump(bool isDoubleJump = false)
     {
         exitingSlope = true;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-        rb.AddForce(transform.up * jumpForce,
-            ForceMode.Impulse); // Perform a vertical impulse jump
+        if (isDoubleJump)
+        {
+            Vector3 doubleJumpDirection =
+                orientation.forward * verticalMovement + orientation.right * horizontalMovement;
+            rb.AddForce((transform.up + doubleJumpDirection).normalized * jumpForce, ForceMode.Impulse);
+        }
+        else
+        {
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse); // Perform a vertical impulse jump
+        }
+
         canControlInAir = false;
         // canDoubleJump = false;
     }
