@@ -21,11 +21,14 @@ public class PlayerShootTeleport : MonoBehaviour
     private GameObject currentBall; // Currently instantiated projectile
     private int shootPhase = 0; // Shooting phase: 0 = Aim, 1 = Shoot, 2 = Teleport
     private PlayerMovement pm;
+    private float remainingTimeToDestroy;
 
     [Header("Sound")]
     public AudioClip grappleSound;
 
     private AudioSource audioSource;
+
+    private GradientColor gradientColor;
 
     void Start()
     {
@@ -37,11 +40,30 @@ public class PlayerShootTeleport : MonoBehaviour
         pm = GetComponent<PlayerMovement>(); // Get the PlayerMovement component
         shootingPoint = GameObject.Find("shooting point").transform;
         audioSource = GetComponent<AudioSource>();
+        gradientColor = GameObject.Find("TeleportTime").GetComponent<GradientColor>();
     }
 
     void Update()
     {
         if (pm.swinging || pm.state == PlayerMovement.MoveState.grappling) return;
+        if (currentBall != null)
+        {
+            gradientColor.EnableUI();
+            gradientColor.SetMaxValue(destroyTime);
+            remainingTimeToDestroy -= Time.deltaTime; // 减去上一帧所花的时间
+            gradientColor.UpdateValue(remainingTimeToDestroy);
+            if (remainingTimeToDestroy == 0)
+            {
+                currentBall = null;
+                remainingTimeToDestroy = destroyTime; // 重置时间
+                gradientColor.DisableUI();
+            }
+        }
+        else if (currentBall == null)
+        {
+            remainingTimeToDestroy = destroyTime;
+            gradientColor.DisableUI();
+        }
 
         // Check if cooldown has passed before allowing aim or shoot
         if (Time.time - lastShootTime >= cooldown)
@@ -154,6 +176,8 @@ public class PlayerShootTeleport : MonoBehaviour
         {
             audioSource.PlayOneShot(grappleSound);
         }
+
+        remainingTimeToDestroy = destroyTime;
 
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = 10.0f; // Set the distance from the camera
