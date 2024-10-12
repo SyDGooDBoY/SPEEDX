@@ -22,7 +22,10 @@ public class EventDetectionSystem : MonoBehaviour
     void Start()
     {
         originalTimeScale = Time.timeScale; // Save the initial time scale
-        celebrationUI.SetActive(false); 
+        if (celebrationUI != null) 
+        { 
+            celebrationUI.SetActive(false); 
+        }
 
         // Assign event condition
         if (eventCondition == null)
@@ -65,14 +68,20 @@ public class EventDetectionSystem : MonoBehaviour
             if (isInArea && IsCorrectInput())
             {
                 // Success judgment of calling event conditions
-                if (eventCondition.CheckSuccess()) 
+                if (eventCondition.CheckSuccess())
                 {
                     actionExecuted = true;
                     //UpdateCheckpoint(player); // Update the teleport point
-                    ShowCelebrationUI(); 
-                    SlowMotion(false);  
+                    ShowCelebrationUI();
+                    SlowMotion(false);
                     yield break;
                 }
+
+                //actionExecuted = true;
+                ////UpdateCheckpoint(player); // Update the teleport point
+                //ShowCelebrationUI();
+                //SlowMotion(false);
+                //yield break;
             }
 
             yield return null;
@@ -135,9 +144,12 @@ public class EventDetectionSystem : MonoBehaviour
     // Display the celebration UI
     void ShowCelebrationUI()
     {
-        celebrationUI.SetActive(true);
-        // displayed for a few seconds and then hides
-        StartCoroutine(HideCelebrationUI());
+        if (celebrationUI != null)
+        {
+            celebrationUI.SetActive(true);
+            // displayed for a few seconds and then hides
+            StartCoroutine(HideCelebrationUI());
+        }
     }
 
     IEnumerator HideCelebrationUI()
