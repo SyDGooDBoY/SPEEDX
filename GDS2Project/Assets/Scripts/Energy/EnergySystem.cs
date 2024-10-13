@@ -93,7 +93,7 @@ public class EnergySystem : MonoBehaviour
             }
         }
 
-        UpdateEnergyBarTransparency();
+        // UpdateEnergyBarTransparency();
         UpdateBoostButton();
     }
 
