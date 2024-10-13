@@ -16057,6 +16057,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 22231d2069f35e149a32256fc11a73fc, type: 3}
     - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: gradientColor
+      value: 
+      objectReference: {fileID: 427399715}
+    - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: shootingPoint
       value: 
       objectReference: {fileID: 1131196476}

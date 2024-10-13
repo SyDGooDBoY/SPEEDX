@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
     public PlayerCam cam;
 
     public float grappleFOV = 120f;
-    private float camFov;
+    public float camFov;
 
     [Header("Movement State")]
     public MoveState state;

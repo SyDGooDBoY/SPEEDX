@@ -39,6 +39,8 @@ public class PlayerDash : MonoBehaviour
     [Header("Input")]
     public KeyCode dashKey = KeyCode.E;
 
+    private Vector3 speedBeforeDash;
+
     private void Start()
     {
         cam = GameObject.Find("Camera").GetComponent<PlayerCam>();
@@ -50,10 +52,21 @@ public class PlayerDash : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(dashKey))
+        {
+            speedBeforeDash = rb.velocity;
             Dash();
+        }
 
         if (dashCdTimer > 0)
             dashCdTimer -= Time.deltaTime;
+    }
+
+    private Vector3 GetDirection()
+    {
+        if (useCameraForward)
+            return playerCam.forward.normalized; // 使用相机前方方向
+        else
+            return orientation.forward.normalized; // 使用角色前方方向
     }
 
     private void Dash()
@@ -62,20 +75,21 @@ public class PlayerDash : MonoBehaviour
         else dashCdTimer = dashCd;
 
         pm.dashing = true;
-        pm.maxYSpeed = maxDashYSpeed;
+        // pm.maxYSpeed = maxDashYSpeed;
 
-        cam.DoFov(dashFov);
+        // cam.DoFovDash(dashFov, dashDuration);
 
-        Transform forwardT;
+        // Transform forwardT;
+        //
+        // if (useCameraForward)
+        //     forwardT = playerCam; /// where you're looking
+        // else
+        //     forwardT = orientation; /// where you're facing (no up or down)
 
-        if (useCameraForward)
-            forwardT = playerCam; /// where you're looking
-        else
-            forwardT = orientation; /// where you're facing (no up or down)
+        Vector3 direction = GetDirection();
 
-        Vector3 direction = GetDirection(forwardT);
-
-        Vector3 forceToApply = direction * dashForce + orientation.up * dashUpwardForce;
+        // Vector3 forceToApply = direction * dashForce + orientation.up * dashUpwardForce;
+        Vector3 forceToApply = direction * dashForce;
 
         if (disableGravity)
             rb.useGravity = false;
@@ -100,8 +114,10 @@ public class PlayerDash : MonoBehaviour
     {
         pm.dashing = false;
         pm.maxYSpeed = 0;
+        rb.velocity= speedBeforeDash;
 
-        cam.DoFov(85f);
+
+        // cam.DoFov(pm.camFov);
 
         if (disableGravity)
             rb.useGravity = true;
