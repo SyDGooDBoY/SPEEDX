@@ -52,9 +52,9 @@ public class AbilityManager : MonoBehaviour
                 case "High":
                     return 1.8f;
                 case "Medium":
-                    return 1.6f;
+                    return 1.7f;
                 default:
-                    return 1.4f; // Low
+                    return 1.5f; // Low
             }
         }
 

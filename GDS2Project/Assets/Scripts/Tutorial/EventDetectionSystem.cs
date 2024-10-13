@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EventDetectionSystem : MonoBehaviour
 {
-    public Transform nextTeleportPoint; // next teleport point's Transform after the event succeeds
     public GameObject celebrationUI;
     public GameObject promptUI; 
 
@@ -145,19 +144,6 @@ public class EventDetectionSystem : MonoBehaviour
             promptUI.SetActive(false);
         }
     }
-
-
-    //// 
-    //void UpdateCheckpoint(Transform player)
-    //{
-    //    currentCheckpoint.position = player.position; 
-    //}
-
-    //// 
-    //void TeleportPlayerToCheckpoint(Transform player)
-    //{
-    //    player.position = currentCheckpoint.position; 
-    //}
 
     // Display the celebration UI
     void ShowCelebrationUI()
