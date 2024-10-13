@@ -5,18 +5,22 @@ using UnityEngine;
 public class EventDetectionSystem : MonoBehaviour
 {
     public Transform nextTeleportPoint; // next teleport point's Transform after the event succeeds
-    public GameObject celebrationUI; 
+    public GameObject celebrationUI;
+    public GameObject promptUI; 
 
-    [Tooltip("Require player to press £º'E', 'Mouse0' (Left), 'Mouse1' (Right)")]
-    public string requiredKey = "E";  // The button that the player needs to press
+    [Tooltip("Require player to press")]
+    public KeyCode requiredKey = KeyCode.E;  // The button that the player needs to press
     public float actionTimeWindow = 3f;  // Time window for key detection
-    public float slowMotionFactor = 0.1f; //Time slowdown multiplier
+    public float slowMotionFactor = 0.2f; //Time slowdown multiplier
 
     private bool isInArea = false;    // Is the player in the area?
     private bool actionExecuted = false; // Whether the specific action is executed
     private float originalTimeScale;
 
     public IEventCondition eventCondition; // Event condition interface
+
+    public enum EventType { Jump, GrapplingHook }
+    public EventType eventType;  // enumeration variable, select it in the Inspector
 
 
     void Start()
@@ -26,12 +30,23 @@ public class EventDetectionSystem : MonoBehaviour
         { 
             celebrationUI.SetActive(false); 
         }
-
-        // Assign event condition
-        if (eventCondition == null)
+        if (promptUI != null)
         {
-            Debug.LogWarning("EventCondition not assigned, using default success condition.");
-            eventCondition = new DefaultEventCondition(); 
+            promptUI.SetActive(false); 
+        }
+
+        // Initialize the corresponding IEventCondition according to the selected event type
+        switch (eventType)
+        {
+            case EventType.Jump:
+                eventCondition = new JumpEventCondition();
+                break;
+            case EventType.GrapplingHook:
+                eventCondition = new GrapplingHookEventCondition();
+                break;
+            default:
+                eventCondition = new DefaultEventCondition(); 
+                break;
         }
     }
 
@@ -41,6 +56,7 @@ public class EventDetectionSystem : MonoBehaviour
         {
             isInArea = true;
             actionExecuted = false;
+            ShowPromptUI();
             SlowMotion(true);  // Time slowing
             StartCoroutine(WaitForAction(other.transform)); // Start detecting key input
         }
@@ -51,6 +67,7 @@ public class EventDetectionSystem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isInArea = false;
+            HidePromptUI();
             SlowMotion(false);  // Return to normal time
             StopAllCoroutines(); // Player leaves the area, Stops detecting
         }
@@ -72,16 +89,11 @@ public class EventDetectionSystem : MonoBehaviour
                 {
                     actionExecuted = true;
                     //UpdateCheckpoint(player); // Update the teleport point
+                    HidePromptUI();
                     ShowCelebrationUI();
                     SlowMotion(false);
                     yield break;
                 }
-
-                //actionExecuted = true;
-                ////UpdateCheckpoint(player); // Update the teleport point
-                //ShowCelebrationUI();
-                //SlowMotion(false);
-                //yield break;
             }
 
             yield return null;
@@ -113,21 +125,27 @@ public class EventDetectionSystem : MonoBehaviour
     // Detect if a specific button is pressed
     bool IsCorrectInput()
     {
-        if (requiredKey == "Mouse0" && Input.GetMouseButtonDown(0)) // Left
-        {
-            return true;
-        }
-        else if (requiredKey == "Mouse1" && Input.GetMouseButtonDown(1)) // Right
-        {
-            return true;
-        }
-        else if (Input.GetKeyDown(requiredKey)) // Key
-        {
-            return true;
-        }
-
-        return false;
+        return Input.GetKeyDown(requiredKey); 
     }
+
+    // Display the prompt UI
+    void ShowPromptUI()
+    {
+        if (promptUI != null)
+        {
+            promptUI.SetActive(true); 
+        }
+    }
+
+    // Hide the prompt UI
+    void HidePromptUI()
+    {
+        if (promptUI != null)
+        {
+            promptUI.SetActive(false);
+        }
+    }
+
 
     //// 
     //void UpdateCheckpoint(Transform player)
@@ -156,19 +174,5 @@ public class EventDetectionSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(2f); 
         celebrationUI.SetActive(false); 
-    }
-}
-
-public interface IEventCondition
-{
-    bool CheckSuccess(); // Interface for event conditions
-}
-
-// Default
-public class DefaultEventCondition : IEventCondition
-{
-    public bool CheckSuccess()
-    {
-        return true;
     }
 }
