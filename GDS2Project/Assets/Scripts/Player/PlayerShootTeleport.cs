@@ -28,7 +28,7 @@ public class PlayerShootTeleport : MonoBehaviour
 
     private AudioSource audioSource;
 
-    private GradientColor gradientColor;
+    public GradientColor gradientColor;
 
     void Start()
     {
@@ -40,7 +40,7 @@ public class PlayerShootTeleport : MonoBehaviour
         pm = GetComponent<PlayerMovement>(); // Get the PlayerMovement component
         shootingPoint = GameObject.Find("shooting point").transform;
         audioSource = GetComponent<AudioSource>();
-        gradientColor = GameObject.Find("TeleportTime").GetComponent<GradientColor>();
+        // gradientColor = GameObject.Find("TeleportTime").GetComponent<GradientColor>();
     }
 
     void Update()
