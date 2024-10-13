@@ -188,10 +188,10 @@ public class PlayerMovement : MonoBehaviour
             state = MoveState.sliding;
 
             if (OnSlope() && rb.velocity.y < 0.1f)
-                moveSpeed = slideSpeed;
+                moveSpeed = slideSpeed * abilityManager.GetAbilityMultiplier();
 
             else
-                moveSpeed = runSpeed;
+                moveSpeed = runSpeed * abilityManager.GetAbilityMultiplier();
         }
 
         // Crouching state
@@ -217,6 +217,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             state = MoveState.Jumping;
+            //moveSpeed *= abilityManager.GetAbilityMultiplier();
         }
     }
 
