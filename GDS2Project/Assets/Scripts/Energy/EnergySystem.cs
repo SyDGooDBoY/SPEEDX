@@ -23,17 +23,17 @@ public class EnergySystem : MonoBehaviour
     private float recoveryDelay = 1f; // Delay before starting to recover energy
     private float recoveryTimer = 0f; // Timer to track when to start recovery
 
-    [Header("Boosting")]
-    private bool isBoosting = false;
+    public float stopMoveDelay = 1f; // energy decreasing delay after stopping
+    [HideInInspector]public float stopMoveTimer = 0f; // Timer to track stop movement delay
 
+    [Header("Boosting")]
+    [HideInInspector] public bool isBoosting = false;
     public float boostEnergyConsumptionRate = 40f;
 
     [Header("Boosting Camera")]
     public PlayerCam cam;
-
-    private float camFov;
-
     public float boostFOV = 120f;
+    private float camFov;
 
     void Start()
     {
@@ -74,7 +74,19 @@ public class EnergySystem : MonoBehaviour
             }
             else
             {
-                DecreaseEnergyOverTime(); // Gradually decrease energy when not recovering
+                if (currentEnergy >= maxEnergy)
+                {
+                    // If energy is full, start counting the stop timer before decreasing energy
+                    stopMoveTimer += Time.deltaTime;
+                    if (stopMoveTimer >= stopMoveDelay)
+                    {
+                        DecreaseEnergyOverTime(); // Start decreasing energy after delay
+                    }
+                }
+                else
+                {
+                    DecreaseEnergyOverTime(); // Normal energy decrease
+                }
             }
         }
 

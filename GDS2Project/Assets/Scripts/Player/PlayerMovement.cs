@@ -275,6 +275,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             energySystem.StartRecovery(); // recover 
+            energySystem.stopMoveTimer = 0f;
         }
 
         // Debug.Log("PlayerSpeed: " + rb.velocity.magnitude);
@@ -604,7 +605,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 // detect whether player is moving
-    private bool isMoving()
+    public bool isMoving()
     {
         return rb.velocity.magnitude > 0.1f; // speed threshold
     }
