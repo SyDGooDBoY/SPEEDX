@@ -7,12 +7,13 @@ public class BrokenBoard : MonoBehaviour
     public string playerTag = "Player"; // 玩家标签
     public float brokenVel = 11f; // 破碎需要的最小速度 
 
-    public AudioClip destructionSound;  // 销毁时的音效
+    public AudioClip destructionSound; // 销毁时的音效
     public GameObject destructionParticles; // 粒子特效预制件
 
     // 用于调整粒子生成位置的相对偏移量
     public Vector3 particleOffset = Vector3.zero; // 可以在 Unity 中调整的偏移量
-    private AudioSource audioSource;    // 音效播放组件
+    private AudioSource audioSource; // 音效播放组件
+    private PlayerDash pd;
 
     private void Start()
     {
@@ -20,12 +21,13 @@ public class BrokenBoard : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.CompareTag(playerTag))
+        if (other.gameObject.CompareTag(playerTag))
         {
             Debug.Log("Player has entered the trigger area.");
-            Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
+            Rigidbody playerRigidbody = other.gameObject.GetComponent<Rigidbody>();
+            pd = other.gameObject.GetComponent<PlayerDash>();
 
             if (playerRigidbody != null)
             {
@@ -57,7 +59,8 @@ public class BrokenBoard : MonoBehaviour
                         Vector3 particleSpawnPosition = transform.position + particleOffset;
 
                         // 实例化粒子特效
-                        GameObject particles = Instantiate(destructionParticles, particleSpawnPosition, Quaternion.identity);
+                        GameObject particles = Instantiate(destructionParticles, particleSpawnPosition,
+                            Quaternion.identity);
 
                         // 获取粒子系统的持续时间，然后在持续时间结束后销毁粒子对象
                         ParticleSystem ps = particles.GetComponent<ParticleSystem>();
@@ -71,6 +74,8 @@ public class BrokenBoard : MonoBehaviour
                             Destroy(particles, 2f);
                         }
                     }
+
+                    pd.dashCdTimer = 0;
 
                     // 销毁父物体
                     Destroy(transform.parent.gameObject); // 立即销毁Cube
