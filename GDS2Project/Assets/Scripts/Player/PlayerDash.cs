@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,12 +35,16 @@ public class PlayerDash : MonoBehaviour
     [Header("Cooldown")]
     public float dashCd;
 
-    private float dashCdTimer;
+    public float dashCdTimer;
 
     [Header("Input")]
     public KeyCode dashKey = KeyCode.E;
 
     private Vector3 speedBeforeDash;
+    public float dashGroundDrag = 2f;
+    private float pmGroundDrag;
+    public LayerMask dashMask;
+    public float camAngle;
 
     private void Start()
     {
@@ -51,7 +56,9 @@ public class PlayerDash : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(dashKey))
+        Debug.Log("Dash cd" + dashCdTimer);
+
+        if (Input.GetKeyDown(dashKey) && dashCdTimer <= 0)
         {
             speedBeforeDash = rb.velocity;
             Dash();
@@ -73,6 +80,14 @@ public class PlayerDash : MonoBehaviour
     {
         if (dashCdTimer > 0) return;
         else dashCdTimer = dashCd;
+        Vector3 horizontalForward = new Vector3(playerCam.forward.x, 0, playerCam.forward.z).normalized;
+        float angle = Vector3.Angle(horizontalForward, playerCam.forward);
+
+        // 检查角度是否超过设定的限制（例如45度）
+        if (angle > camAngle)
+        {
+            return; // 如果角度过大，则不执行冲刺
+        }
 
         pm.dashing = true;
         // pm.maxYSpeed = maxDashYSpeed;
@@ -93,7 +108,8 @@ public class PlayerDash : MonoBehaviour
 
         if (disableGravity)
             rb.useGravity = false;
-
+        pmGroundDrag = pm.groundDrag;
+        pm.groundDrag = dashGroundDrag;
         delayedForceToApply = forceToApply;
         Invoke(nameof(DelayedDashForce), 0.025f);
 
@@ -114,7 +130,8 @@ public class PlayerDash : MonoBehaviour
     {
         pm.dashing = false;
         pm.maxYSpeed = 0;
-        rb.velocity= speedBeforeDash;
+        rb.velocity = speedBeforeDash;
+        pm.groundDrag = pmGroundDrag;
 
 
         // cam.DoFov(pm.camFov);

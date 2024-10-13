@@ -65,12 +65,15 @@ public class PlayerWall : MonoBehaviour
     private PlayerMovement playerMovement; //玩家移动脚本
     private Rigidbody rb;
 
+    private PlayerDash pd;
+
     // Start is called before the first frame update
     void Start()
     {
         // pg = GetComponent<PlayerGrab>();
         rb = GetComponent<Rigidbody>();
         playerMovement = GetComponent<PlayerMovement>();
+        pd = GetComponent<PlayerDash>();
         cam = GameObject.Find("Camera").GetComponent<PlayerCam>();
 
         camFov = cam.GetComponent<Camera>().fieldOfView;
@@ -172,6 +175,7 @@ public class PlayerWall : MonoBehaviour
     //开始墙上跑
     private void StartWallRun()
     {
+        pd.dashCdTimer = 0;
         playerMovement.wallRunning = true;
         wallRunTimer = wallRunMaxTime;
 
