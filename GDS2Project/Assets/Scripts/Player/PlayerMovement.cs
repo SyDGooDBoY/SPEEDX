@@ -115,6 +115,13 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Input control")]
     public bool inputEnabled = true;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+
+    public AudioClip jumpSound;
+
+    public AudioClip walkSound;
+
     // Movement states
     public enum MoveState
     {
@@ -235,6 +242,16 @@ public class PlayerMovement : MonoBehaviour
 
         energySystem = GetComponent<EnergySystem>();
         abilityManager = GetComponent<AbilityManager>();
+        if(GetComponent<AudioSource>() == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        else
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+        jumpSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/JUMP");
+        walkSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/FOOTSTEP B");
     }
 
 // Update is called once per frame
@@ -277,6 +294,15 @@ public class PlayerMovement : MonoBehaviour
         {
             energySystem.StartRecovery(); // recover 
             energySystem.stopMoveTimer = 0f;
+        }
+
+        if (rb.velocity.magnitude < 30f && isMoving())
+        {
+            if (!audioSource.isPlaying)
+            {
+                audioSource.clip = walkSound;
+                audioSource.Play();
+            }
         }
 
         // Debug.Log("PlayerSpeed: " + rb.velocity.magnitude);
@@ -453,6 +479,7 @@ public class PlayerMovement : MonoBehaviour
 // Jumping
     private void Jump(bool isDoubleJump = false)
     {
+        audioSource.PlayOneShot(jumpSound);
         exitingSlope = true;
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         if (isDoubleJump)

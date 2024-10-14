@@ -66,6 +66,9 @@ public class PlayerWall : MonoBehaviour
     private Rigidbody rb;
 
     private PlayerDash pd;
+    public AudioSource audioSource;
+
+    public AudioClip wallRunSound;
 
     // Start is called before the first frame update
     void Start()
@@ -78,6 +81,16 @@ public class PlayerWall : MonoBehaviour
 
         camFov = cam.GetComponent<Camera>().fieldOfView;
         cam.DoFov(camFov);
+        if (GetComponent<AudioSource>() == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        else
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        wallRunSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/WALLRUN");
     }
 
     // Update is called once per frame
@@ -182,6 +195,13 @@ public class PlayerWall : MonoBehaviour
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         //应用摄像机效果
         cam.DoFov(onWallFOV);
+        if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+        }
+
+        audioSource.clip = wallRunSound;
+        audioSource.Play();
         if (isWallLeft)
         {
             cam.DoTilt(-5f);
@@ -232,6 +252,7 @@ public class PlayerWall : MonoBehaviour
 
     private void StopWallRun()
     {
+        audioSource.Stop();
         rb.useGravity = true;
         playerMovement.wallRunning = false;
         cam.DoFov(camFov);

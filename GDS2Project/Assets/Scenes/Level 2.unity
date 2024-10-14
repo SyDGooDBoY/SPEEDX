@@ -14885,6 +14885,9 @@ MonoBehaviour:
   player: {fileID: 165005916}
   timeScoreSystem: {fileID: 352725573}
   time: {fileID: 1276476578}
+  audioSource: {fileID: 0}
+  winSound: {fileID: 0}
+  bgm: {fileID: 0}
 --- !u!54 &1979293854
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15957,6 +15960,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4624245326416202220, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: swingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 02dacba279a059e49a1f22c47681baae, type: 3}
+    - target: {fileID: 4624245326416202220, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: grappleSound
       value: 
       objectReference: {fileID: 8300000, guid: 02dacba279a059e49a1f22c47681baae, type: 3}
@@ -15982,6 +15989,10 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 02dacba279a059e49a1f22c47681baae, type: 3}
     - target: {fileID: 5651101823805506318, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: grappleSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f59fe616179be740b48192ff37d8c89, type: 3}
+    - target: {fileID: 5651101823805506318, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: respawnSound
       value: 
       objectReference: {fileID: 8300000, guid: 8f59fe616179be740b48192ff37d8c89, type: 3}
     - target: {fileID: 6008647085528278979, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
@@ -16047,6 +16058,10 @@ PrefabInstance:
     - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: cooldown
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: shootSound
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: destroyTime

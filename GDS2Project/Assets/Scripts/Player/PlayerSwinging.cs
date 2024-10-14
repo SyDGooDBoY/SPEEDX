@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 // Script to manage player swinging mechanics similar to a grappling hook or swing system.
 public class PlayerSwinging : MonoBehaviour
@@ -67,8 +68,9 @@ public class PlayerSwinging : MonoBehaviour
 
     public PlayerShootTeleport playerShootTeleport;
 
+    [FormerlySerializedAs("grappleSound")]
     [Header("Sound")]
-    public AudioClip grappleSound;
+    public AudioClip swingSound;
 
     private AudioSource audioSource;
 
@@ -77,7 +79,16 @@ public class PlayerSwinging : MonoBehaviour
         playerShootTeleport = GetComponent<PlayerShootTeleport>();
         cam = GameObject.Find("Camera").transform;
         gunTip = GameObject.Find("shooting point").transform;
-        audioSource = GetComponent<AudioSource>();
+        if (GetComponent<AudioSource>() == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        else
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        swingSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/SWINGING");
     }
 
     private void Update()
@@ -168,9 +179,9 @@ public class PlayerSwinging : MonoBehaviour
 
         lr.positionCount = 2;
         currentGrapplePosition = gunTip.position;
-        if (grappleSound != null && audioSource != null)
+        if (swingSound != null && audioSource != null)
         {
-            audioSource.PlayOneShot(grappleSound);
+            audioSource.PlayOneShot(swingSound);
         }
     }
 
