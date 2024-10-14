@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerRespawn : MonoBehaviour
 {
@@ -9,8 +10,9 @@ public class PlayerRespawn : MonoBehaviour
     [SerializeField]
     string bottomObjectTag = "Bottom";
 
+    [FormerlySerializedAs("grappleSound")]
     [Header("Sound")]
-    public AudioClip grappleSound;
+    public AudioClip respawnSound;
 
     private AudioSource audioSource;
 
@@ -19,6 +21,7 @@ public class PlayerRespawn : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
         audioSource = GetComponent<AudioSource>();
+        respawnSound = Resources.Load<AudioClip>("Sound/respawn_teleport sound");
     }
 
     void Update()
@@ -40,7 +43,7 @@ public class PlayerRespawn : MonoBehaviour
         {
             if (audioSource != null)
             {
-                audioSource.PlayOneShot(grappleSound);
+                audioSource.PlayOneShot(respawnSound);
             }
 
             if (rb != null)

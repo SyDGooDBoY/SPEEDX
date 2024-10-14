@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerShootTeleport : MonoBehaviour
 {
@@ -23,9 +24,11 @@ public class PlayerShootTeleport : MonoBehaviour
     private PlayerMovement pm;
     private float remainingTimeToDestroy;
 
+    [FormerlySerializedAs("grappleSound")]
     [Header("Sound")]
-    public AudioClip grappleSound;
+    public AudioClip shootSound;
 
+    public AudioClip teleportSound;
     private AudioSource audioSource;
 
     public GradientColor gradientColor;
@@ -40,6 +43,9 @@ public class PlayerShootTeleport : MonoBehaviour
         pm = GetComponent<PlayerMovement>(); // Get the PlayerMovement component
         shootingPoint = GameObject.Find("shooting point").transform;
         audioSource = GetComponent<AudioSource>();
+        shootSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/NEW GUN");
+        teleportSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/NEW TELEPORT");
+
         // gradientColor = GameObject.Find("TeleportTime").GetComponent<GradientColor>();
     }
 
@@ -174,7 +180,7 @@ public class PlayerShootTeleport : MonoBehaviour
     {
         if (audioSource != null)
         {
-            audioSource.PlayOneShot(grappleSound);
+            audioSource.PlayOneShot(shootSound);
         }
 
         remainingTimeToDestroy = destroyTime;
@@ -198,6 +204,10 @@ public class PlayerShootTeleport : MonoBehaviour
     {
         if (currentBall != null)
         {
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(teleportSound);
+            }
             transform.position = currentBall.transform.position; // Set player position to the projectile's position
             Destroy(currentBall); // Destroy the projectile
             currentBall = null; // Reset the projectile reference

@@ -52,6 +52,7 @@ public class PlayerGrappling : MonoBehaviour
         cam = GameObject.Find("Camera").transform;
         gunTip = GameObject.Find("shooting point").transform;
         audioSource = GetComponent<AudioSource>();
+        grappleSound = Resources.Load<AudioClip>("Sound/grapple sound");
     }
 
     private void Update()
