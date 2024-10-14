@@ -42,7 +42,15 @@ public class PlayerShootTeleport : MonoBehaviour
         cam = GameObject.Find("Camera").GetComponent<Camera>(); // Find the camera object in the scene
         pm = GetComponent<PlayerMovement>(); // Get the PlayerMovement component
         shootingPoint = GameObject.Find("shooting point").transform;
-        audioSource = GetComponent<AudioSource>();
+        if (GetComponent<AudioSource>() == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        else
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         shootSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/NEW GUN");
         teleportSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/NEW TELEPORT");
 
@@ -208,6 +216,7 @@ public class PlayerShootTeleport : MonoBehaviour
             {
                 audioSource.PlayOneShot(teleportSound);
             }
+
             transform.position = currentBall.transform.position; // Set player position to the projectile's position
             Destroy(currentBall); // Destroy the projectile
             currentBall = null; // Reset the projectile reference

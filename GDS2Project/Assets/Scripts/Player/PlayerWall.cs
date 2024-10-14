@@ -81,7 +81,15 @@ public class PlayerWall : MonoBehaviour
 
         camFov = cam.GetComponent<Camera>().fieldOfView;
         cam.DoFov(camFov);
-        audioSource = GetComponent<AudioSource>();
+        if (GetComponent<AudioSource>() == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        else
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         wallRunSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/WALLRUN");
     }
 

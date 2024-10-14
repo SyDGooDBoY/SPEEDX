@@ -47,13 +47,22 @@ public class PlayerDash : MonoBehaviour
     public float camAngle;
     public AudioSource audioSource;
     public AudioClip dashSound;
+
     private void Start()
     {
         cam = GameObject.Find("Camera").GetComponent<PlayerCam>();
 
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
-        audioSource = GetComponent<AudioSource>();
+        if (GetComponent<AudioSource>() == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        else
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         dashSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/NEW DASH");
     }
 
@@ -91,6 +100,7 @@ public class PlayerDash : MonoBehaviour
         {
             return; // 如果角度过大，则不执行冲刺
         }
+
         audioSource.PlayOneShot(dashSound);
 
         pm.dashing = true;

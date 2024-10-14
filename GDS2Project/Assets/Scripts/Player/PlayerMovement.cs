@@ -242,7 +242,14 @@ public class PlayerMovement : MonoBehaviour
 
         energySystem = GetComponent<EnergySystem>();
         abilityManager = GetComponent<AbilityManager>();
-        audioSource = GetComponent<AudioSource>();
+        if(GetComponent<AudioSource>() == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        else
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
         jumpSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/JUMP");
         walkSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/FOOTSTEP B");
     }

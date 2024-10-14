@@ -20,7 +20,15 @@ public class PlayerRespawn : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
-        audioSource = GetComponent<AudioSource>();
+        if (GetComponent<AudioSource>() == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        else
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         respawnSound = Resources.Load<AudioClip>("Sound/respawn_teleport sound");
     }
 

@@ -11,7 +11,15 @@ public class Springboard : MonoBehaviour
 
     private void Start()
     {
-        audioSource = gameObject.AddComponent<AudioSource>();
+        if (GetComponent<AudioSource>() == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        else
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         springSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/JUMP PAD");
     }
 

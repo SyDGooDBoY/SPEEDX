@@ -24,9 +24,10 @@ public class Endpoint : MonoBehaviour
 
     // private bool isFalling = false; // Track if the platform has started falling
     public TextMeshProUGUI time;
-public AudioSource audioSource;
-public AudioClip winSound;
-public AudioSource bgm;
+    public AudioSource audioSource;
+    public AudioClip winSound;
+    public AudioSource bgm;
+
     void Start()
 
     {
@@ -37,7 +38,15 @@ public AudioSource bgm;
         }
 
         fadeCanvasGroup.alpha = 0; // Ensure initial alpha is 0
-        audioSource = GetComponent<AudioSource>();
+        if (GetComponent<AudioSource>() == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        else
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         bgm = GameObject.Find("BGM").GetComponent<AudioSource>();
         winSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/WIN");
     }
