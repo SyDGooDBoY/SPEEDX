@@ -102,6 +102,9 @@ MonoBehaviour:
   boostButton: {fileID: 0}
   energyRecoveryRate: 100
   energyDecreaseRate: 80
+  stopMoveDelay: 1
+  stopMoveTimer: 0
+  isBoosting: 0
   boostEnergyConsumptionRate: 40
   cam: {fileID: 0}
   boostFOV: 120
@@ -546,6 +549,7 @@ MonoBehaviour:
   pc: {fileID: 4031317112601952522}
   cam: {fileID: 0}
   grappleFOV: 120
+  camFov: 0
   state: 0
   wallRunning: 0
   climbing: 0
@@ -558,6 +562,9 @@ MonoBehaviour:
   sliding: 0
   wallSlideRecoveryRate: 20
   inputEnabled: 1
+  audioSource: {fileID: 0}
+  jumpSound: {fileID: 0}
+  walkSound: {fileID: 0}
 --- !u!114 &1408226002555975307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,6 +599,8 @@ MonoBehaviour:
   orientation: {fileID: 7151712449624173914}
   cam: {fileID: 0}
   onWallFOV: 110
+  audioSource: {fileID: 0}
+  wallRunSound: {fileID: 0}
 --- !u!114 &8601829210647188575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,7 +626,15 @@ MonoBehaviour:
   disableGravity: 1
   resetVel: 1
   dashCd: 0
+  dashCdTimer: 0
   dashKey: 101
+  dashGroundDrag: 2
+  dashMask:
+    serializedVersion: 2
+    m_Bits: 0
+  camAngle: 0
+  audioSource: {fileID: 0}
+  dashSound: {fileID: 0}
 --- !u!114 &4031317112601952522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,7 +695,7 @@ MonoBehaviour:
   predictionPoint: {fileID: 6986772597373213379}
   swingKey: 323
   playerShootTeleport: {fileID: 0}
-  grappleSound: {fileID: 0}
+  swingSound: {fileID: 0}
 --- !u!114 &5344313690183820106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -729,7 +746,9 @@ MonoBehaviour:
   destroyTime: 3
   ballX: 0.05
   ballY: 0.5
-  grappleSound: {fileID: 0}
+  shootSound: {fileID: 0}
+  teleportSound: {fileID: 0}
+  gradientColor: {fileID: 0}
 --- !u!114 &4642578342696618354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -782,7 +801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallThreshold: -10
   bottomObjectTag: Bottom
-  grappleSound: {fileID: 0}
+  respawnSound: {fileID: 0}
 --- !u!136 &2207196687716489250
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -836,6 +855,9 @@ MonoBehaviour:
   boostButton: {fileID: 0}
   energyRecoveryRate: 40
   energyDecreaseRate: 80
+  stopMoveDelay: 1
+  stopMoveTimer: 0
+  isBoosting: 0
   boostEnergyConsumptionRate: 40
   cam: {fileID: 0}
   boostFOV: 120
@@ -954,7 +976,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

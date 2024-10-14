@@ -12,12 +12,18 @@ public class PauseMenu : MonoBehaviour
     public GameObject crosshair;
     public Slider rotationSpeedSlider;
     public PlayerCam playerCam;
-    
+    public GameObject mainMenu;
+    public GameObject settingsMenu;
+private AudioSource playerAudioSource;
 
     private void Start()
     {
         rotationSpeedSlider.value = playerCam.rotationSpeed;
         rotationSpeedSlider.onValueChanged.AddListener(HandleSliderChange);
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        playerAudioSource = GameObject.Find("Player").GetComponent<AudioSource>();
+        
     }
 
     void HandleSliderChange(float value)
@@ -45,9 +51,10 @@ public class PauseMenu : MonoBehaviour
     public void PauseGame()
     {
         // AudioListener.pause = true;
-        
+
         GameIsPaused = true;
         pauseMenuUI.SetActive(true);
+        mainMenu.SetActive(true);
         Time.timeScale = 0f;
         Debug.Log("Pause Game");
         Cursor.lockState = CursorLockMode.None;
@@ -60,11 +67,23 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         crosshair.SetActive(true);
         pauseMenuUI.SetActive(false);
+        settingsMenu.SetActive(false);
         Time.timeScale = 1f;
         Debug.Log("Resume Game");
         EventSystem.current.SetSelectedGameObject(null);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void SettingsMenu()
+    {
+        settingsMenu.SetActive(true);
+        mainMenu.SetActive(false);
+    }
+    public void BackToMainMenu()
+    {
+        settingsMenu.SetActive(false);
+        mainMenu.SetActive(true);
     }
 
     public void RestartGame()
