@@ -88,13 +88,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2382207914973182183, guid: 5f7220e5de42a014689dd91f3c4da130, type: 3}
+      propertyPath: m_Color.g
+      value: 0.909804
+      objectReference: {fileID: 0}
+    - target: {fileID: 2382207914973182183, guid: 5f7220e5de42a014689dd91f3c4da130, type: 3}
+      propertyPath: m_Color.r
+      value: 0.27058825
+      objectReference: {fileID: 0}
     - target: {fileID: 3139693130269053314, guid: 5f7220e5de42a014689dd91f3c4da130, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 95e7cc0d2996b214ead692ad8567b507, type: 3}
+    - target: {fileID: 3139693130269053314, guid: 5f7220e5de42a014689dd91f3c4da130, type: 3}
+      propertyPath: m_Color.g
+      value: 0.909804
+      objectReference: {fileID: 0}
+    - target: {fileID: 3139693130269053314, guid: 5f7220e5de42a014689dd91f3c4da130, type: 3}
+      propertyPath: m_Color.r
+      value: 0.27058825
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132700596350371265, guid: 5f7220e5de42a014689dd91f3c4da130, type: 3}
+      propertyPath: m_Color.g
+      value: 0.909804
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132700596350371265, guid: 5f7220e5de42a014689dd91f3c4da130, type: 3}
+      propertyPath: m_Color.r
+      value: 0.27058825
+      objectReference: {fileID: 0}
     - target: {fileID: 5473161536174114629, guid: 5f7220e5de42a014689dd91f3c4da130, type: 3}
       propertyPath: m_Name
-      value: SwingIcon Variant
+      value: DashIcon
       objectReference: {fileID: 0}
     - target: {fileID: 8980340705085539769, guid: 5f7220e5de42a014689dd91f3c4da130, type: 3}
       propertyPath: m_AnchoredPosition.y
