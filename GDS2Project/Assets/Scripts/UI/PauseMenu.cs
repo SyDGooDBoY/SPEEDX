@@ -44,7 +44,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        AudioListener.pause = true;
+        // AudioListener.pause = true;
         
         GameIsPaused = true;
         pauseMenuUI.SetActive(true);
@@ -56,7 +56,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
-        AudioListener.pause = false;
+        // AudioListener.pause = false;
         GameIsPaused = false;
         crosshair.SetActive(true);
         pauseMenuUI.SetActive(false);
