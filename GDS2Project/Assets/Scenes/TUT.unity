@@ -1470,7 +1470,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.39473766, y: -0.6199356, z: -0.56401134, w: 0.37650138}
   m_LocalPosition: {x: 138.7, y: -56.9, z: -441.5}
-  m_LocalScale: {x: 1.2258849, y: 150.29797, z: 54.908997}
+  m_LocalScale: {x: 1.2258849, y: 182.55191, z: 54.908997}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 356055160}
@@ -2792,8 +2792,8 @@ Transform:
   m_GameObject: {fileID: 824581951}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.96, y: -14.77, z: 79.5}
-  m_LocalScale: {x: 1, y: 1, z: 10.033198}
+  m_LocalPosition: {x: 0.96, y: -14.77, z: 82.79}
+  m_LocalScale: {x: 1, y: 1, z: 8.512266}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1333006069}
@@ -4638,7 +4638,7 @@ GameObject:
   - component: {fileID: 1205228337}
   - component: {fileID: 1205228336}
   m_Layer: 0
-  m_Name: DoubleJump (1)
+  m_Name: WallJump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5352,8 +5352,8 @@ Transform:
   - {fileID: 1521258649}
   - {fileID: 1176098701}
   - {fileID: 1111270027}
-  - {fileID: 1205228335}
   - {fileID: 824581952}
+  - {fileID: 1205228335}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1394840360
@@ -8790,6 +8790,9 @@ MonoBehaviour:
   player: {fileID: 8399425915912535475}
   timeScoreSystem: {fileID: 352725573}
   time: {fileID: 1714626030}
+  audioSource: {fileID: 0}
+  winSound: {fileID: 0}
+  bgm: {fileID: 0}
 --- !u!54 &1979293854
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9701,6 +9704,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1131196476}
     - target: {fileID: 4624245326416202220, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: swingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 02dacba279a059e49a1f22c47681baae, type: 3}
+    - target: {fileID: 4624245326416202220, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: grappleSound
       value: 
       objectReference: {fileID: 8300000, guid: 02dacba279a059e49a1f22c47681baae, type: 3}
@@ -9722,6 +9729,10 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 02dacba279a059e49a1f22c47681baae, type: 3}
     - target: {fileID: 5651101823805506318, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: grappleSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f59fe616179be740b48192ff37d8c89, type: 3}
+    - target: {fileID: 5651101823805506318, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: respawnSound
       value: 
       objectReference: {fileID: 8300000, guid: 8f59fe616179be740b48192ff37d8c89, type: 3}
     - target: {fileID: 6008647085528278979, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
@@ -9784,6 +9795,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 22231d2069f35e149a32256fc11a73fc, type: 3}
     - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: grappleSound
       value: 
