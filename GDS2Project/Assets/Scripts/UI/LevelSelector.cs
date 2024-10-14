@@ -35,7 +35,7 @@ public class LevelSelector : MonoBehaviour
     void Start()
     {
         levelText.text = "Level " + level;
-        CheckLevelUnlocked();
+        // CheckLevelUnlocked();
     }
 
     void CheckLevelUnlocked()

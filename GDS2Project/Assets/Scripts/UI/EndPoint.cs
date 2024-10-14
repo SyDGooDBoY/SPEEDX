@@ -54,46 +54,58 @@ public class Endpoint : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //if current scene called level 1 run this code
-        if (SceneManager.GetActiveScene().name == "Level 1" && collision.gameObject.CompareTag("Player"))
+        if (SceneManager.GetActiveScene().name == "Level 1" &&
+            collision.gameObject.CompareTag("Player"))
         {
             timeScoreSystem.isGameRunning = false;
             bgm.Stop();
             audioSource.PlayOneShot(winSound);
-            // Time.timeScale = 0;
             fadePanel.SetActive(true);
             player.GetComponent<PlayerMovement>().inputEnabled = false;
             StartCoroutine(Level1EndFade());
-            // get index and ID(scene name) of current level 
             int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
             string currentLevelID = SceneManager.GetSceneByBuildIndex(currentLevelIndex).name;
-            // update best time
             SaveManager.Instance.UpdateBestTime(currentLevelID, timeSys.currentTime);
 
-            // get index and ID(scene name) of next level
             int nextLevelIndex = currentLevelIndex + 1;
 
-            // make sure the index is in the valid range
             if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
             {
-                // Unlock next level and save
                 SaveManager.Instance.UnlockLevel("Level " + currentLevelIndex);
             }
-
-            // // Load Level Selection scene
-            // SceneManager.LoadScene(loadIndex);
         }
 
-        if (SceneManager.GetActiveScene().name == "Level 2" && collision.gameObject.CompareTag("Player"))
+        if (SceneManager.GetActiveScene().name == "Level 2" &&
+            collision.gameObject.CompareTag("Player"))
         {
             timeScoreSystem.isGameRunning = false;
-            // Time.timeScale = 0;
+            bgm.Stop();
+            audioSource.PlayOneShot(winSound);
+            fadePanel.SetActive(true);
+            player.GetComponent<PlayerMovement>().inputEnabled = false;
+            StartCoroutine(Level1EndFade());
+            int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+            string currentLevelID = SceneManager.GetSceneByBuildIndex(currentLevelIndex).name;
+            SaveManager.Instance.UpdateBestTime(currentLevelID, timeSys.currentTime);
+
+            int nextLevelIndex = currentLevelIndex + 1;
+
+            if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
+            {
+                SaveManager.Instance.UnlockLevel("Level " + currentLevelIndex);
+            }
+        }
+
+        if (SceneManager.GetActiveScene().name == "Level 3" && collision.gameObject.CompareTag("Player"))
+        {
+            timeScoreSystem.isGameRunning = false;
+            bgm.Stop();
+            audioSource.PlayOneShot(winSound);
             fadePanel.SetActive(true);
             player.GetComponent<PlayerMovement>().inputEnabled = false;
             StartCoroutine(Level2EndFade());
-            // get index and ID(scene name) of current level 
             int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
             string currentLevelID = SceneManager.GetSceneByBuildIndex(currentLevelIndex).name;
-            // update best time
             SaveManager.Instance.UpdateBestTime(currentLevelID, timeSys.currentTime);
         }
     }
