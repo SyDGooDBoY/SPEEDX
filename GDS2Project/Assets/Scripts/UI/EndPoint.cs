@@ -24,7 +24,9 @@ public class Endpoint : MonoBehaviour
 
     // private bool isFalling = false; // Track if the platform has started falling
     public TextMeshProUGUI time;
-
+public AudioSource audioSource;
+public AudioClip winSound;
+public AudioSource bgm;
     void Start()
 
     {
@@ -35,6 +37,9 @@ public class Endpoint : MonoBehaviour
         }
 
         fadeCanvasGroup.alpha = 0; // Ensure initial alpha is 0
+        audioSource = GetComponent<AudioSource>();
+        bgm = GameObject.Find("BGM").GetComponent<AudioSource>();
+        winSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/WIN");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -43,6 +48,8 @@ public class Endpoint : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Level 1" && collision.gameObject.CompareTag("Player"))
         {
             timeScoreSystem.isGameRunning = false;
+            bgm.Stop();
+            audioSource.PlayOneShot(winSound);
             // Time.timeScale = 0;
             fadePanel.SetActive(true);
             player.GetComponent<PlayerMovement>().inputEnabled = false;

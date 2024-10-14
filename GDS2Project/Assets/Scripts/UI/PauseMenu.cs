@@ -12,6 +12,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject crosshair;
     public Slider rotationSpeedSlider;
     public PlayerCam playerCam;
+    
 
     private void Start()
     {
@@ -43,6 +44,8 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        AudioListener.pause = true;
+        
         GameIsPaused = true;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
@@ -53,6 +56,7 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
+        AudioListener.pause = false;
         GameIsPaused = false;
         crosshair.SetActive(true);
         pauseMenuUI.SetActive(false);
