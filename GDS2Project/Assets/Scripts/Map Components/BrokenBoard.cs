@@ -15,10 +15,15 @@ public class BrokenBoard : MonoBehaviour
     private AudioSource audioSource; // 音效播放组件
     private PlayerDash pd;
 
+    //public CameraShake cameraShake; // 相机抖动脚本的引用
+    //public float shakeDuration = 0.5f; // 抖动持续时间
+    //public float shakeMagnitude = 1f; // 抖动强度
+
     private void Start()
     {
         // 初始化音效组件
         audioSource = gameObject.AddComponent<AudioSource>();
+
     }
 
     private void OnCollisionEnter(Collision other)
@@ -66,6 +71,7 @@ public class BrokenBoard : MonoBehaviour
                         ParticleSystem ps = particles.GetComponent<ParticleSystem>();
                         if (ps != null)
                         {
+                            ps.Play();
                             Destroy(particles, ps.main.duration);
                         }
                         else
@@ -74,7 +80,7 @@ public class BrokenBoard : MonoBehaviour
                             Destroy(particles, 2f);
                         }
                     }
-
+                    //StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
                     pd.dashCdTimer = 0;
 
                     // 销毁父物体
