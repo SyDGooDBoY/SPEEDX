@@ -12138,6 +12138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 60
+  audioSource: {fileID: 0}
+  springSound: {fileID: 0}
 --- !u!1 &1738303087
 GameObject:
   m_ObjectHideFlags: 0
@@ -13635,7 +13637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1891711740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13648,9 +13650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f68e122d3a21d4abab25a7704103cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redBar: {fileID: 1843248948}
-  yellowBar: {fileID: 563419379}
-  greenBar: {fileID: 948055882}
+  fill: {fileID: 0}
   energySystem: {fileID: 748381494}
 --- !u!114 &1891711741
 MonoBehaviour:
@@ -13683,6 +13683,8 @@ MonoBehaviour:
   crosshair: {fileID: 1025687820}
   rotationSpeedSlider: {fileID: 1417002807}
   playerCam: {fileID: 2116967204}
+  mainMenu: {fileID: 0}
+  settingsMenu: {fileID: 0}
 --- !u!4 &1891711743
 Transform:
   m_ObjectHideFlags: 0
@@ -14796,6 +14798,9 @@ MonoBehaviour:
   player: {fileID: 898248592}
   timeScoreSystem: {fileID: 352725573}
   time: {fileID: 0}
+  audioSource: {fileID: 0}
+  winSound: {fileID: 0}
+  bgm: {fileID: 0}
 --- !u!54 &1979293854
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15763,7 +15768,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
-  brokenVel: 20
+  brokenVel: 1
   destructionSound: {fileID: 8300000, guid: 574f70e549010e04082230dc180d047f, type: 3}
   destructionParticles: {fileID: 992798133}
   particleOffset: {x: -3, y: -3, z: 0}
