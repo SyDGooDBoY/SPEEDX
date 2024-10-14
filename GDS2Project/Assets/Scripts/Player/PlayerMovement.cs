@@ -121,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip jumpSound;
 
     public AudioClip walkSound;
-
+public PauseMenu pauseMenu;
     // Movement states
     public enum MoveState
     {
@@ -252,12 +252,18 @@ public class PlayerMovement : MonoBehaviour
         }
         jumpSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/JUMP");
         walkSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/FOOTSTEP B");
+        pauseMenu = GameObject.Find("UIManager").GetComponent<PauseMenu>();
     }
 
 // Update is called once per frame
     void Update()
     {
         if (!inputEnabled) return;
+        if(pauseMenu.GameIsPaused == true)
+        {
+            audioSource.Pause();
+            return;
+        }
         // Ground check
         float sphereRadius = 0.4f; // Adjust the radius as needed
         float groundDistance = 0.6f; // Adjust the distance as needed
