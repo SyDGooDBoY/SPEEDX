@@ -10000,7 +10000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientationPlayer: {fileID: 447142816}
   camHolder: {fileID: 237071121}
-  rotationSpeed: 1000
+  rotationSpeed: 1300
 --- !u!114 &2116967205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10579,6 +10579,10 @@ PrefabInstance:
     - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: cooldown
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: ballSpeed
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: m_Enabled

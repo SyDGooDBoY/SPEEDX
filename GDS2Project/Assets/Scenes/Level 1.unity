@@ -8879,7 +8879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orientationPlayer: {fileID: 447142816}
   camHolder: {fileID: 237071121}
-  rotationSpeed: 1000
+  rotationSpeed: 1300
 --- !u!114 &2116967205
 MonoBehaviour:
   m_ObjectHideFlags: 0
