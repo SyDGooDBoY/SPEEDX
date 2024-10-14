@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 // Script to handle player dashing mechanics.
 public class PlayerDash : MonoBehaviour
@@ -48,6 +50,11 @@ public class PlayerDash : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip dashSound;
 
+    [FormerlySerializedAs("dashIcon")]
+    [FormerlySerializedAs("skillIcon")]
+    public Image dashIconCD;
+
+
     private void Start()
     {
         cam = GameObject.Find("Camera").GetComponent<PlayerCam>();
@@ -64,6 +71,9 @@ public class PlayerDash : MonoBehaviour
         }
 
         dashSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/NEW DASH");
+        dashIconCD = GameObject.Find("dashCD").GetComponent<Image>();
+        //find all the obejcts under DashIcon and get the image component
+        dashIconCD.fillAmount = 0;
     }
 
     private void Update()
@@ -77,7 +87,14 @@ public class PlayerDash : MonoBehaviour
         }
 
         if (dashCdTimer > 0)
+        {
             dashCdTimer -= Time.deltaTime;
+            dashIconCD.fillAmount = dashCdTimer / dashCd;
+        }
+        else
+        {
+            dashIconCD.fillAmount = 0;
+        }
     }
 
     private Vector3 GetDirection()
@@ -92,6 +109,7 @@ public class PlayerDash : MonoBehaviour
     {
         if (dashCdTimer > 0) return;
         else dashCdTimer = dashCd;
+        dashIconCD.fillAmount = 1;
         Vector3 horizontalForward = new Vector3(playerCam.forward.x, 0, playerCam.forward.z).normalized;
         float angle = Vector3.Angle(horizontalForward, playerCam.forward);
 
