@@ -13009,6 +13009,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1891711742}
+    - target: {fileID: 3939319207946737124, guid: d619a43320d9a5247a14c01c22f6f116, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4370855955242972770, guid: d619a43320d9a5247a14c01c22f6f116, type: 3}
       propertyPath: m_Name
       value: Menu
@@ -13045,6 +13049,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1891711742}
+    - target: {fileID: 8644046505707655833, guid: d619a43320d9a5247a14c01c22f6f116, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801924381835703688, guid: d619a43320d9a5247a14c01c22f6f116, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9023954617906222437, guid: d619a43320d9a5247a14c01c22f6f116, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
