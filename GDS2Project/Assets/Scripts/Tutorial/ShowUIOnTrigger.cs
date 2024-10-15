@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class ShowUIOnTrigger : MonoBehaviour
 {
-    public GameObject moveUI;   
+    public GameObject moveUI;
+    public GameObject icon;
 
     void Start()
     {
@@ -22,6 +23,10 @@ public class ShowUIOnTrigger : MonoBehaviour
             if (moveUI != null)
             {
                 moveUI.SetActive(true);  
+            }
+            if(icon != null)
+            {
+                icon.SetActive(true);
             }
         }
     }
