@@ -120,8 +120,10 @@ public class PlayerMovement : MonoBehaviour
 
     public AudioClip jumpSound;
 
-    public AudioClip walkSound;
-public PauseMenu pauseMenu;
+    // public AudioClip walkSound;
+
+    public PauseMenu pauseMenu;
+
     // Movement states
     public enum MoveState
     {
@@ -242,7 +244,7 @@ public PauseMenu pauseMenu;
 
         energySystem = GetComponent<EnergySystem>();
         abilityManager = GetComponent<AbilityManager>();
-        if(GetComponent<AudioSource>() == null)
+        if (GetComponent<AudioSource>() == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
@@ -250,8 +252,9 @@ public PauseMenu pauseMenu;
         {
             audioSource = GetComponent<AudioSource>();
         }
+
         jumpSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/JUMP");
-        walkSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/FOOTSTEP B");
+        // walkSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/FOOTSTEP B");
         pauseMenu = GameObject.Find("UIManager").GetComponent<PauseMenu>();
     }
 
@@ -259,11 +262,12 @@ public PauseMenu pauseMenu;
     void Update()
     {
         if (!inputEnabled) return;
-        if(pauseMenu.GameIsPaused == true)
+        if (pauseMenu.GameIsPaused == true)
         {
             audioSource.Pause();
             return;
         }
+
         // Ground check
         float sphereRadius = 0.4f; // Adjust the radius as needed
         float groundDistance = 0.6f; // Adjust the distance as needed
@@ -302,14 +306,14 @@ public PauseMenu pauseMenu;
             energySystem.stopMoveTimer = 0f;
         }
 
-        if (rb.velocity.magnitude < 30f && isMoving())
-        {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.clip = walkSound;
-                audioSource.Play();
-            }
-        }
+        // if (rb.velocity.magnitude < 30f && isMoving())
+        // {
+        //     if (!audioSource.isPlaying)
+        //     {
+        //         audioSource.clip = walkSound;
+        //         audioSource.Play();
+        //     }
+        // }
 
         // Debug.Log("PlayerSpeed: " + rb.velocity.magnitude);
     }
