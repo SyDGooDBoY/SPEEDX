@@ -5841,12 +5841,12 @@ RectTransform:
   - {fileID: 726866481}
   - {fileID: 1025687821}
   - {fileID: 887153715}
-  - {fileID: 1394840361}
   - {fileID: 360989051}
   - {fileID: 1031799165}
   - {fileID: 2131932165}
   - {fileID: 1800952299}
   - {fileID: 1396260914}
+  - {fileID: 1394840361}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

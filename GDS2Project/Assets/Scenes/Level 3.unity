@@ -7362,13 +7362,13 @@ RectTransform:
   - {fileID: 869451039}
   - {fileID: 1025687821}
   - {fileID: 729079165}
-  - {fileID: 1394840361}
   - {fileID: 1165580861}
   - {fileID: 1131452805}
   - {fileID: 1325625452}
   - {fileID: 1737597807}
   - {fileID: 1673344432}
   - {fileID: 1396260914}
+  - {fileID: 1394840361}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -9263,7 +9263,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeSys: {fileID: 352725573}
-  loadIndex: 1
   fadePanel: {fileID: 1394840360}
   fadeDuration: 3
   player: {fileID: 165005916}

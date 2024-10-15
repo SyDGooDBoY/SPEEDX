@@ -12,7 +12,7 @@ public class Endpoint : MonoBehaviour
 {
     public TimeScoreSystem timeSys;
 
-    public int loadIndex;
+    // public int loadIndex;
 
     // public float fallSpeed = 2.0f;
     public GameObject fadePanel;
@@ -108,6 +108,19 @@ public class Endpoint : MonoBehaviour
             string currentLevelID = SceneManager.GetSceneByBuildIndex(currentLevelIndex).name;
             SaveManager.Instance.UpdateBestTime(currentLevelID, timeSys.currentTime);
         }
+
+        if (SceneManager.GetActiveScene().name == "TUT" && collision.gameObject.CompareTag("Player"))
+        {
+            timeScoreSystem.isGameRunning = false;
+            bgm.Stop();
+            audioSource.PlayOneShot(winSound);
+            fadePanel.SetActive(true);
+            player.GetComponent<PlayerMovement>().inputEnabled = false;
+            StartCoroutine(TUTEndFade());
+            // int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+            // string currentLevelID = SceneManager.GetSceneByBuildIndex(currentLevelIndex).name;
+            // SaveManager.Instance.UpdateBestTime(currentLevelID, timeSys.currentTime);
+        }
     }
 
     private string FormatTime(float timeInSeconds)
@@ -152,6 +165,30 @@ public class Endpoint : MonoBehaviour
         float passTime = timeScoreSystem.currentTime;
         string formattedTime = FormatTime(passTime);
         time.text = $"<mspace=0.6em>{formattedTime}</mspace>";
+
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            fadeCanvasGroup.alpha = Mathf.Clamp01(elapsedTime / fadeDuration);
+            yield return null;
+        }
+
+        fadeCanvasGroup.alpha = 1f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    IEnumerator TUTEndFade()
+    {
+        GameObject timer = GameObject.Find("Timer");
+        // timer.SetActive(false);
+        fadePanel.SetActive(true);
+
+        // 获取并格式化时间
+        // float passTime = timeScoreSystem.currentTime;
+        // string formattedTime = FormatTime(passTime);
+        // time.text = $"<mspace=0.6em>{formattedTime}</mspace>";
 
         float elapsedTime = 0f;
         while (elapsedTime < fadeDuration)
