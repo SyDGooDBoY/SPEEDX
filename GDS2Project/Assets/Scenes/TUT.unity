@@ -1864,7 +1864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveUI: {fileID: 271742800}
-  icon: {fileID: 0}
+  icon: {fileID: 1613353530}
 --- !u!65 &289350747
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13552,6 +13552,11 @@ PrefabInstance:
 --- !u!224 &1613353529 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 347295237640310104, guid: 52b35a3e65d4e5c498dfa49dfcda11ea, type: 3}
+  m_PrefabInstance: {fileID: 1613353528}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1613353530 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 401898644488214497, guid: 52b35a3e65d4e5c498dfa49dfcda11ea, type: 3}
   m_PrefabInstance: {fileID: 1613353528}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1623150184
