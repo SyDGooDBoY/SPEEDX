@@ -34,7 +34,7 @@ public class LevelSelector : MonoBehaviour
 
     void Start()
     {
-        levelText.text = "Level " + level;
+        levelText.text = level.ToString();
         // CheckLevelUnlocked();
     }
 
@@ -63,5 +63,9 @@ public class LevelSelector : MonoBehaviour
         {
             SceneManager.LoadScene("Level " + level);
         }
+    }
+    public void OpenTutorial()
+    {
+        SceneManager.LoadScene("TUT");
     }
 }
