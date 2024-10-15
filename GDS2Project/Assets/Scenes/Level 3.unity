@@ -630,7 +630,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Congratulations!
 
-    You passed our Second Demo
+    You passed our Third Demo
 
     Please feel free
     to fill our feedback form'
@@ -10598,7 +10598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: shootSound
