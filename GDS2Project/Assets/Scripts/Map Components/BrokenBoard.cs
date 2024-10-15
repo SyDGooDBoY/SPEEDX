@@ -14,15 +14,17 @@ public class BrokenBoard : MonoBehaviour
     public Vector3 particleOffset = Vector3.zero; // 可以在 Unity 中调整的偏移量
     private AudioSource audioSource; // 音效播放组件
     private PlayerDash pd;
+    private PlayerCameraShake pcs;
 
-    //public CameraShake cameraShake; // 相机抖动脚本的引用
-    //public float shakeDuration = 0.5f; // 抖动持续时间
-    //public float shakeMagnitude = 1f; // 抖动强度
+    //public GameObject objectWithShake;  // 拖入含有 ObjectShake 组件的物体
+    //private ObjectShake objectShakeScript;  // 保存 ObjectShake 组件的引用
 
     private void Start()
     {
         // 初始化音效组件
         audioSource = gameObject.AddComponent<AudioSource>();
+
+        //objectShakeScript = objectWithShake.GetComponent<ObjectShake>();
 
     }
 
@@ -33,6 +35,7 @@ public class BrokenBoard : MonoBehaviour
             Debug.Log("Player has entered the trigger area.");
             Rigidbody playerRigidbody = other.gameObject.GetComponent<Rigidbody>();
             pd = other.gameObject.GetComponent<PlayerDash>();
+            pcs = other.gameObject.GetComponent<PlayerCameraShake>();
 
             if (playerRigidbody != null)
             {
@@ -44,6 +47,7 @@ public class BrokenBoard : MonoBehaviour
 
                 if (playerVelocity.magnitude > brokenVel)
                 {
+                    pcs.shakeCamera();
                     // 播放音效并且销毁物体
                     if (destructionSound != null)
                     {
@@ -80,13 +84,21 @@ public class BrokenBoard : MonoBehaviour
                             Destroy(particles, 2f);
                         }
                     }
-                    //StartCoroutine(cameraShake.Shake(shakeDuration, shakeMagnitude));
+                   /*if (objectShakeScript != null)
+                    {
+                        // 启用 ObjectShake 脚本
+                        objectShakeScript.enabled = true;
+                    }*/
+
+
                     pd.dashCdTimer = 0;
 
                     // 销毁父物体
                     Destroy(transform.parent.gameObject); // 立即销毁Cube
                 }
+
             }
+
         }
     }
 }
