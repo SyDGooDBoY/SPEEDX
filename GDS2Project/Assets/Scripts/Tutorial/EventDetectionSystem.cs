@@ -5,7 +5,8 @@ using UnityEngine;
 public class EventDetectionSystem : MonoBehaviour
 {
     public GameObject celebrationUI;
-    public GameObject promptUI; 
+    public GameObject promptUI;
+    public GameObject icon;
 
     [Tooltip("Require player to press")]
     public KeyCode requiredKey = KeyCode.E;  // The button that the player needs to press
@@ -32,6 +33,10 @@ public class EventDetectionSystem : MonoBehaviour
         if (promptUI != null)
         {
             promptUI.SetActive(false); 
+        }
+        if(icon != null)
+        {
+            icon.SetActive(false);
         }
 
         // Initialize the corresponding IEventCondition according to the selected event type
@@ -133,6 +138,10 @@ public class EventDetectionSystem : MonoBehaviour
         if (promptUI != null)
         {
             promptUI.SetActive(true); 
+        }
+        if (icon != null)
+        {
+            icon.SetActive(true);
         }
     }
 

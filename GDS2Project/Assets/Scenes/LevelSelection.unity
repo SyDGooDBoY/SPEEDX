@@ -771,7 +771,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.9, y: -22.3}
+  m_AnchoredPosition: {x: 5.9, y: -28.61}
   m_SizeDelta: {x: 74.1, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &297429402
@@ -794,9 +794,18 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "WASD TO MOVE\n\nC to slide\n\nSpace to jump\n\nSwing: LEFT MOUSE \n\nGrapple:
-    Right mouse\n\nWhen the energy is full\n\nF: switch speed up mode\n\n\nEsc to
-    pause game"
+  m_text: '
+
+    Enabled ability:
+
+
+
+    Grappling & swinging!
+
+
+
+    Esc to pause
+    game'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -1823,7 +1832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.9, y: -19.5}
+  m_AnchoredPosition: {x: 5.9, y: -28.61}
   m_SizeDelta: {x: 74.1, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &680290094
@@ -1846,9 +1855,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "WASD TO MOVE\n\nC to slide\n\nSpace to jump\n\nTeleport GUn:\n1.Hold Q
-    to aim\n2.Release Q to shoot\n3.Press Q to teleport\nRight click to cancel \n\nWhen
-    the energy is full\n\nF: switch speed up mode\n\nEsc to pause game"
+  m_text: '
+
+    Enabled ability:
+
+
+
+    Teleport Gun!
+
+
+
+    Esc to pause game'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -2225,7 +2242,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.9, y: -22.3}
+  m_AnchoredPosition: {x: 5.9, y: -28.61}
   m_SizeDelta: {x: 74.1, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &819678044
@@ -2248,31 +2265,24 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'WASD TO MOVE
-
-
-    Space to jump
-
+  m_text: '
 
     Enabled ability:
 
 
-    E to dash!
 
-
-    f
-    TO SPEED UP!
+    dash!
 
 
     Grappling & swinging!
 
 
-    Teleport Gun Enable!
+    Teleport
+    Gun!
 
 
 
-    Esc
-    to pause game'
+    Esc to pause game'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -2367,15 +2377,15 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 1ae3b5d06ff85e44382980147c9b487c, type: 3}
     - target: {fileID: 1428126585307489147, guid: 0c6c6187289d4d645aa35239486f5d0c, type: 3}
       propertyPath: m_Color.b
-      value: 0.6509434
+      value: 0.13207549
       objectReference: {fileID: 0}
     - target: {fileID: 1428126585307489147, guid: 0c6c6187289d4d645aa35239486f5d0c, type: 3}
       propertyPath: m_Color.g
-      value: 0.6509434
+      value: 0.13207549
       objectReference: {fileID: 0}
     - target: {fileID: 1428126585307489147, guid: 0c6c6187289d4d645aa35239486f5d0c, type: 3}
       propertyPath: m_Color.r
-      value: 0.6509434
+      value: 0.13207549
       objectReference: {fileID: 0}
     - target: {fileID: 3768851147750133182, guid: 0c6c6187289d4d645aa35239486f5d0c, type: 3}
       propertyPath: m_Name

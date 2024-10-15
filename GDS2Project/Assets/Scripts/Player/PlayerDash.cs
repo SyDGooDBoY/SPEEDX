@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -71,7 +72,8 @@ public class PlayerDash : MonoBehaviour
         }
 
         dashSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/NEW DASH");
-        dashIconCD = GameObject.Find("dashCD").GetComponent<Image>();
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("TUT"))
+            dashIconCD = GameObject.Find("dashCD").GetComponent<Image>();
         //find all the obejcts under DashIcon and get the image component
         dashIconCD.fillAmount = 0;
     }
