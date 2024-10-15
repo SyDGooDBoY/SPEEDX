@@ -25,7 +25,6 @@ public class BrokenBoard : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
 
         //objectShakeScript = objectWithShake.GetComponent<ObjectShake>();
-
     }
 
     private void OnCollisionEnter(Collision other)
@@ -84,21 +83,20 @@ public class BrokenBoard : MonoBehaviour
                             Destroy(particles, 2f);
                         }
                     }
-                   /*if (objectShakeScript != null)
-                    {
-                        // 启用 ObjectShake 脚本
-                        objectShakeScript.enabled = true;
-                    }*/
+                    /*if (objectShakeScript != null)
+                     {
+                         // 启用 ObjectShake 脚本
+                         objectShakeScript.enabled = true;
+                     }*/
 
 
                     pd.dashCdTimer = 0;
 
                     // 销毁父物体
-                    Destroy(transform.parent.gameObject); // 立即销毁Cube
+                    if (transform.parent != null)
+                        Destroy(transform.parent.gameObject); // 立即销毁Cube
                 }
-
             }
-
         }
     }
 }
