@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7519af4fc66cf944f9124dd228627eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 70
+  jumpForce: 60
   audioSource: {fileID: 0}
   springSound: {fileID: 0}
 --- !u!65 &47857768
@@ -3763,7 +3763,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.9998706, y: 8.134227e-11, z: 0.0000000018742439, w: -0.016088903}
   m_LocalPosition: {x: 110.21417, y: -1730.9211, z: -1551.3604}
-  m_LocalScale: {x: 14.788378, y: 0.6607324, z: 24.184387}
+  m_LocalScale: {x: 14.788378, y: 0.6607324, z: 33.33566}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 356055160}

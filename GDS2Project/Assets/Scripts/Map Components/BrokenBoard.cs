@@ -4,24 +4,24 @@ using UnityEngine;
 
 public class BrokenBoard : MonoBehaviour
 {
-    public string playerTag = "Player"; // Íæ¼Ò±êÇ©
-    public float brokenVel = 11f; // ÆÆËéÐèÒªµÄ×îÐ¡ËÙ¶È 
+    public string playerTag = "Player"; // ï¿½ï¿½Ò±ï¿½Ç©
+    public float brokenVel = 11f; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ð¡ï¿½Ù¶ï¿½ 
 
-    public AudioClip destructionSound; // Ïú»ÙÊ±µÄÒôÐ§
-    public GameObject destructionParticles; // Á£×ÓÌØÐ§Ô¤ÖÆ¼þ
+    public AudioClip destructionSound; // ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Ð§
+    public GameObject destructionParticles; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§Ô¤ï¿½Æ¼ï¿½
 
-    // ÓÃÓÚµ÷ÕûÁ£×ÓÉú³ÉÎ»ÖÃµÄÏà¶ÔÆ«ÒÆÁ¿
-    public Vector3 particleOffset = Vector3.zero; // ¿ÉÒÔÔÚ Unity ÖÐµ÷ÕûµÄÆ«ÒÆÁ¿
-    private AudioSource audioSource; // ÒôÐ§²¥·Å×é¼þ
+    // ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ãµï¿½ï¿½ï¿½ï¿½Æ«ï¿½ï¿½ï¿½ï¿½
+    public Vector3 particleOffset = Vector3.zero; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Unity ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½Æ«ï¿½ï¿½ï¿½ï¿½
+    private AudioSource audioSource; // ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private PlayerDash pd;
     private PlayerCameraShake pcs;
 
-    //public GameObject objectWithShake;  // ÍÏÈëº¬ÓÐ ObjectShake ×é¼þµÄÎïÌå
-    //private ObjectShake objectShakeScript;  // ±£´æ ObjectShake ×é¼þµÄÒýÓÃ
+    //public GameObject objectWithShake;  // ï¿½ï¿½ï¿½ëº¬ï¿½ï¿½ ObjectShake ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //private ObjectShake objectShakeScript;  // ï¿½ï¿½ï¿½ï¿½ ObjectShake ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     private void Start()
     {
-        // ³õÊ¼»¯ÒôÐ§×é¼þ
+        // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½
         audioSource = gameObject.AddComponent<AudioSource>();
 
         //objectShakeScript = objectWithShake.GetComponent<ObjectShake>();
@@ -38,39 +38,39 @@ public class BrokenBoard : MonoBehaviour
 
             if (playerRigidbody != null)
             {
-                // »ñÈ¡Íæ¼ÒËÙ¶È
+                // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½
                 Vector3 playerVelocity = playerRigidbody.velocity;
 
-                // Êä³öÍæ¼ÒµÄËÙ¶È
+                // ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½Ù¶ï¿½
                 Debug.Log("Player velocity: " + playerVelocity.magnitude);
 
                 if (playerVelocity.magnitude > brokenVel)
                 {
                     pcs.shakeCamera();
-                    // ²¥·ÅÒôÐ§²¢ÇÒÏú»ÙÎïÌå
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     if (destructionSound != null)
                     {
-                        // ´´½¨Ò»¸öÐÂµÄ GameObject À´²¥·ÅÒôÐ§
+                        // ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Âµï¿½ GameObject ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
                         GameObject tempAudioPlayer = new GameObject("TempAudioPlayer");
                         AudioSource tempAudioSource = tempAudioPlayer.AddComponent<AudioSource>();
                         tempAudioSource.clip = destructionSound;
                         tempAudioSource.Play();
 
-                        // ×Ô¶¯Ïú»ÙÒôÐ§²¥·Å¶ÔÏó£¬µ±ÒôÐ§²¥·Å½áÊøºó
+                        // ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Å¶ï¿½ï¿½ó£¬µï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½Å½ï¿½ï¿½ï¿½ï¿½ï¿½
                         Destroy(tempAudioPlayer, destructionSound.length);
                     }
 
-                    // Éú³ÉÁ£×ÓÐ§¹û
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
                     if (destructionParticles != null)
                     {
-                        // ¼ÆËãÁ£×ÓÉú³ÉÎ»ÖÃ£¨Ç½ÃæÎ»ÖÃ + Æ«ÒÆÁ¿£©
+                        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã£ï¿½Ç½ï¿½ï¿½Î»ï¿½ï¿½ + Æ«ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         Vector3 particleSpawnPosition = transform.position + particleOffset;
 
-                        // ÊµÀý»¯Á£×ÓÌØÐ§
+                        // Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§
                         GameObject particles = Instantiate(destructionParticles, particleSpawnPosition,
                             Quaternion.identity);
 
-                        // »ñÈ¡Á£×ÓÏµÍ³µÄ³ÖÐøÊ±¼ä£¬È»ºóÔÚ³ÖÐøÊ±¼ä½áÊøºóÏú»ÙÁ£×Ó¶ÔÏó
+                        // ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½Ä³ï¿½ï¿½ï¿½Ê±ï¿½ä£¬È»ï¿½ï¿½ï¿½Ú³ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¶ï¿½ï¿½ï¿½
                         ParticleSystem ps = particles.GetComponent<ParticleSystem>();
                         if (ps != null)
                         {
@@ -79,22 +79,22 @@ public class BrokenBoard : MonoBehaviour
                         }
                         else
                         {
-                            // Èç¹ûÁ£×ÓÏµÍ³Ã»ÓÐÕÒµ½£¬Ö±½Ó¸øÒ»¸öÄ¬ÈÏµÄÑÓÊ±Ïú»Ù
+                            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³Ã»ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½Ö±ï¿½Ó¸ï¿½Ò»ï¿½ï¿½Ä¬ï¿½Ïµï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½
                             Destroy(particles, 2f);
                         }
                     }
                     /*if (objectShakeScript != null)
                      {
-                         // ÆôÓÃ ObjectShake ½Å±¾
+                         // ï¿½ï¿½ï¿½ï¿½ ObjectShake ï¿½Å±ï¿½
                          objectShakeScript.enabled = true;
                      }*/
 
 
                     pd.dashCdTimer = 0;
 
-                    // Ïú»Ù¸¸ÎïÌå
+                    // ï¿½ï¿½ï¿½Ù¸ï¿½ï¿½ï¿½ï¿½ï¿½
                     if (transform.parent != null)
-                        Destroy(transform.parent.gameObject); // Á¢¼´Ïú»ÙCube
+                        Destroy(transform.parent.gameObject); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Cube
                 }
             }
         }
