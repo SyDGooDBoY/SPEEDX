@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 509703499257535764}
   - component: {fileID: 6355069207120731834}
   - component: {fileID: 7228888084209120906}
+  - component: {fileID: 6684309019183060089}
   m_Layer: 0
   m_Name: DashBrokenCube
   m_TagString: Untagged
@@ -84,6 +85,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6684309019183060089
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4230431237462542457}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
+  m_Center: {x: 0.000000007450581, y: 0, z: -0.0000076293945}
 --- !u!1 &8896441689349921174
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,12 +156,12 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1.1732746}
-  m_Center: {x: 1.1764145e-11, y: 0, z: 0.086634845}
+  m_Size: {x: 1, y: 0.9999999, z: 10.17}
+  m_Center: {x: -0.00000001772979, y: 0, z: 0.22677152}
 --- !u!114 &1656837679476009672
 MonoBehaviour:
   m_ObjectHideFlags: 0

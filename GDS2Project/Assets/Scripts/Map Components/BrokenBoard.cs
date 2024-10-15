@@ -27,7 +27,7 @@ public class BrokenBoard : MonoBehaviour
         //objectShakeScript = objectWithShake.GetComponent<ObjectShake>();
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag(playerTag))
         {
