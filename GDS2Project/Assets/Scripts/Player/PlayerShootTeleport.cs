@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -19,7 +20,7 @@ public class PlayerShootTeleport : MonoBehaviour
     private GameObject crossHair; // Crosshair for aiming
     private float lastShootTime = 0; // Time of the last teleport
 
-    private GameObject currentBall; // Currently instantiated projectile
+    public GameObject currentBall; // Currently instantiated projectile
     private int shootPhase = 0; // Shooting phase: 0 = Aim, 1 = Shoot, 2 = Teleport
     private PlayerMovement pm;
     private float remainingTimeToDestroy;
@@ -108,9 +109,6 @@ public class PlayerShootTeleport : MonoBehaviour
             if (Input.GetKeyDown(launchKey) && shootPhase == 2)
             {
                 TeleportToBall(); // Perform teleportation
-                lastShootTime = Time.time; // Update the time of the last teleport
-                shootPhase = 0; // Reset to aim phase
-                crossHair.SetActive(true); // Show the crosshair again
             }
         }
 
@@ -204,7 +202,14 @@ public class PlayerShootTeleport : MonoBehaviour
             Instantiate(ballPrefab, shootingPoint.position, Quaternion.identity); // Instantiate the projectile
         var rb = currentBall.GetComponent<Rigidbody>();
         rb.AddForce(direction * ballSpeed, ForceMode.VelocityChange); // Apply force to the projectile
-        Destroy(currentBall, destroyTime); // Destroy the projectile after a specified time
+        StartCoroutine(DestroyBallDestoryTime()); // Start coroutine to destroy the ball after a delay
+    }
+
+    IEnumerator DestroyBallDestoryTime()
+    {
+        yield return null; // Wait for the next frame
+        Destroy(currentBall, destroyTime); // Destroy the projectile
+        // currentBall = null; // Reset the projectile reference
     }
 
     // Teleport the player to the projectile's position
@@ -218,11 +223,20 @@ public class PlayerShootTeleport : MonoBehaviour
             }
 
             transform.position = currentBall.transform.position; // Set player position to the projectile's position
-            Destroy(currentBall); // Destroy the projectile
-            currentBall = null; // Reset the projectile reference
+            StartCoroutine(DestroyBallNextFrame()); // Start coroutine to destroy the ball next frame
         }
     }
 
+    public IEnumerator DestroyBallNextFrame()
+    {
+        yield return null; // Wait for the next frame
+        Destroy(currentBall); // Destroy the projectile
+        currentBall = null; // Reset the projectile reference
+        lastShootTime = Time.time; // Update the time of the last teleport
+        shootPhase = 0; // Reset to aim phase
+        crossHair.SetActive(true); // Show the crosshair again
+    }
+    
     public int GetCurrentShootPhase()
     {
         return shootPhase;
