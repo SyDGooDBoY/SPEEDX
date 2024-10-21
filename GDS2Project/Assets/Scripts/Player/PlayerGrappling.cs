@@ -21,11 +21,6 @@ public class PlayerGrappling : MonoBehaviour
 
     private Vector3 grapplePoint;
 
-    [Header("¹³ËøCD")]
-    public float grapplingCd;
-
-    private float grapplingCdTimer;
-
     [Header("Íæ¼ÒÊäÈë")]
     public KeyCode grappleKey = KeyCode.Mouse1;
 
@@ -68,9 +63,7 @@ public class PlayerGrappling : MonoBehaviour
         if (!pm.inputEnabled || playerShootTeleport.GetCurrentShootPhase() != 0)
             return; // Prevent grappling during aiming or shooting
         if (Input.GetKeyDown(grappleKey) && IsValidGrapplePoint()) StartGrapple();
-
-        if (grapplingCdTimer > 0)
-            grapplingCdTimer -= Time.deltaTime;
+        if (Input.GetKeyUp(grappleKey)) StopGrapple();
     }
 
     private bool IsValidGrapplePoint()
@@ -92,9 +85,9 @@ public class PlayerGrappling : MonoBehaviour
     //¿ªÊ¼¹³Ëø
     private void StartGrapple()
     {
+        if (grappling) return;
         GetComponent<PlayerSwinging>().StopSwing();
 
-        if (grapplingCdTimer > 0) return;
 
         grappling = true;
 
@@ -102,7 +95,6 @@ public class PlayerGrappling : MonoBehaviour
 
         RaycastHit hit;
 
-        grapplingCdTimer = grapplingCd;
 
         if (Physics.Raycast(cam.position, cam.forward, out hit, maxGrappleDistance, whatIsGrappleable))
         {
@@ -115,8 +107,7 @@ public class PlayerGrappling : MonoBehaviour
         else
         {
             grapplePoint = cam.position + cam.forward * maxGrappleDistance;
-
-            Invoke(nameof(StopGrapple), grappleDelayTime);
+            StopGrapple();
         }
 
         if (grappleSound != null && audioSource != null)
@@ -142,7 +133,7 @@ public class PlayerGrappling : MonoBehaviour
 
         pm.JumpToPosition(grapplePoint, highestPointOnArc);
 
-        Invoke(nameof(StopGrapple), 1.5f);
+        Invoke(nameof(StopGrapple), 0.5f);
     }
 
     //Í£Ö¹¹³Ëø

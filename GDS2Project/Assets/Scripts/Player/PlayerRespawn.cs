@@ -15,6 +15,7 @@ public class PlayerRespawn : MonoBehaviour
     public AudioClip respawnSound;
 
     private AudioSource audioSource;
+    private PlayerShootTeleport playerShootTeleport;
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class PlayerRespawn : MonoBehaviour
         }
 
         respawnSound = Resources.Load<AudioClip>("Sound/respawn_teleport sound");
+        playerShootTeleport = GetComponent<PlayerShootTeleport>();
     }
 
     void Update()
@@ -76,6 +78,10 @@ public class PlayerRespawn : MonoBehaviour
             EnergySystem playerEnergySystem = transform.GetComponent<EnergySystem>();
             playerEnergySystem.SetEnergy(AbilityManager.LOW_THRESHOLD / 2);
             playerEnergySystem.ExitBoost();
+            if (playerShootTeleport.currentBall != null)
+            {
+                StartCoroutine(playerShootTeleport.DestroyBallNextFrame());
+            }
         }
         else
         {
