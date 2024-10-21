@@ -5461,7 +5461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5536916040955650191, guid: ec0c8013001a6244f83e881e480940cb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8271529754902056201, guid: ec0c8013001a6244f83e881e480940cb, type: 3}
       propertyPath: m_FillAmount
@@ -13553,7 +13553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 401898644488214497, guid: 52b35a3e65d4e5c498dfa49dfcda11ea, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
