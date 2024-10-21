@@ -22,6 +22,8 @@ public class PlayerDash : MonoBehaviour
     public float dashUpwardForce;
     public float maxDashYSpeed;
     public float dashDuration;
+    public float dashForceMultiplier = 0.5f;
+    public Vector3 forceToApply;
 
     [Header("CameraEffects")]
     public PlayerCam cam;
@@ -101,26 +103,50 @@ public class PlayerDash : MonoBehaviour
 
     private Vector3 GetDirection()
     {
+        Vector3 direction;
         if (useCameraForward)
-            return playerCam.forward.normalized; // 使用相机前方方向
+        {
+            // 获取摄像机前方向量的水平分量
+            direction = new Vector3(playerCam.forward.x, 0, playerCam.forward.z).normalized;
+        }
         else
-            return orientation.forward.normalized; // 使用角色前方方向
+        {
+            // 获取角色前方向量的水平分量
+            direction = new Vector3(orientation.forward.x, 0, orientation.forward.z).normalized;
+        }
+
+        return direction;
     }
 
     private void Dash()
     {
         if (dashCdTimer > 0) return;
-        else dashCdTimer = dashCd;
-        dashIconCD.fillAmount = 1;
-        Vector3 horizontalForward = new Vector3(playerCam.forward.x, 0, playerCam.forward.z).normalized;
-        float angle = Vector3.Angle(horizontalForward, playerCam.forward);
 
-        // 检查角度是否超过设定的限制（例如45度）
-        if (angle > camAngle)
+        float camAngle = Vector3.Angle(Vector3.up, playerCam.forward) - 90;
+        camAngle = Mathf.Abs(camAngle); // 确保角度为正值
+
+        Vector3 direction = Vector3.zero;
+        // if (camAngle >= 75)
+        // {
+        //     return;
+        // }
+
+        if (camAngle < 45)
         {
-            return; // 如果角度过大，则不执行冲刺
+            // 摄像机倾斜角度小于45度，使用水平方向
+            direction = new Vector3(playerCam.forward.x, 0, playerCam.forward.z).normalized;
+            forceToApply = direction * dashForce;
+        }
+        else
+        {
+            // 摄像机倾斜角度大于或等于45度，使用原始摄像机方向
+            direction = playerCam.forward.normalized;
+            forceToApply = direction * dashForce * dashForceMultiplier;
+            // return;
         }
 
+        dashCdTimer = dashCd;
+        dashIconCD.fillAmount = 1;
         audioSource.PlayOneShot(dashSound);
 
         pm.dashing = true;
@@ -135,10 +161,9 @@ public class PlayerDash : MonoBehaviour
         // else
         //     forwardT = orientation; /// where you're facing (no up or down)
 
-        Vector3 direction = GetDirection();
 
         // Vector3 forceToApply = direction * dashForce + orientation.up * dashUpwardForce;
-        Vector3 forceToApply = direction * dashForce;
+
 
         if (disableGravity)
             rb.useGravity = false;
@@ -166,7 +191,6 @@ public class PlayerDash : MonoBehaviour
         pm.maxYSpeed = 0;
         rb.velocity = speedBeforeDash;
         pm.groundDrag = pmGroundDrag;
-
 
         // cam.DoFov(pm.camFov);
 

@@ -204,12 +204,12 @@ public class PlayerWall : MonoBehaviour
         audioSource.Play();
         if (isWallLeft)
         {
-            cam.DoTilt(-5f);
+            cam.DoTilt(-10f);
         }
 
         if (isWallRight)
         {
-            cam.DoTilt(5f);
+            cam.DoTilt(10f);
         }
     }
 
