@@ -16511,8 +16511,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: GrappleIcon
       objectReference: {fileID: 0}
+    - target: {fileID: 401898644488214497, guid: 52b35a3e65d4e5c498dfa49dfcda11ea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1125480772946957624, guid: 52b35a3e65d4e5c498dfa49dfcda11ea, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 238992424512395196, guid: 52b35a3e65d4e5c498dfa49dfcda11ea, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52b35a3e65d4e5c498dfa49dfcda11ea, type: 3}

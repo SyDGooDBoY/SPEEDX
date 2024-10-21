@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class PlayerShootTeleport : MonoBehaviour
 {
@@ -33,6 +35,8 @@ public class PlayerShootTeleport : MonoBehaviour
     private AudioSource audioSource;
 
     public GradientColor gradientColor;
+    public Image CDicon;
+    private bool startCDIcon = false;
 
     void Start()
     {
@@ -54,7 +58,9 @@ public class PlayerShootTeleport : MonoBehaviour
 
         shootSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/NEW GUN");
         teleportSound = Resources.Load<AudioClip>("Sound/NEW SOUNDS/NEW TELEPORT");
-
+        if (SceneManager.GetActiveScene() != SceneManager.GetSceneByName("TUT"))
+            CDicon = GameObject.Find("tpCD").GetComponent<Image>();
+        CDicon.fillAmount = 0;
         // gradientColor = GameObject.Find("TeleportTime").GetComponent<GradientColor>();
     }
 
@@ -95,6 +101,7 @@ public class PlayerShootTeleport : MonoBehaviour
                 trajectoryLine.enabled = true; // Enable the trajectory line
                 shootPhase = 1; // Switch to shooting phase
                 crossHair.SetActive(false); // Hide the crosshair
+                CDicon.fillAmount = 1;
             }
 
             // Release 'Q' to shoot the ball
@@ -108,7 +115,17 @@ public class PlayerShootTeleport : MonoBehaviour
             // Press 'Q' again to teleport to the ball
             if (Input.GetKeyDown(launchKey) && shootPhase == 2)
             {
+                startCDIcon = true;
                 TeleportToBall(); // Perform teleportation
+            }
+        }
+
+        if (startCDIcon == true)
+        {
+            CDicon.fillAmount -= 1 / cooldown * Time.deltaTime;
+            if (CDicon.fillAmount <= 0)
+            {
+                startCDIcon = false;
             }
         }
 
@@ -116,12 +133,16 @@ public class PlayerShootTeleport : MonoBehaviour
         {
             shootPhase = 0; // Reset the phase to 0
             crossHair.SetActive(true); // Show the crosshair again
+            startCDIcon = false;
+            CDicon.fillAmount = 0;
         }
 
         // Right mouse button cancels the shot at any stage
         if (Input.GetKeyDown(cancelShoot))
         {
             CancelShooting(); // Cancel the shooting process
+            startCDIcon = false;
+            CDicon.fillAmount = 0;
         }
     }
 
@@ -236,7 +257,7 @@ public class PlayerShootTeleport : MonoBehaviour
         shootPhase = 0; // Reset to aim phase
         crossHair.SetActive(true); // Show the crosshair again
     }
-    
+
     public int GetCurrentShootPhase()
     {
         return shootPhase;

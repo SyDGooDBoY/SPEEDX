@@ -825,6 +825,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150298410}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &151730497 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5925214281888108816, guid: 52b35a3e65d4e5c498dfa49dfcda11ea, type: 3}
+  m_PrefabInstance: {fileID: 1613353528}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &179853949
 GameObject:
   m_ObjectHideFlags: 0
@@ -5422,7 +5433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1088433125474608192, guid: ec0c8013001a6244f83e881e480940cb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -210
+      value: -140
       objectReference: {fileID: 0}
     - target: {fileID: 1088433125474608192, guid: ec0c8013001a6244f83e881e480940cb, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -5450,7 +5461,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5536916040955650191, guid: ec0c8013001a6244f83e881e480940cb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8271529754902056201, guid: ec0c8013001a6244f83e881e480940cb, type: 3}
       propertyPath: m_FillAmount
@@ -13518,7 +13529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 347295237640310104, guid: 52b35a3e65d4e5c498dfa49dfcda11ea, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -140
+      value: -210
       objectReference: {fileID: 0}
     - target: {fileID: 347295237640310104, guid: 52b35a3e65d4e5c498dfa49dfcda11ea, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -13542,10 +13553,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 401898644488214497, guid: 52b35a3e65d4e5c498dfa49dfcda11ea, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 238992424512395196, guid: 52b35a3e65d4e5c498dfa49dfcda11ea, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52b35a3e65d4e5c498dfa49dfcda11ea, type: 3}
@@ -18469,6 +18481,10 @@ PrefabInstance:
       propertyPath: fullscreenEffect
       value: 
       objectReference: {fileID: 760308720}
+    - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: CDicon
+      value: 
+      objectReference: {fileID: 151730497}
     - target: {fileID: 8021042501585271700, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: m_Enabled
       value: 1
