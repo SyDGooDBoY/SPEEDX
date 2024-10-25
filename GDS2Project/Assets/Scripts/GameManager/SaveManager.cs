@@ -201,7 +201,26 @@ public class SaveManager : MonoBehaviour
     public void ClearGameData()
     {
         gameData = new GameData();
+        UnlockLevel("Level 1");
+        
         SaveGame(); // save
         Debug.Log("All game data cleared.");
     }
+    
+    //unlock level + 1
+    public void UnlockNextLevel()
+    {
+        // Get the last level unlocked
+        string lastLevel = gameData.UnlockedLevels[gameData.UnlockedLevels.Count - 1];
+        // Extract the level number
+        string levelNumber = lastLevel.Replace("Level ", "");
+        // Convert to int
+        if (int.TryParse(levelNumber, out int level))
+        {
+            // Unlock next level
+            UnlockLevel("Level " + (level + 1));
+        }
+    }
+
+    
 }

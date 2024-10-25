@@ -30,12 +30,14 @@ public class LevelSelector : MonoBehaviour
 
     public int level; // Level number
     public TextMeshProUGUI levelText;
+    public Image levelImage;
     public Button levelButton; // Reference to the Button component
 
     void Start()
     {
         levelText.text = level.ToString();
-        // CheckLevelUnlocked();
+        levelImage = GetComponent<Image>();
+        CheckLevelUnlocked();
     }
 
     void CheckLevelUnlocked()
@@ -43,7 +45,7 @@ public class LevelSelector : MonoBehaviour
         // Check if the level is unlocked using SaveManager
         if (SaveManager.Instance.IsLevelUnlocked("Level " + level))
         {
-            levelButton.GetComponent<EventTrigger>().enabled = true;
+            // levelButton.GetComponent<EventTrigger>().enabled = true;
 
             levelButton.interactable = true;
         }
@@ -51,9 +53,10 @@ public class LevelSelector : MonoBehaviour
         {
             levelButton.interactable = false;
             // Disable EventTrigger component
-            levelButton.GetComponent<EventTrigger>().enabled = false;
+            // levelButton.GetComponent<EventTrigger>().enabled = false;
             // Optionally set a different text or color to indicate it's locked
             levelText.color = Color.gray; // Change color to gray if locked
+            levelImage.color = Color.gray; // Change color to gray if locked
         }
     }
 
@@ -64,6 +67,7 @@ public class LevelSelector : MonoBehaviour
             SceneManager.LoadScene("Level " + level);
         }
     }
+
     public void OpenTutorial()
     {
         SceneManager.LoadScene("TUT");
