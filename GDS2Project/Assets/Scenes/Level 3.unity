@@ -11405,22 +11405,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DashIcon
       objectReference: {fileID: 0}
-    - target: {fileID: 8271529754902056201, guid: ec0c8013001a6244f83e881e480940cb, type: 3}
-      propertyPath: m_Color.g
-      value: 0.909804
-      objectReference: {fileID: 0}
-    - target: {fileID: 8271529754902056201, guid: ec0c8013001a6244f83e881e480940cb, type: 3}
-      propertyPath: m_Color.r
-      value: 0.27058825
-      objectReference: {fileID: 0}
-    - target: {fileID: 8271529754902056201, guid: ec0c8013001a6244f83e881e480940cb, type: 3}
-      propertyPath: m_FillAmount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8271529754902056201, guid: ec0c8013001a6244f83e881e480940cb, type: 3}
-      propertyPath: m_FillClockwise
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
