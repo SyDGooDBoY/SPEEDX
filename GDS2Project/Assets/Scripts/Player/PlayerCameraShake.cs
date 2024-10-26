@@ -8,7 +8,7 @@ public class PlayerCameraShake : MonoBehaviour
 
     [Header("Time Slowing")]
     public float slowMotionFactor = 0.5f;
-    public float slowDuration = 0.5f;
+    public float slowDuration = 0.2f;
 
     public void shakeCamera()
     {

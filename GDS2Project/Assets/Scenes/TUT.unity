@@ -3919,7 +3919,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -131.79993, y: 2.599945}
+  m_AnchoredPosition: {x: -131.79993, y: 2.5999756}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &466754995
@@ -6722,7 +6722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1656837679476009672, guid: 5bb49c7ba9aa23940946f66e15afdfa4, type: 3}
       propertyPath: brokenVel
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4230431237462542457, guid: 5bb49c7ba9aa23940946f66e15afdfa4, type: 3}
       propertyPath: m_Name
@@ -18738,6 +18738,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectShake: {fileID: 8399425915912535477}
+  slowMotionFactor: 0.5
+  slowDuration: 0.2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
