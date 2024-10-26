@@ -15,6 +15,8 @@ public class BrokenBoard : MonoBehaviour
     private AudioSource audioSource; // ��Ч�������
     private PlayerDash pd;
     private PlayerCameraShake pcs;
+    private PlayerMovement pm;
+    private EnergySystem energySystem;
 
     //public GameObject objectWithShake;  // ���뺬�� ObjectShake ���������
     //private ObjectShake objectShakeScript;  // ���� ObjectShake ���������
@@ -35,6 +37,9 @@ public class BrokenBoard : MonoBehaviour
             Rigidbody playerRigidbody = other.gameObject.GetComponent<Rigidbody>();
             pd = other.gameObject.GetComponent<PlayerDash>();
             pcs = other.gameObject.GetComponent<PlayerCameraShake>();
+            pm = other.gameObject.GetComponent<PlayerMovement>();
+            energySystem = other.gameObject.GetComponent<EnergySystem>();
+            
 
             if (playerRigidbody != null)
             {
@@ -44,7 +49,9 @@ public class BrokenBoard : MonoBehaviour
                 // �����ҵ��ٶ�
                 Debug.Log("Player velocity: " + playerVelocity.magnitude);
 
-                if (playerVelocity.magnitude > brokenVel)
+                if (playerVelocity.magnitude > brokenVel || 
+                    pm.state == PlayerMovement.MoveState.dashing || 
+                    energySystem.IsBoosting())
                 {
                     pcs.shakeCamera();
                     // ������Ч������������
