@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 2d056ac30ecc9e542b26e06133f23602, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -590,6 +590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e135b367f88bb4b9c0e03026deee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLookAt: {fileID: 0}
 --- !u!65 &87544108
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3064,6 +3065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e135b367f88bb4b9c0e03026deee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLookAt: {fileID: 0}
 --- !u!65 &467902780
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3937,6 +3939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e135b367f88bb4b9c0e03026deee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLookAt: {fileID: 0}
 --- !u!65 &606849875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4814,6 +4817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e135b367f88bb4b9c0e03026deee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLookAt: {fileID: 0}
 --- !u!65 &741549245
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5679,6 +5683,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e135b367f88bb4b9c0e03026deee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLookAt: {fileID: 0}
 --- !u!65 &870712054
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6080,6 +6085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e135b367f88bb4b9c0e03026deee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLookAt: {fileID: 0}
 --- !u!65 &908430789
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6702,6 +6708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e135b367f88bb4b9c0e03026deee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLookAt: {fileID: 0}
 --- !u!65 &1012996502
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12533,7 +12540,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 6abcf2a390d314f4c886d454ec86538f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14458,6 +14465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e135b367f88bb4b9c0e03026deee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLookAt: {fileID: 0}
 --- !u!65 &2064572567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14797,7 +14805,7 @@ GameObject:
   - component: {fileID: 2116967204}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: Cam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14907,7 +14915,7 @@ Camera:
   m_GameObject: {fileID: 2116967203}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2

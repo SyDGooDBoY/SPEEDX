@@ -24,16 +24,26 @@ public class EnergySystem : MonoBehaviour
     private float recoveryTimer = 0f; // Timer to track when to start recovery
 
     public float stopMoveDelay = 1f; // energy decreasing delay after stopping
-    [HideInInspector]public float stopMoveTimer = 0f; // Timer to track stop movement delay
+
+    [HideInInspector]
+    public float stopMoveTimer = 0f; // Timer to track stop movement delay
 
     [Header("Boosting")]
-    [HideInInspector] public bool isBoosting = false;
+    [HideInInspector]
+    public bool isBoosting = false;
+
     public float boostEnergyConsumptionRate = 40f;
 
     [Header("Boosting Camera")]
     public PlayerCam cam;
+
     public float boostFOV = 120f;
     private float camFov;
+
+    private Image staminaBar;
+    private Color staminaColor;
+    private Material skybox;
+    private Color skyboxColor;
 
     void Start()
     {
@@ -58,6 +68,11 @@ public class EnergySystem : MonoBehaviour
 
         // get initial cam FOV
         camFov = cam.GetComponent<Camera>().fieldOfView;
+        staminaBar = GameObject.Find("StaminaBar/Fill").GetComponent<Image>();
+        staminaColor = staminaBar.color;
+        //find skybox called skybox in the lighting settings
+        skybox = RenderSettings.skybox;
+        skyboxColor = skybox.GetColor("_Tint");
     }
 
     void Update()
@@ -164,6 +179,8 @@ public class EnergySystem : MonoBehaviour
             fullscreenEffect.SetActive(true); // active
         }
 
+        staminaBar.color = new Color(0.96f, 0.0f, 0.63f, 1.0f);
+        skybox.SetColor("_Tint", new Color(0.96f, 0.0f, 0.63f, 1.0f));
         // change FOV
         cam.DoFov(boostFOV);
         Debug.Log("Boost activated.");
@@ -178,6 +195,8 @@ public class EnergySystem : MonoBehaviour
             fullscreenEffect.SetActive(false); // deactive
         }
 
+        staminaBar.color = staminaColor;
+        skybox.SetColor("_Tint", skyboxColor);
         // change cam FOV back
         cam.DoFov(camFov);
         Debug.Log("Boost deactivated.");
