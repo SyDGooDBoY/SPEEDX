@@ -5,7 +5,6 @@ public class PlayerRespawn : MonoBehaviour
 {
     public float fallThreshold = -10f;
     private Rigidbody rb;
-    private CharacterController controller;
 
     [SerializeField]
     string bottomObjectTag = "Bottom";
@@ -20,7 +19,6 @@ public class PlayerRespawn : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        controller = GetComponent<CharacterController>();
         if (GetComponent<AudioSource>() == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
@@ -60,18 +58,13 @@ public class PlayerRespawn : MonoBehaviour
             {
                 rb.velocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
-                rb.position = CheckpointManager.respawnPosition;
+                //rb.position = CheckpointManager.respawnPosition;
+                CheckpointManager.RespawnPlayer(gameObject);
                 Debug.Log("Player respawned at (using Rigidbody): " + CheckpointManager.respawnPosition);
-            }
-            else if (controller != null)
-            {
-                controller.enabled = false;
-                transform.position = CheckpointManager.respawnPosition;
-                controller.enabled = true;
             }
             else
             {
-                transform.position = CheckpointManager.respawnPosition;
+                CheckpointManager.RespawnPlayer(gameObject);
             }
 
             //reset Energy State

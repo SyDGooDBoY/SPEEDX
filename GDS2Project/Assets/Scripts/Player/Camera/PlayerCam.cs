@@ -46,6 +46,22 @@ public class PlayerCam : MonoBehaviour
                 Time.deltaTime * 30); // 使用Slerp以保持更自然的旋转
     }
 
+    // apply it when respawn
+    public void SetCameraToLookAtTarget(Vector3 targetPosition)
+    {
+        camHolder.LookAt(targetPosition);
+
+        Vector3 directionToTarget = targetPosition - camHolder.position;
+        rotationY = Mathf.Atan2(directionToTarget.x, directionToTarget.z) * Mathf.Rad2Deg;
+        float distanceToTarget = new Vector2(directionToTarget.x, directionToTarget.z).magnitude; // 平面上的距离
+        rotationX = Mathf.Atan2(directionToTarget.y, distanceToTarget) * Mathf.Rad2Deg;
+
+        // set Cam rotation
+        camHolder.localRotation = Quaternion.Euler(rotationX, rotationY, 0);
+        orientationPlayer.rotation = Quaternion.Euler(0, rotationY, 0);
+    }
+
+
     public void DoFov(float endValue)
     {
         GetComponent<Camera>().DOFieldOfView(endValue, 0.25f).SetEase(Ease.InOutQuad); // 添加缓动函数以平滑过渡
