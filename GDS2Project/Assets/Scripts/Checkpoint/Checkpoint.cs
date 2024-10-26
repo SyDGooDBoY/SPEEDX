@@ -3,17 +3,17 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     public GameObject camLookAt;
-    private Vector3 camLookAtPos;
+    private Transform camLookAtTrans;
 
     private void Start()
     {
         if (camLookAt == null)
         {
-            camLookAtPos = transform.position;
+            camLookAtTrans = transform;
         }
         else
         {
-            camLookAtPos = camLookAt.transform.position;
+            camLookAtTrans = camLookAt.transform;
         }
     }
 
@@ -21,7 +21,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            CheckpointManager.UpdateCheckpoint(transform.position, camLookAtPos);
+            CheckpointManager.UpdateCheckpoint(transform.position, camLookAtTrans);
             Debug.Log("Checkpoint reached.");
         }
     }

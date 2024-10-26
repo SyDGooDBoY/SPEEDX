@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerCam : MonoBehaviour
 {
@@ -47,16 +48,18 @@ public class PlayerCam : MonoBehaviour
     }
 
     // apply it when respawn
-    public void SetCameraToLookAtTarget(Vector3 targetPosition)
+    public void SetCameraToLookAtTarget(Transform target)
     {
-        camHolder.LookAt(targetPosition);
 
-        Vector3 directionToTarget = targetPosition - camHolder.position;
+        camHolder.LookAt(target.position);
+
+        Vector3 directionToTarget = target.position - camHolder.position;
+        Debug.Log(camHolder.position + "7777");
+
         rotationY = Mathf.Atan2(directionToTarget.x, directionToTarget.z) * Mathf.Rad2Deg;
-        float distanceToTarget = new Vector2(directionToTarget.x, directionToTarget.z).magnitude; // 平面上的距离
+        float distanceToTarget = new Vector2(directionToTarget.x, directionToTarget.z).magnitude;
         rotationX = Mathf.Atan2(directionToTarget.y, distanceToTarget) * Mathf.Rad2Deg;
 
-        // set Cam rotation
         camHolder.localRotation = Quaternion.Euler(rotationX, rotationY, 0);
         orientationPlayer.rotation = Quaternion.Euler(0, rotationY, 0);
     }
