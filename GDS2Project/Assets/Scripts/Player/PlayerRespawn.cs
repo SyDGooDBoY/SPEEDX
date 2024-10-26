@@ -32,7 +32,7 @@ public class PlayerRespawn : MonoBehaviour
         playerShootTeleport = GetComponent<PlayerShootTeleport>();
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {

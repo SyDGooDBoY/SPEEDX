@@ -501,6 +501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e135b367f88bb4b9c0e03026deee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLookAt: {fileID: 0}
 --- !u!65 &87544108
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2250,6 +2251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e135b367f88bb4b9c0e03026deee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLookAt: {fileID: 0}
 --- !u!65 &467902780
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2881,6 +2883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e135b367f88bb4b9c0e03026deee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLookAt: {fileID: 0}
 --- !u!65 &606849875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3964,6 +3967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e135b367f88bb4b9c0e03026deee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLookAt: {fileID: 0}
 --- !u!65 &870712054
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4516,6 +4520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e135b367f88bb4b9c0e03026deee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLookAt: {fileID: 0}
 --- !u!65 &1012996502
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10821,6 +10826,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e135b367f88bb4b9c0e03026deee73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camLookAt: {fileID: 0}
 --- !u!65 &2064572567
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11013,7 +11019,7 @@ GameObject:
   - component: {fileID: 2116967204}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: Cam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

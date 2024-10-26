@@ -33,6 +33,7 @@ public class CheckpointManager : MonoBehaviour
     public static void RespawnPlayer(GameObject player)
     {
         player.transform.position = respawnPosition;
-        cam.SetCameraToLookAtTarget(targetLookAt);
+        if (targetLookAt != null)
+            cam.SetCameraToLookAtTarget(targetLookAt);
     }
 }
