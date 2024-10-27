@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Neon Broken wall
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_Parent: {fileID: 2100000, guid: 1160c4bcad0c6de41bb27b6b61b27081, type: 2}
+  m_Parent: {fileID: 2100000, guid: c839a7ef1aec4fe41807b99d0bdcce93, type: 2}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _EMISSION
