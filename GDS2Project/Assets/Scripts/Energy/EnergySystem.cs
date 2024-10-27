@@ -195,7 +195,10 @@ public class EnergySystem : MonoBehaviour
             fullscreenEffect.SetActive(false); // deactive
         }
 
-        staminaBar.color = staminaColor;
+        if (staminaBar != null)
+        {
+            staminaBar.color = staminaColor;
+        } 
         skybox.SetColor("_Tint", skyboxColor);
         // change cam FOV back
         cam.DoFov(camFov);
