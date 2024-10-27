@@ -82,7 +82,7 @@ public class PlayerDash : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Dash cd" + dashCdTimer);
+        //Debug.Log("Dash cd" + dashCdTimer);
 
         if (Input.GetKeyDown(dashKey) && dashCdTimer <= 0)
         {
