@@ -72,6 +72,8 @@ public class EnergySystem : MonoBehaviour
         staminaColor = staminaBar.color;
         //find skybox called skybox in the lighting settings
         skybox = RenderSettings.skybox;
+        skybox.SetColor("_Tint", Color.white);
+
         skyboxColor = skybox.GetColor("_Tint");
     }
 
@@ -198,7 +200,8 @@ public class EnergySystem : MonoBehaviour
         if (staminaBar != null)
         {
             staminaBar.color = staminaColor;
-        } 
+        }
+
         skybox.SetColor("_Tint", skyboxColor);
         // change cam FOV back
         cam.DoFov(camFov);
