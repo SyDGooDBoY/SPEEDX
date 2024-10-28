@@ -6450,11 +6450,11 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 1119690190}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1891711742}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
         m_MethodName: LevelSelection
         m_Mode: 1

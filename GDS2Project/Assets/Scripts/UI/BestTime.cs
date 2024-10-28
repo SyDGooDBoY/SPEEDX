@@ -1,56 +1,39 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class BestTime : MonoBehaviour
 {
-    public TextMeshProUGUI bestTimeText1;
-
-    public TextMeshProUGUI bestTimeText2;
-    public TextMeshProUGUI bestTimeText3;
-
+    // Array to hold references to your TextMeshPro elements
+    public TextMeshProUGUI[] bestTimeTexts;
 
     // Start is called before the first frame update
     void Start()
     {
-        //display best time in 2 decimal places, if no best time, display --:--
-        var level1BestTime = SaveManager.Instance.GetBestTime("Level 1");
-        var level2BestTime = SaveManager.Instance.GetBestTime("Level 2");
-        var level3BestTime = SaveManager.Instance.GetBestTime("Level 3");
+        DisplayBestTimes();
+    }
 
-        if (level1BestTime == null)
+    void DisplayBestTimes()
+    {
+        // Assuming levels are named consistently as "Level 1", "Level 2", etc.
+        for (int i = 0; i < bestTimeTexts.Length; i++)
         {
-            bestTimeText1.text = "Level 1\n--:--:--";
+            var levelName = $"Level {i + 1}";
+            var bestTime = SaveManager.Instance.GetBestTime(levelName);
+            bestTimeTexts[i].text = FormatBestTime(levelName, bestTime);
+        }
+    }
+
+    string FormatBestTime(string levelName, float? bestTime)
+    {
+        if (bestTime == null)
+        {
+            return $"{levelName}\n--:--:--";
         }
         else
         {
-            var timeSpan = TimeSpan.FromSeconds(level1BestTime.Value);
-            bestTimeText1.text =
-                "Level 1\n" + $"{timeSpan.Minutes:00}:{timeSpan.Seconds:00}:{timeSpan.Milliseconds / 10:00}";
-        }
-
-        if (level2BestTime == null)
-        {
-            bestTimeText2.text = "Level 2\n--:--:--";
-        }
-        else
-        {
-            var timeSpan = TimeSpan.FromSeconds(level2BestTime.Value);
-            bestTimeText2.text =
-                "Level 2\n" + $"{timeSpan.Minutes:00}:{timeSpan.Seconds:00}:{timeSpan.Milliseconds / 10:00}";
-        }
-
-        if (level3BestTime == null)
-        {
-            bestTimeText3.text = "Level 3\n--:--:--";
-        }
-        else
-        {
-            var timeSpan = TimeSpan.FromSeconds(level3BestTime.Value);
-            bestTimeText3.text =
-                "Level 3\n" + $"{timeSpan.Minutes:00}:{timeSpan.Seconds:00}:{timeSpan.Milliseconds / 10:00}";
+            TimeSpan timeSpan = TimeSpan.FromSeconds(bestTime.Value);
+            return $"{levelName}\n{timeSpan.Minutes:00}:{timeSpan.Seconds:00}:{timeSpan.Milliseconds / 10:00}";
         }
     }
 }
