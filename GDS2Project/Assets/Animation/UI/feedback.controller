@@ -6,7 +6,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Start
+  m_Name: feedback
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -33,7 +33,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 9020642035480366433}
-    m_Position: {x: 450, y: 80, z: 0}
+    m_Position: {x: 380, y: 160, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -64,7 +64,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 0bdb29572fe2a7544b1d6a581707da56, type: 2}
+  m_Motion: {fileID: 7400000, guid: 0df6afc55cf871a4a996a4739e593996, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

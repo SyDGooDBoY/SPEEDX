@@ -54,7 +54,8 @@ public class Endpoint : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //if current scene called level 1 run this code
-        if (SceneManager.GetActiveScene().name == "Level 1" &&
+        if (SceneManager.GetActiveScene().name == "Level 1" || SceneManager.GetActiveScene().name == "Level 2" ||
+            SceneManager.GetActiveScene().name == "Level 3" || SceneManager.GetActiveScene().name == "Level 4" &&
             collision.gameObject.CompareTag("Player"))
         {
             timeScoreSystem.isGameRunning = false;
@@ -75,49 +76,7 @@ public class Endpoint : MonoBehaviour
             }
         }
 
-        if (SceneManager.GetActiveScene().name == "Level 2" &&
-            collision.gameObject.CompareTag("Player"))
-        {
-            timeScoreSystem.isGameRunning = false;
-            bgm.Stop();
-            audioSource.PlayOneShot(winSound);
-            fadePanel.SetActive(true);
-            player.GetComponent<PlayerMovement>().inputEnabled = false;
-            StartCoroutine(Level1EndFade());
-            int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
-            string currentLevelID = SceneManager.GetSceneByBuildIndex(currentLevelIndex).name;
-            SaveManager.Instance.UpdateBestTime(currentLevelID, timeSys.currentTime);
-
-            int nextLevelIndex = currentLevelIndex + 1;
-
-            if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
-            {
-                SaveManager.Instance.UnlockLevel("Level " + currentLevelIndex);
-            }
-        }
-
-        if (SceneManager.GetActiveScene().name == "Level 3" &&
-            collision.gameObject.CompareTag("Player"))
-        {
-            timeScoreSystem.isGameRunning = false;
-            bgm.Stop();
-            audioSource.PlayOneShot(winSound);
-            fadePanel.SetActive(true);
-            player.GetComponent<PlayerMovement>().inputEnabled = false;
-            StartCoroutine(Level1EndFade());
-            int currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
-            string currentLevelID = SceneManager.GetSceneByBuildIndex(currentLevelIndex).name;
-            SaveManager.Instance.UpdateBestTime(currentLevelID, timeSys.currentTime);
-
-            int nextLevelIndex = currentLevelIndex + 1;
-
-            if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
-            {
-                SaveManager.Instance.UnlockLevel("Level " + currentLevelIndex);
-            }
-        }
-
-        if (SceneManager.GetActiveScene().name == "Level 4" && collision.gameObject.CompareTag("Player"))
+        if (SceneManager.GetActiveScene().name == "Level 5" && collision.gameObject.CompareTag("Player"))
         {
             timeScoreSystem.isGameRunning = false;
             bgm.Stop();

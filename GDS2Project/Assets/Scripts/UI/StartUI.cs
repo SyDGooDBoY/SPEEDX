@@ -34,6 +34,10 @@ public class StartUI : MonoBehaviour
     {
         Debug.LogWarning("Options function is not implemented yet.");
     }
+    public void OpenLink()
+    {
+        Application.OpenURL("https://forms.gle/1TNmd8fEALQssY1J8");
+    }
 
     public void ExitGame()
     {
