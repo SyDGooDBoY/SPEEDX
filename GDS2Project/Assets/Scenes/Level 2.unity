@@ -4418,7 +4418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 1059349410}
-  timeScoreSystem: {fileID: 0}
+  timeScoreSystem: {fileID: 352725573}
 --- !u!222 &1059349412
 CanvasRenderer:
   m_ObjectHideFlags: 0
