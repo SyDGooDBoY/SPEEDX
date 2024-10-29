@@ -25,6 +25,7 @@ public class BrokenBoard : MonoBehaviour
     {
         // ��ʼ����Ч���
         audioSource = gameObject.AddComponent<AudioSource>();
+        destructionSound = Resources.Load<AudioClip>("Sound/TestSound/HitWall");
 
         //objectShakeScript = objectWithShake.GetComponent<ObjectShake>();
     }

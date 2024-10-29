@@ -16476,6 +16476,10 @@ PrefabInstance:
       propertyPath: grappleSound
       value: 
       objectReference: {fileID: 8300000, guid: 02dacba279a059e49a1f22c47681baae, type: 3}
+    - target: {fileID: 4642578342696618354, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5344313690183820106, guid: 74bbfe42da94be14d87b64db866f7aa6, type: 3}
       propertyPath: lr
       value: 

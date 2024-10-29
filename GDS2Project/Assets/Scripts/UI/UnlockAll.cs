@@ -10,6 +10,8 @@ public class UnlockAll : MonoBehaviour
         SaveManager.Instance.UnlockLevel("Level 2");
         SaveManager.Instance.UnlockLevel("Level 3");
         SaveManager.Instance.UnlockLevel("Level 4");
+        SaveManager.Instance.UnlockLevel("Level 5");
+
         SceneManager.LoadScene("StartScene");
 
         Debug.Log("Unlocked Level 2");
